@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from d-themes.com/html/panda/demo1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Nov 2022 04:19:07 GMT -->
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>Panda - Ultimate eCommerce Template</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Panda - Ultimate eCommerce Template">
+    <meta name="author" content="D-THEMES">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
+    <!-- Preload Font -->
+
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+
+    <script>
+        WebFontConfig = {
+            google: { families: [ 'Josefin Sans:300,400,600,700' ] }
+        };
+        ( function ( d ) {
+            var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
+            wf.src = 'js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore( wf, s );
+        } )( document );
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
+
+    <!-- Plugin CSS File -->
+    <link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/magnific-popup/magnific-popup.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="css/demo1.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+</head>
+
+<body class="home">
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-left">
+                        <a href="tel:#" class="call">
+                            <i class="p-icon-phone-solid"></i>
+                            <span>+456 789 000</span>
+                        </a>
+                        <span class="divider"></span>
+                        <a href="contact.html" class="contact">
+                            <i class="p-icon-map"></i>
+                            <span>25 West 21th STREET, Miami FL, USA</span>
+                        </a>
+                    </div>
+                    <div class="header-right">
+                        <div class="dropdown switcher">
+                            <a href="#currency">USD</a>
+                            <ul class="dropdown-box">
+                                <li><a href="#USD">USD</a></li>
+                                <li><a href="#EUR">EUR</a></li>
+                            </ul>
+                        </div>
+                        <!-- End DropDown Menu -->
+                        <div class="dropdown switcher">
+                            <a href="#language"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                                    alt="flagus">ENG</a>
+                            <ul class="dropdown-box">
+                                <li>
+                                    <a href="#USD"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                                            alt="flagus">ENG</a>
+                                </li>
+                                <li>
+                                    <a href="#EUR"><img src="images/flagfr.jpg" width="14" height="10" class="mr-1"
+                                            alt="flagfr">FRH</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="divider"></span>
+                        <!-- End DropDown Menu -->
+                        <div class="social-links">
+                            <a href="#" class="social-link fab fa-facebook-f" title="Facebook"></a>
+                            <a href="#" class="social-link fab fa-twitter" title="Twitter"></a>
+                            <a href="#" class="social-link fab fa-pinterest" title="Pinterest"></a>
+                            <a href="#" class="social-link fab fa-linkedin-in" title="Linkedin"></a>
+                        </div>
+                        <!-- End of Social Links -->
+                    </div>
+                </div>
+            </div>
+
+            <!--Notification-->
+
+
+             <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+              <% if(message.message  == "Log in to proceed") { %>
+                <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                    <h5 class="alert-title text-center"><%= message.message %></h5>
+                    <button type="button" class="btn btn-link btn-close">
+                        <i class="p-icon-close"></i>
+                    </button>
+                </div>
+               <%} else if(message.type) {%>
+
+                <div class="alert alert-<%=message.type%> alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                    <h5 class="alert-title text-center"><%= message %></h5>
+                    <button type="button" class="btn btn-link btn-close">
+                        <i class="p-icon-close"></i>
+                    </button>
+                </div>
+
+                <% } %>
+             </div>
+             
+
+
+<!-- 
+             <div
+             class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4">
+             <h5 class="alert-title text-center">This is a <b>success</b> alert</h5>
+             <button type="button" class="btn btn-link btn-close">
+                 <i class="p-icon-close"></i>
+             </button>
+            </div>
+-->
+
+            <!--Notification-->
+
+
+
+
+            <!-- End HeaderTop -->
+            <div class="header-middle has-center sticky-header fix-top sticky-content">
+                <div class="container">
+                    <div class="header-left">
+                        <a href="#" class="mobile-menu-toggle" title="Mobile Menu">
+                            <i class="p-icon-bars-solid"></i>
+                        </a>
+                        <a href="/" class="logo">
+                            <img src="images/logo.png" alt="logo" width="171" height="41">
+                        </a>
+                        <!-- End of Divider -->
+                    </div>
+                    <div class="header-center">
+                        <nav class="main-nav">
+                            <ul class="menu">
+                                <li class="active">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/shop">Shop</a>
+                                </li>
+                                <li>
+                                    <a href="/dashboard">Dashboard</a>
+    
+                                </li>
+
+                                <li>
+                                    <a href="#">Watch us!</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-search hs-toggle">
+                            <a class="search-toggle" href="#" title="Search">
+                                <i class="p-icon-search-solid"></i>
+                            </a>
+                            <form action="#" class="form-simple">
+                                <input type="search" autocomplete="off" placeholder="Search in..." required>
+                                <button class="btn btn-search" type="submit">
+                                    <i class="p-icon-search-solid"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="dropdown login-dropdown off-canvas">
+                            <a class="login-toggle"  data-toggle="login-modal">
+                                <span class="sr-only">login</span>
+                                <i class="p-icon-user-solid"></i>
+                            </a>
+                            <!-- End Login Toggle -->
+                            <div class="canvas-overlay"></div>
+                            <a href="#" class="btn-close"></a>
+                            <div class="dropdown-box scrollable">
+                                <div class="login-popup">
+                                    <div class="form-box">
+                                        <div class="tab tab-nav-underline tab-nav-boxed">
+                                            <ul class="nav nav-tabs nav-fill mb-4">
+                                                <li class="nav-item">
+                                                    <a class="nav-link lh-1 ls-normal active" href="#signin">Login</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link lh-1 ls-normal" href="#register">Register</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active in" id="signin">
+
+                                                    <% if (message.error) { %>
+                                                        <div class="d-flex justify-content-center text-dark">
+                                                               <%= message.error %>
+                                                         </div>
+                                                      <% } %>
+
+                                                    <form method="post" action="/registerlogin/login" >
+                                                        <div class="form-group">
+                                                            <input type="text" id="singin-email" name="Email" placeholder="Username or Email Address" required="">
+                                                            <input type="password" id="singin-password" name="password" placeholder="Password" required="">
+                                                        </div>
+                                                        <div class="form-footer">
+                                                            <div class="form-checkbox">
+                                                                <input type="checkbox" id="signin-remember" name="signin-remember">
+                                                                <label for="signin-remember">Remember
+                                                                    me</label>
+                                                            </div>
+                                                            <a href="#" class="lost-link">Lost your password?</a>
+                                                        </div>
+                                                        <button class="btn btn-dark btn-block" type="submit">Login</button>
+                                                    </form>
+                                                    <div class="form-choice text-center">
+                                                        <label>or Login With</label>
+                                                        <div class="social-links social-link-active ">
+                                                            <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
+                                                            <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
+                                                            <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="register">
+
+                                                    <% if(locals.message) { %>
+                                                        <div class="alert alert-<%=message.type%>" >
+                                                        <button type="button" class="close bg-primary" data-dismiss="alert">&times;</button>
+                                                        <strong><%=message.intro%></strong>
+                                                        <%= message.message %>
+                                                        </div>
+                                                      <%}%>
+
+                                                    <form method="post" action="/registerlogin">
+                                                        <div class="form-group">
+                                                            <input type="text" id="register-user" name="username" placeholder="Username" required="">
+                                                            <input type="email" id="register-email" name="email" placeholder="Your Email Address" required="">
+                                                            <input type="password" id="register-password" name="password" placeholder="Password" required="">
+                                                        </div>
+                                                        <div class="form-footer mb-5">
+                                                            <div class="form-checkbox">
+                                                                <input type="checkbox" id="register-agree" name="register-agree" required="">
+                                                                <label for="register-agree">I
+                                                                    agree to the
+                                                                    privacy policy</label>
+                                                            </div>
+                                                        </div>
+                                                        <button class="btn btn-dark btn-block" type="submit">Register</button>
+                                                    </form>
+                                                    <div class="form-choice text-center">
+                                                        <label class="ls-m">or Register With</label>
+                                                        <div class="social-links social-link-active ">
+                                                            <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
+                                                            <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
+                                                            <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button title="Close (Esc)" type="button" class="mfp-close"><span>×</span></button>
+                                </div>
+                            </div>
+                            <!-- End Dropdown Box -->
+                        </div>
+                        <a href="wishlist.html" class="wishlist wishlist-toggle" title="Wishlist">
+                            <i class="p-icon-heart-solid"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>

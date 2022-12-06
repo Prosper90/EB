@@ -93,10 +93,6 @@
                 </tr>
             </thead>
             <tbody>
-                <%if(user.Order.length == 0) { %>
-                   <div class=""> No Item has been purchased </div>
-
-                 <% } else { %>
                  
                 <%user.Orders.forEach((data) => {%>
                 <tr>
@@ -116,10 +112,21 @@
 
               <%})%>
 
-              <% } %>
             </tbody>
         </table>
+
+
+        <div class="w-100 justify-content-center align-items-center mt-5">
+            <%if(user.Orders.length == 0) { %>
+                 <div>
+                    <div class="w-100 text-center"> No Item has been purchased </div>
+                 </div>
+
+                <% } %>
+        </div>
+
     </div>
+    
     <div class="tab-pane" id="downloads">
         <p class="mb-4 text-body">No downloads available yet.</p>
         <a href="shop.html" class="btn btn-dark">Go to Shop<i class="p-icon-arrow-long-right"></i></a>

@@ -25,6 +25,15 @@ function checkAuthenticated(req, res, next){
     return next()
   }
 
+ //console.log("Not authenticated");
+ /*
+  req.session.message = {
+    type: "danger",
+    intro: "Error",
+    message: "Log in to proceed"
+  }
+  */
+  req.flash('message', 'Log in to proceed');
   res.redirect("/")
 }
 

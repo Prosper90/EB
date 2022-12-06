@@ -33,10 +33,11 @@ initializePassport(passport);
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/public')));
-app.set("view engine", "ejs");
+
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set("view engine", "ejs");
 app.use(methodOveride("_method"));
+app.use(express.static(path.join(__dirname, '/public')));
 app.enable("trust proxy");
 
 
@@ -62,6 +63,7 @@ app.use(function(req, res, next){
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 
 app.use("/registerlogin", registerlogin);

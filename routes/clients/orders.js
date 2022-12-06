@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get("/", checkAuthenticated, function(req, res){
-  res.render("clients/orders");
+  res.render("clients/orders", {user: req.user});
 });
 
 

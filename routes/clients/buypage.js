@@ -133,7 +133,9 @@ function checkAuthenticated(req, res, next){
     return next()
   }
 
-  res.redirect("/")
+  req.flash('message', 'Log in to proceed');
+
+  res.redirect("/shop")
 }
 
 

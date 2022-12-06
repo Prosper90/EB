@@ -11125,3 +11125,12 @@ input.quantity {
         object-position: 60%
     }
 }
+
+#messages-notify { 
+    display: flex;
+    /* background: blue; */
+    position: absolute;
+    top: 31px;
+    left: 0%;
+    width: 100%;
+}

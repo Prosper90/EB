@@ -37,7 +37,8 @@ router.get("/", async function(req, res){
     {
       products : products,
       currentPage : page,
-      pageCount : Math.ceil(totalCount/size)
+      pageCount : Math.ceil(totalCount/size),
+      message: req.flash() 
      });
 
 });
