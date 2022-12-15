@@ -27,6 +27,7 @@
                      <% } else { %>
 
                      <% products.forEach( function(data){ %>
+                        <%if(data.available == true) {%>
                         <div class="product-wrap">
                             <div class="product shadow-media text-center">
                                 <figure class="product-media">
@@ -49,12 +50,13 @@
                                         </a>
                                     </h5>
                                     <span class="product-price">
-                                        <ins class="new-price">$<%=data.price%></ins>
+                                        <ins class="new-price">N<%=data.price%></ins>
                                     </span>
                                 </div>
                             </div>
                             <!-- End .product -->
                         </div>
+                        <% } %>
                         <% }) %>
      
                     </div>

@@ -30,7 +30,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
   dateandtime : {type: Date, default: Date.now},
   price: {type: Number},
   paymentmethod: {type: String},
-  status: {type: Number}
+  status: {type: Number},
+  buyid: {type: String}
 });
 
 

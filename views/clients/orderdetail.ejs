@@ -1,4 +1,4 @@
-<%- include ("header.ejs"); %>
+<%- include ("../orderdetails/header.ejs"); %>
 
 
 <div class="tab-pane order active in" id="orders-view" style="width: 100% ;">
@@ -19,20 +19,22 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="product-name">Type <span><i class="p-icon-times"></i>
-                            1</span></td>
+                    <td class="product-name">Type </td>
                     <td class="product-price"><%=item.type%></td>
                 </tr>
                 <tr>
-                    <td class="product-name"> Password <span><i class="p-icon-times"></i>
-                            2</span></td>
-                    <td class="product-price"><%=item.password%></td>
+                    <td class="product-name"> Password <span>
+                  <%if(item.status == 0) {%>
+                    <td class="product-price">******</td>
+                  <%} else {%>
+                     <td class="product-price"><%=item.password%></td>
+                  <%}%>
                 </tr>
                 <tr class="summary-subtotal">
                     <td>
                         <h4 class="summary-subtitle">Amount:</h4>
                     </td>
-                    <td class="summary-value font-weight-normal">$<%=item.price%></td>
+                    <td class="summary-value font-weight-normal">N<%=item.price%></td>
                 </tr>
                 <tr class="summary-subtotal">
                     <td>
@@ -72,4 +74,4 @@
 </div>
 </div>
 
-<%- include ("footer.ejs"); %>
+<%- include ("../orderdetails/footer.ejs"); %>

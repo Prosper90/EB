@@ -94,7 +94,7 @@
             </thead>
             <tbody>
                  
-                <%user.Orders.forEach((data) => {%>
+                <%user.Orders.map((data) => {%>
                 <tr>
                     <td class="order-number"><a href="#"><%=data._id%></a></td>
                     <td class="order-date"><span><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></span></td>
@@ -105,8 +105,8 @@
                             <span>On hold</span>
                          <% } %>
                     </td>
-                    <td class="order-total"><span>$<%=data.amount%></span></td>
-                    <td class="order-action"><a href="/orderdetail/<%=data._id%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
+                    <td class="order-total"><span>N<%=data.price%></span></td>
+                    <td class="order-action"><a href="/orderdetail/<%=data.buyid%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
                     </td>
                 </tr>
 

@@ -1,32 +1,8 @@
-<%- include ("./header.ejs"); %>
+<%- include ("../buypagehf/header.ejs"); %>
 
         <main class="main single-product">
             <nav class="breadcrumb-nav">
-                <div class="container">
-                    <div class="product-navigation">
-                        <ul class="breadcrumb">
-                            <li><a href="demo1.html">Home</a></li>
-                            <li><a href="product-simple.html">Products</a></li>
-                            <li>Default</li>
-                        </ul>
-                        <div class="product-image-nav">
-                            <a href="#" class="product-nav product-nav-prev">
-                                <figure>
-                                    <img src="images/products/product-single/navigation/prev.jpg" width="150"
-                                        height="150" alt="nav-prev">
-                                </figure>
-                                <i class="p-icon-arrow-long-left"></i>
-                            </a>
-                            <a href="#" class="product-nav product-nav-next">
-                                <figure>
-                                    <img src="images/products/product-single/navigation/next.jpg" width="150"
-                                        height="150" alt="nav-next">
-                                </figure>
-                                <i class="p-icon-arrow-long-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </nav>
             <div class="page-content">
                 <div class="container">
@@ -42,13 +18,13 @@
                                             width="800" height="1000">
                                         -->
                                             <% if(item.type == "facebook") { %>
-                                                <img src="images/products/facebook.png" alt="product" width="800" height="1000" />
+                                                <img src="../images/products/facebook.png" alt="product" width="800" height="1000" />
                                             <% } else if(item.type == "twitter") { %>
-                                                <img src="images/products/twitter.png" alt="product" width="800" height="1000" />
+                                                <img src="../images/products/twitter.png" alt="product" width="800" height="1000" />
                                             <% } else if(item.type == "instagram") { %>
-                                                <img src="images/products/instagram.png" alt="product" width="800" height="1000" />
+                                                <img src="../images/products/instagram.png" alt="product" width="800" height="1000" />
                                            <% } else { %>
-                                             <img src="images/products/google.png" alt="product" width="800" height="1000" />
+                                             <img src="../images/products/google.png" alt="product" width="800" height="1000" />
                                              <% } %>
                                     </figure>
                                 </div>
@@ -66,18 +42,18 @@
                                     <%=item.description%>
                                 </p>
 
-                                <div class="product-variation-price">
-                                    <span>$<%=item.price%></span>
+                                <div class="product-price">
+                                    <span>N<%=item.price.toLocaleString()%></span>
                                 </div>
-                                <div class="product-form product-qty pt-1">
-                                    <form method="post" action="/buypage" class="product-form-group">
-                                        <button type="submit" class="btn-product btn-cart ls-normal font-weight-semi-bold"> <i class="p-icon-cart-solid"></i>BUY</button>
+                                <div class="product-form  pt-1">
+                                    <form method="post" action="/buypage/<%=item._id%>" class="product-form-group d-flex justify-content-center align-items-center" style="background-color: #ff9c28; padding: 8px;" >
+                                        <button type="submit" class="btn-product ls-normal font-weight-semi-bold"> <i class="p-icon-cart-solid"></i>BUY</button>
                                     </form>
                                 </div>
                                 <div class="product-action pt-5 pb-3">
                                     <a href="#" class="btn-product btn-compare mr-5"><i
-                                            class="p-icon-compare-solid"></i>Type</a>
-                                    <a href="#" class="btn-product btn-wishlist"> ADD TO WISHLIST </a>
+                                            class="p-icon-compare-solid"></i>Password</a>
+                                    <a href="#" class="btn-product btn-wishlist"> ****** </a>
                                 </div>
                                 <hr class="product-divider">
 
@@ -89,4 +65,5 @@
 
         </main>
         <!-- End Main -->
-        <%- include ("./footer.ejs"); %>
+        
+        <%- include ("../buypagehf/footer.ejs"); %>

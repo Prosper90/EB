@@ -7,12 +7,14 @@ const orders = require("./routes/clients/orders");
 const dashboard = require("./routes/clients/dashboard");
 const buypage = require("./routes/clients/buypage");
 const orderdetail = require("./routes/clients/orderdetail");
+const recievepayment = require("./routes/clients/recievepayment");
 
 
-//const adminlogin = require("./routes/admin/adminlogin");
-//const admin = require("./routes/admin/admindashboard");
-//const confirmdeposit = require("./routes/admin/acceptpayment.js");
-//const investmentstrack = require("./routes/admin/investmentstrack.js");
+const adminlogin = require("./routes/admin/adminlogin");
+const admin = require("./routes/admin/dashboard");
+const addproducts = require("./routes/admin/addproducts.js");
+const products = require("./routes/admin/products.js");
+const allorders = require("./routes/admin/allorders.js");
 //const manageInvestments = require("./routes/admin/manageInvestments.js");
 const bodyParser = require('body-parser');
 const User = require("./model-database/users").User;
@@ -75,11 +77,13 @@ app.use("/orderdetail", orderdetail);
 
 
 //admin section
-//app.use("/adminlogin", adminlogin);
-//app.use("/admin", admin);
-//app.use("/confirmdeposit", confirmdeposit);
+app.use("/adminlogin", adminlogin);
+app.use("/admin", admin);
+app.use("/addproducts", addproducts);
 //app.use("/investmentstrack", investmentstrack);
-//app.use("/manageInvestments", manageInvestments)
+app.use("/products", products);
+app.use("/allorders", allorders);
+app.use("/recievepayment", recievepayment);
 
 
 

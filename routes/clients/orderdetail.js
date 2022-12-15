@@ -17,7 +17,7 @@ router.get("/:id", checkAuthenticated, async function(req, res){
           return user;
         }
 
-    })
+    }).clone();
   res.render("clients/orderdetail", {item: getItem} );
 });
 
