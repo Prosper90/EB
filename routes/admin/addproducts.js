@@ -73,7 +73,7 @@ router.post("/", async function(req, res){
       type: productType[index],
       password: productPassword[index],
       available: true,
-      price: productPrice[index],
+      price: parseInt(productPrice[index]),
       description: productDesc[index],
     })
   })
