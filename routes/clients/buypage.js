@@ -6,7 +6,6 @@ const User = require("../../model-database/users").User;
 //const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const got = require("got");
 
 
 

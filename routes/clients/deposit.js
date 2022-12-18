@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
-const router = express.Router()
+const router = express.Router();
+const got = require("got");
 
 
 
@@ -35,7 +36,7 @@ router.post("/", checkAuthenticated, async function(req, res){
               tx_ref: ids,
               amount: req.body.amount,
               currency: "NGN",
-              redirect_url: "http://localhost:3000/recievepayment",
+              redirect_url: "https://ebe.herokuapp.com/recievepayment",
               customer: {
                   email: req.user.Email,
               },
@@ -47,7 +48,7 @@ router.post("/", checkAuthenticated, async function(req, res){
       res.redirect(response.data.link);
   } catch (err) {
       console.log(err.code);
-      console.log(err.response.body);
+      console.log(err);
   }
               
   

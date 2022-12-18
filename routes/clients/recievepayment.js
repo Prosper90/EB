@@ -136,13 +136,13 @@ router.get('/', async (req, res) => {
                           if(saveerr){
 
 
-                            req.flash('message', 'Payment unsuccessful');
+                            req.flash('message', 'Deposit unsuccessful');
                             res.redirect("/");
 
                           } else {
 
-                            req.flash('message', 'Payment successful');
-                            res.redirect("/shop");
+                            req.flash('message', 'Deposit successful');
+                            res.redirect("/dashboard");
 
                           }
 
