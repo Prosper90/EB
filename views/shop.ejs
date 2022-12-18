@@ -21,87 +21,105 @@
                     <div class="select-items">
                         <a href="#" class="filter-clean text-primary">Clean All</a>
                     </div>
-                    <div class="row product-wrapper cols-lg-6 cols-md-4 cols-sm-3 cols-2">
-                     <% if(products.length == 0) { %>
-                       <div class="">No products available</div>
-                     <% } else { %>
+                    <div class="row product-wrapper cols-lg-12   cols-md-4 cols-sm-3 cols-2">
 
-                     <% products.forEach( function(data){ %>
-                        <%if(data.available == true) {%>
+
                         <div class="product-wrap">
                             <div class="product shadow-media text-center">
                                 <figure class="product-media">
-                                    <a href="/buypage/<%=data._id%>">
-                                        <% if(data.type == "facebook") { %>
+                                    <a href="/buypage/facebook">
                                             <img src="images/products/facebook.png" alt="product" width="295" height="369" />
-                                        <% } else if(data.type == "twitter") { %>
-                                            <img src="images/products/twitter.png" alt="product" width="295" height="369" />
-                                        <% } else if(data.type == "instagram") { %>
-                                            <img src="images/products/instagram.png" alt="product" width="295" height="369" />
-                                       <% } else { %>
-                                         <img src="images/products/google.png" alt="product" width="295" height="369" />
-                                         <% } %>
                                     </a>
                                 </figure>
                                 <div class="product-details">
                                     <h5 class="product-name">
-                                        <a href="/buypage/<%=data._id%>">
-                                            <%=data.name%>
+                                        <a href="/buypage/facebook">
+                                            Facebook
                                         </a>
                                     </h5>
                                     <span class="product-price">
-                                        <ins class="new-price">N<%=data.price%></ins>
+                                        <ins class="new-price">N1000</ins>
                                     </span>
                                 </div>
                             </div>
                             <!-- End .product -->
                         </div>
-                        <% } %>
-                        <% }) %>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/twitter">
+                                   
+                                            <img src="images/products/twitter.png" alt="product" width="295" height="369" />
+                                      
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a href="/buypage/twitter">
+                                            Twitter
+                                        </a>
+                                    </h5>
+                                    <span class="product-price">
+                                        <ins class="new-price">N1000</ins>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/instagram">
+                                            <img src="images/products/instagram.png" alt="product" width="295" height="369" />
+                                    
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a href="/buypage/instagram">
+                                            Instagram
+                                        </a>
+                                    </h5>
+                                    <span class="product-price">
+                                        <ins class="new-price">N1000</ins>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/google">
+                             
+                                         <img src="images/products/google.png" alt="product" width="295" height="369" />
+     
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a href="/buypage/google">
+                                            Google
+                                        </a>
+                                    </h5>
+                                    <span class="product-price">
+                                        <ins class="new-price">N1000</ins>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
      
                     </div>
 
-                <!-- pagination  -->
-                <%if(pageCount > 0 ) { %>
-                    <nav class="toolbox toolbox-pagination pt-2 pb-5">
-                        <p class="toolbox-item show-info d-block ls-m">Showing <span>1-12 of 60</span> Products</p>
-                        <ul class="pagination">
-                          <%if(currentPage > 1) { %>
-                            <li class="page-item disabled">
-                                <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                    aria-disabled="true">
-                                    <i class="p-icon-angle-left"></i>
-                                </a>
-                            </li>
-                          <% } %>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <% var i = 1; %>
-                            <% if(currentPage > 5) { i = +currentPage - 4 } %>
-                            <% if(i !== 1) { %>
-                            <li class="page-item page-item-dots"></li>
-                            <% } %>
-                            
-                            <% for(i; i<=pageCount; i++) { %>
-                            <% if(currentPage == i) { %>
-                            <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
-                            <% } else { %>
-                            <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
-                            <% } %>
-                            <% } %>
 
-                            <%if(currentPage != pageCount) { %>
-                            <li class="page-item">
-                                <a class="page-link page-link-next" href="#" aria-label="Next">
-                                    <i class="p-icon-angle-right"></i>
-                                </a>
-                            </li>
-                            <% } %>
-                        </ul>
-                    </nav>
-                    <% } %>
-
-                    <% } %>
 
                 </div>
 

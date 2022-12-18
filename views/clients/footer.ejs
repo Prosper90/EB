@@ -86,6 +86,8 @@
     </div>
 </footer>
 <!-- End Footer -->
+
+
 </div>
 <!-- Sticky Footer -->
 <div class="sticky-footer sticky-content fix-bottom">
@@ -301,9 +303,41 @@
 </div>
 </div>
 <!-- Plugins JS File -->
-<script src="vendor/jquery/jquery.min.js"></script>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Main JS File -->
 <script src="js/main.min.js"></script>
+<script>
+    $(document).ready(function() {
+       $('#myModaldashboard').modal('show');
+
+
+       $("#buttonchange").click(function(){
+                    $(".modal-child").replaceWith
+                    (
+                    `<div class="tab-pane-two active in" style="width: 80%; padding: 20px;" >
+                        <form method="post" action="/deposit">
+                            <fieldset>
+                                <legend>Deposit</legend>
+                                <label>Amount to deposit (min is N5000)</label>
+                                <input type="number" name="amount">
+
+                                <label>deposit id</label>
+                                <input type="text" value="<%=user._id%>" disabled>
+
+                                <label>method</label>
+                                <input type="text" value="Card" disabled>
+                            </fieldset>
+                            <div class="d-flex justify-content-center align-items-center pt-1">
+                              <button type="submit" class="btn btn-primary">Deposit</button>
+                            </div>
+                        </form>
+                    </div>
+                    `
+                    );
+                });
+    });
+</script>
 </body>
 
 

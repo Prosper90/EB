@@ -102,27 +102,37 @@
             </div>
 
             <!--Notification-->
-
+               
 
              <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-              <% if(message.message  == "Log in to proceed") { %>
-                <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
-                    <h5 class="alert-title text-center"><%= message.message %></h5>
-                    <button type="button" class="btn btn-link btn-close">
-                        <i class="p-icon-close"></i>
-                    </button>
-                </div>
-               <%} else if(message.type) {%>
+                <% if(message.message  == "Log in to proceed") { %>
+                  <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                      <h5 class="alert-title text-center"><%= message.message %></h5>
+                      <button type="button" class="btn btn-link btn-close">
+                          <i class="p-icon-close"></i>
+                      </button>
+                  </div>
 
-                <div class="alert alert-<%=message.type%> alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
-                    <h5 class="alert-title text-center"><%= message %></h5>
-                    <button type="button" class="btn btn-link btn-close">
-                        <i class="p-icon-close"></i>
-                    </button>
-                </div>
-
-                <% } %>
-             </div>
+                      <% } else if(message.message  == "Payment successful") { %>
+                  
+                      <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" >
+                          <h5 class="alert-title text-center"><%= message.message %></h5>
+                          <button type="button" class="btn btn-link btn-close">
+                              <i class="p-icon-close"></i>
+                          </button>
+                      </div>
+  
+                      <% } else if(message.message  == "Payment unsuccessful") { %>
+                  
+                      <div class="alert alert-danger alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                          <h5 class="alert-title text-center"><%= message.message %></h5>
+                          <button type="button" class="btn btn-link btn-close">
+                              <i class="p-icon-close"></i>
+                          </button>
+                      </div>
+  
+                  <% } %>
+               </div>
              
 
 

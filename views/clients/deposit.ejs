@@ -1,0 +1,30 @@
+<%- include ("header.ejs"); %>
+
+<div class="tab-content col-lg-9 col-md-8">
+    <!--here-->
+    <div class="tab-pane-two active in" >
+        <form method="post" action="/deposit">
+        
+            <fieldset>
+                <legend>Deposit</legend>
+                <label>Amount to deposit (min is N5000)</label>
+                <input type="number" name="amount">
+
+                <label>deposit id</label>
+                <input type="text" value="<%=user._id%>" disabled>
+
+                <label>method</label>
+                <input type="text" value="Card" disabled>
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Deposit</button>
+        </form>
+
+
+    </div>
+        <!--here-->
+</div>
+</div>
+</div>
+
+<%- include ("footer.ejs"); %>

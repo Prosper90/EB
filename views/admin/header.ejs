@@ -77,6 +77,20 @@
 
 
 
+
+    <% if(message.message !== "") { %>
+     <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+        <div class="alert alert-primary alert-simple alert-inline ms-auto d-flex justify-content-center mb-4 w-100" >
+            <h5 class="alert-title text-center"><%= message.message %></h5>
+            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                <i class="p-icon-close"></i>
+            </button>
+        </div>
+        </div>
+      <% } %>
+
+
+
 <div class="main-wrapper" style="font-family: Josefin Sans, sans-serif; font-size: 15px; color: #777; font-weight: 300;">
 
 <div class="header">

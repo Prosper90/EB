@@ -44,6 +44,32 @@
 </head>
 
 <body>
+
+
+
+
+     <!-- Edit More-->
+ <%if(user.balance === 0) {%>
+
+    <div class="modalworks"   tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+            <div class="modal-child d-flex flex-column justify-content-center align-items-center">
+                    
+                <div class="">
+                    Deposit to access features
+                </div>
+
+                <button class="btn btn-primary" id="buttonchange" style="border-radius: 5px; margin-top: 5px";> Deposit</button>
+    
+            </div>
+            
+
+    </div>
+
+ <%}%>
+
+
+
     <div class="page-wrapper">
         <header class="header">
             <div class="header-top">
@@ -98,8 +124,64 @@
         </header>
         <!-- End Header -->
         <main class="main account-page">
-            <div class="page-header" style="background-color: #f9f8f4">
-                <h1 class="page-title">My Account</h1>
+            <div class="page-header-edit d-flex flex-column" style="background-color: #f9f8f4">
+
+                <h3 class="page-title m-5">My Account</h3>
+
+               <div class="row cols-lg-3 cols-xs-2 cols-1 w-100" >
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                               <a class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-wallet"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Balance</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>N<%=user.balance.toLocaleString()%></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border"><a href="/orders"
+                                class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-table"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Total Orders</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p><%=user.Orders.length%></p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+
+
+                     <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                            <a href="/deposit" class="no-tab-item" style="cursor: pointer;">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-money"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>Deposit</p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+                </div>
+
+
             </div>
             <nav class="breadcrumb-nav has-border">
                 <div class="container">

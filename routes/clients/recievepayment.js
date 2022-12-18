@@ -11,7 +11,7 @@ const router = express.Router();
 
 
 
-
+/*
 router.get('/', async (req, res) => {
     
     console.log("badddd people")
@@ -109,7 +109,60 @@ router.get('/', async (req, res) => {
       
   
 });
+*/
 
+
+
+router.get('/', async (req, res) => {
+
+  //console.log("badddd people")
+  const ids = req.query.tx_ref;
+  const valueId = ids.split(',');
+  console.log(valueId);
+    
+
+    if (req.query.status === "successful") {
+        // Success! Confirm the customer's payment
+
+                      //Top up user
+                      await User.findById({_id: valueId[0]}, function(err, user) {
+                        if(err) {
+                          //handle it
+                        } else {
+
+                          user.balance = valueId[1];
+
+                        user.save(function(saveerr, saveresult){
+                          if(saveerr){
+
+
+                            req.flash('message', 'Payment unsuccessful');
+                            res.redirect("/");
+
+                          } else {
+
+                            req.flash('message', 'Payment successful');
+                            res.redirect("/shop");
+
+                          }
+
+                          
+                        });
+
+                      }
+
+                      }).clone();
+
+
+    } else {
+        // Inform the customer their payment was unsuccessful
+            req.flash('message', 'Payment unsuccessful');
+            res.redirect("/");
+    }
+
+    
+
+});
 
 
 

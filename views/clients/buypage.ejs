@@ -33,26 +33,39 @@
                         </div>
                         <div class="col-md-5">
                             <div class="product-details">
-                                <h1 class="product-name"><%=item.name%></h1>
+                                <h1 class="product-name">Item <small>Details</small></h1>
             
                                 <p class="product-price mb-1">
-                                    <ins class="new-price"><%=item.type%></ins>
+                                    <ins class="new-price"><%=item.name%></ins>
                                 </p>
                                 <p class="product-short-desc">
                                     <%=item.description%>
                                 </p>
 
                                 <div class="product-price">
-                                    <span>N<%=item.price.toLocaleString()%></span>
+                                    <small>N(accumulates)</small>
                                 </div>
                                 <div class="product-form  pt-1">
+
+                                    <form class="product-form product-qty pt-1" method="post" action="/buypage/<%=item.type%>">
+                                        <div class="product-form-group">
+                                            <div class="input-group">
+                                                <button class="quantity-minus p-icon-minus-solid"></button>
+                                                <input class="quantity form-control" name="purchaseNumber" type="number" min="1" max="1000000">
+                                                <button class="quantity-plus p-icon-plus-solid"></button>
+                                            </div>
+                                            <button class="btn-product btn-cart-two ls-normal font-weight-semi-bold" ><i class="p-icon-cart-solid"></i>Buy</button>
+                                        </div>
+                                    </form>
+                                  <!--
                                     <form method="post" action="/buypage/<%=item._id%>" class="product-form-group d-flex justify-content-center align-items-center" style="background-color: #ff9c28; padding: 8px;" >
                                         <button type="submit" class="btn-product ls-normal font-weight-semi-bold"> <i class="p-icon-cart-solid"></i>BUY</button>
                                     </form>
+                                    -->
                                 </div>
                                 <div class="product-action pt-5 pb-3">
                                     <a href="#" class="btn-product btn-compare mr-5"><i
-                                            class="p-icon-compare-solid"></i>Password</a>
+                                            class="p-icon-compare-solid"></i>Passwords</a>
                                     <a href="#" class="btn-product btn-wishlist"> ****** </a>
                                 </div>
                                 <hr class="product-divider">

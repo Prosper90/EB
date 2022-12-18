@@ -40,17 +40,51 @@ router.post("/", async function(req, res){
   
      res.redirect("register");
     }
-    
     //checks if the confirm password matches the first password
     else {
+
+
+        //name
+        const tempNames = req.body.name;
+        const productNames = tempNames.split(",");
+        //type
+        const tempType = req.body.type;
+        const productType = tempType.split(",");
+        //password
+        const tempPassword = req.body.password;
+        const productPassword = tempPassword.split(",");
+        //price
+        const tempPrice = req.body.price;
+        const productPrice = tempPrice.split(",");
+        //price
+        const tempDesc = req.body.price;
+        const productDesc = tempDesc.split(",");
   
   //putting data to the database
   
-  //hash password and save to the database
   try{
-   const hashedPassword = await bcrypt.hash(req.body.password, 10);
   
+    console.log(productNames, "namesing");
+  const dataUpload = [];
+
+  productNames.map((data, index) => {
+    dataUpload.push({
+      name: data,
+      type: productType[index],
+      password: productPassword[index],
+      available: true,
+      price: productPrice[index],
+      description: productDesc[index],
+    })
+  })
+   
+   console.log(dataUpload);
+   await Products.insertMany(dataUpload);
+
+   req.flash('message', 'Added data successfully');
+   res.redirect("admin");
   
+  /*
    let product = new Products({
     name: req.body.name,
     type: req.body.type,
@@ -64,8 +98,8 @@ router.post("/", async function(req, res){
    product.save();
   
 
-      res.redirect(`admin`);
-
+   res.redirect(`admin`);
+*/
 
     } catch {
     res.redirect("admin");

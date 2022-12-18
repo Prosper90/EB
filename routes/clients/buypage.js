@@ -10,20 +10,147 @@ const got = require("got");
 
 
 
-router.get("/:id", checkAuthenticated, async function(req, res){
+router.get("/:id", checkAuthenticated, async function(req, res) {
 
-  const getItem = await Products.findById({_id: req.params.id}, function(err, product) {
+  const getItem = await Products.findOne({type: req.params.id}, function(err, product) {
     if(err) {
       console.log(err);
     } else {
-      console.log(product);
       return product;
     }
+  }).clone();
 
-}).clone();
-
-  res.render("clients/buypage", {message: req.flash(), item: getItem });
+  res.render("clients/buypage", { message: req.flash(), item: getItem });
 });
+
+
+
+
+
+
+
+//mainOnes
+
+router.post("/:id", checkAuthenticated, async function(req, res){
+
+  //buying items
+
+  //check for available market
+   const checking = await Products.find({type: req.params.id}, function(err, product) {
+    if(err) {
+      //handle
+    } else {
+
+      const check = product.filter((data) => {
+        return data.available == true;
+      });
+      console.log(check, "checkers for real");
+      return check;
+    }
+  }).clone();
+  console.log(checking.length, "check check check");
+  if(checking < 1) {
+    console.log("In here and running");
+    req.flash('message', 'Out of stock');
+    res.redirect(`/buypage/${req.params.id}`);
+  } else {
+
+        //find the item
+        const findProduct = await Products.find({type: req.params.id}, function(err, product) {
+          if(err) {
+            //handle
+          } else {
+            return product;
+          }
+        }).clone();
+        console.log(findProduct, "Testing");
+    
+        const totalPrice = findProduct[0].price * req.body.purchaseNumber;
+        console.log(totalPrice);
+    
+      //Remove the product from product list
+      await Products.find({type: req.params.id}, function(err, product) {
+        if(err) {
+          //handle
+        } else {
+          console.log(product, "working");
+          product.map((data, index) => {
+            if(index < req.body.purchaseNumber) {
+              data.available = false;
+            }
+    
+            data.save(function(){});
+          });
+        }
+      }).clone();
+    
+      //create an order amd update balance
+      await User.findById({_id: req.user._id}, function(err, user) {
+        if(err) {
+          //handle it
+        } else {
+    
+          user.balance -= totalPrice;
+          
+    
+          findProduct.map((data, index) => {
+           
+            if(index < req.body.purchaseNumber) {
+                user.Orders.push({
+                  price: data.price,
+                  paymentmethod: "card",
+                  status: 1,
+                  buyid: data._id
+                });
+            }
+    
+          })
+    
+    
+          user.markModified("Orders");
+          user.save(function(saveerr, saveresult){
+          if(saveerr){
+            req.flash('message', 'Purchase fail');
+            res.redirect(`/buypage/${req.params.id}`);
+    
+          } else {
+            req.flash('message', 'Purchase successful');
+            res.redirect(`/buypage/${req.params.id}`);
+    
+          }
+    
+          
+        });
+    
+      }
+    
+       }).clone();
+
+  }
+  
+            
+
+  //end of main if
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -36,7 +163,7 @@ router.get("/", async function(req, res){
 
 
 
-
+/*
 router.post("/:id", checkAuthenticated, async function(req, res){
   console.log("called my main man");
 
@@ -126,7 +253,7 @@ router.get('/payment-callback', async (req, res) => {
     const valueId = ids.split(',');
     console.log(valueId);
 
-/*
+
       if (req.query.status === "successful") {
           // Success! Confirm the customer's payment
 
@@ -213,10 +340,9 @@ router.get('/payment-callback', async (req, res) => {
               res.redirect("/buypage");
       }
 
-      */
   
 });
-
+*/
 
 
 
@@ -231,7 +357,6 @@ function checkAuthenticated(req, res, next){
   }
 
   req.flash('message', 'Log in to proceed');
-
   res.redirect("/shop")
 }
 
