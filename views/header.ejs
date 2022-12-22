@@ -166,10 +166,18 @@
                     <div class="header-center">
                         <nav class="main-nav">
                             <ul class="menu">
-                                <li class="active">
+                                <li 
+                                  <%if(active == "home") { %>
+                                    class="active" 
+                                  <% } %>
+                                >
                                     <a href="/">Home</a>
                                 </li>
-                                <li>
+                                <li
+                                <%if(active == "shop") { %>
+                                    class="active" 
+                                  <% } %>
+                                >
                                     <a href="/shop">Shop</a>
                                 </li>
                                 <li>

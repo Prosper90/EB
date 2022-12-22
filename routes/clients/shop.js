@@ -38,7 +38,8 @@ router.get("/", async function(req, res){
       products : products,
       currentPage : page,
       pageCount : Math.ceil(totalCount/size),
-      message: req.flash() 
+      message: req.flash() ,
+      active: "shop"
      });
 
 });

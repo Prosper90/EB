@@ -1,0 +1,135 @@
+<%- include ("header.ejs"); %>
+
+<div class="tab-content col-lg-9 col-md-8">
+    <div class="tab-pane" id="dashboard">
+        <p class="mb-0">
+            Hello <span class="font-weight-bold text-secondary">John Doe</span> (not <span class="font-weight-bold text-secondary">John Doe</span>? <a href="login.html" class="text-primary">Log
+                out</a>
+        </p>
+        <p class="">
+            From your account dashboard you can view your
+            <a href="#orders" class="link-to-tab text-primary">recent orders</a>, manage your <a href="#address" class="link-to-tab text-primary"> shipping and billing
+                addresses</a>, and <a href="#account" class="link-to-tab text-primary">edit your
+                password and account details</a>.
+        </p>
+        <div class="row cols-lg-3 cols-xs-2 cols-1 nav">
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="#orders">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-orders"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>ORDERS</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="#downloads">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-download"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>DOWNLOADS</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="#address">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-map"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>ADDRESSES</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="#account">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-user-solid"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>ACCOUNT DETAILS</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="wishlist.html" class="no-tab-item">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-heart-solid"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>WISHLIST</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="ib-wrapper mb-4">
+                <div class="icon-box text-center ib-border"><a href="login.html" class="no-tab-item">
+                        <span class="icon-box-icon">
+                            <i class="p-icon-logout"></i>
+                        </span>
+                        <div class="icon-box-content">
+                            <p>LOGOUT</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane active in" id="orders">
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%let orderReverse = user.Deposit.reverse(); %>
+                <%orderReverse.map((data) => {%>
+                <tr>
+                    <td class="order-number"><a href="#"><%=data._id%></a></td>
+                    <td class="order-date"><span><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></span></td>
+                    <td class="order-status">
+                        <%if(data.status === 1) {%>
+                            <span>fufilled</span>
+                          <%} else {%>
+                            <span>On hold</span>
+                         <% } %>
+                    </td>
+                    <td class="order-total"><span>N<%=data.amount%></span></td>
+                    </td>
+                </tr>
+
+              <%})%>
+
+            </tbody>
+        </table>
+
+
+        <div class="w-100 justify-content-center align-items-center mt-5">
+            <%if(user.Deposit.length == 0) { %>
+                 <div>
+                    <div class="w-100 text-center"> No Deposit History </div>
+                 </div>
+
+                <% } %>
+        </div>
+
+    </div>
+    
+
+
+ 
+</div>
+</div>
+</div>
+
+<%- include ("footer.ejs"); %>

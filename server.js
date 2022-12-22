@@ -9,6 +9,7 @@ const buypage = require("./routes/clients/buypage");
 const orderdetail = require("./routes/clients/orderdetail");
 const recievepayment = require("./routes/clients/recievepayment");
 const deposit = require('./routes/clients/deposit');
+const deposithistory = require('./routes/clients/deposithistory');
 
 
 const adminlogin = require("./routes/admin/adminlogin");
@@ -75,7 +76,7 @@ app.use("/buypage", buypage);
 app.use("/dashboard", dashboard);
 app.use("/orderdetail", orderdetail);
 app.use("/deposit", deposit);
-
+app.use("/deposithistory", deposithistory);
 
 //admin section
 app.use("/adminlogin", adminlogin);
@@ -92,7 +93,7 @@ app.use("/recievepayment", recievepayment);
 
 
 app.get("/",  function(req, res){
-  res.render("home", {message: req.flash()});
+  res.render("home", {message: req.flash(), active: "home"});
 });
 
 

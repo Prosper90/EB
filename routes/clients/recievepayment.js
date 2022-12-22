@@ -132,7 +132,13 @@ router.get('/', async (req, res) => {
 
                           user.balance = valueId[1];
 
-                        user.save(function(saveerr, saveresult){
+                          user.Deposit.push({
+                            amount: valueId[1],
+                            method: "Card",
+                            status: 1
+                          })
+                           user.markModified('Deposit');
+                           user.save(function(saveerr, saveresult){
                           if(saveerr){
 
 
