@@ -131,7 +131,25 @@
                           </button>
                       </div>
   
-                  <% } %>
+                      <% } else if(message.register  == "Registration failed") { %>
+                  
+                        <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                            <h5 class="alert-title text-center"><%= message.register %></h5>
+                            <button type="button" class="btn btn-link btn-close">
+                                <i class="p-icon-close"></i>
+                            </button>
+                        </div>
+    
+                        <% } else if(message.message  == "Registration successful, Login") { %>
+                  
+                            <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+                                <h5 class="alert-title text-center"><%= message.message %></h5>
+                                <button type="button" class="btn btn-link btn-close">
+                                    <i class="p-icon-close"></i>
+                                </button>
+                            </div>
+        
+                        <% } %>
                </div>
              
 
@@ -258,13 +276,22 @@
                                                 </div>
                                                 <div class="tab-pane" id="register">
 
-                                                    <% if(locals.message) { %>
-                                                        <div class="alert alert-<%=message.type%>" >
-                                                        <button type="button" class="close bg-primary" data-dismiss="alert">&times;</button>
-                                                        <strong><%=message.intro%></strong>
-                                                        <%= message.message %>
+
+                                                    <%if(message.registration  == "Please insert the requested information") { %>
+                                                        <div class="alert alert-warning" >
+                                                            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                                                                <i class="p-icon-close"></i>
+                                                            </button>
+                                                        <div class="text-white"><%= message.registration %></div>
                                                         </div>
-                                                      <%}%>
+                                                        <% } else if(message.registration  == "This email has already been registered") { %>
+                                                            <div class="alert alert-warning" >
+                                                                <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                                                                    <i class="p-icon-close"></i>
+                                                                </button>
+                                                            <div class="text-white"><%= message.registration %></div>
+                                                            </div>
+                                                        <% } %>
 
                                                     <form method="post" action="/registerlogin">
                                                         <div class="form-group">
@@ -299,7 +326,7 @@
                             </div>
                             <!-- End Dropdown Box -->
                         </div>
-                        <a href="wishlist.html" class="wishlist wishlist-toggle" title="Wishlist">
+                        <a href="/" class="wishlist wishlist-toggle" title="Wishlist">
                             <i class="p-icon-heart-solid"></i>
                         </a>
                     </div>

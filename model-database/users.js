@@ -64,7 +64,7 @@ status: {type: Number},
 
 //for users collection
 const userSchema = mongoose.Schema({
-dateandtime : {type: Date, default: Date.now},
+ dateandtime : {type: Date, default: Date.now},
  username: {type: String, required: true},
  Email: {type: String, required: true},
  password: {type: String, required: true},

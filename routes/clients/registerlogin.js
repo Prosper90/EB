@@ -27,24 +27,18 @@ router.post("/", async function(req, res){
   //checking if fields are empty
     if(req.body.email == "" || req.body.password == "" ){
 
-     req.session.message = {
-       type: "danger",
-       intro: "Empty fields",
-       message: "Please insert the requested information"
-     }
+     req.flash('registration', 'Please insert the requested information');
+     req.flash('register', 'Registration failed');
   
      res.redirect("home");
     }
     //check if email exists
     else if (checkEmail){
     //console.log("Email check");
-      req.session.message = {
-        type: "danger",
-        intro: "Password error",
-        message: "That email has already been registered"
-      }
+      req.flash('registration', 'This email has already been registered');
+      req.flash('register', 'Registration failed');
   
-      res.redirect("home");
+      res.redirect("/");
     }
 
           //checks if the confirm password matches the first password
@@ -87,6 +81,7 @@ router.post("/", async function(req, res){
   
     
      user.save();
+     req.flash('message', 'Registration successful, Login');
      res.redirect(`/`);
 
 
