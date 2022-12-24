@@ -81,7 +81,7 @@ router.post("/", async function(req, res){
   
     
      user.save();
-     req.flash('message', 'Registration successful, Login');
+     req.flash('registrationsuccessful', 'Registration successful, Login');
      res.redirect(`/`);
 
 
