@@ -36,7 +36,7 @@ router.post("/", checkAuthenticated, async function(req, res){
               tx_ref: ids,
               amount: req.body.amount,
               currency: "NGN",
-              redirect_url: "https://ebe.herokuapp.com/recievepayment",
+              redirect_url: "https://www.socialogs.org/recievepayment",
               customer: {
                   email: req.user.Email,
               },
