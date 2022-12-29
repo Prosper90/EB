@@ -110,6 +110,65 @@ router.post("/", async function(req, res){
   });
 
 
+//submit one
+
+router.post("/one", async function(req, res){
+  console.log(req.body);
+  //console.log(req.body.details1);
+  
+  //checking if fields are empty
+    if(req.body.name == "" || req.body.type == "" || req.body.price == ""){
+
+     req.session.message = {
+       type: "danger",
+       intro: "Empty fields",
+       message: "Please insert the requested information"
+     }
+  
+     res.redirect("addproducts");
+    }
+
+    else {
+  
+  //putting data to the database
+  
+  try{
+
+  console.log("In here");
+  const dataUpload = [];
+
+  for (let index = 1; index <= req.body.totals; index++) {
+
+    
+      dataUpload.push({
+        name: req.body.name,
+        type: req.body.type,
+        password: req.body[`details${index}`],
+        available: true,
+        price: req.body.price,
+        description: req.body[`details${index}`],
+      })
+  
+  }
+   
+  
+   console.log(dataUpload);
+   
+   await Products.insertMany(dataUpload);
+
+   req.flash('message', 'Added data successfully');
+   res.redirect("/admin");
+
+
+   console.log("inside body of form");
+
+    } catch {
+    res.redirect("/admin");
+    }
+  
+  }
+
+  });
 
 
 

@@ -145,12 +145,51 @@
 <script>
     $(document).ready(function() {
 
-        
-    /*
+        let selectedValue ;
+    
         $("#ddlViewBy").click(function(){
             console.log($('#ddlViewBy').val());
+            selectedValue = $('#ddlViewBy').val();
         })
-     */
+
+        //window.location.replace(url)
+
+
+        $("#purchasefacebook").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`http://localhost:3000/buypage/${selectedValue}`);
+            }
+
+        })
+
+
+        $("#purchasetwitter").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`http://localhost:3000/buypage/${selectedValue}`);
+            }
+
+        })
+
+
+        $("#purchaseinstagram").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`http://localhost:3000/buypage/${selectedValue}`);
+            }
+
+        })
+
+
+        $("#purchasegoogle").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`http://localhost:3000/buypage/${selectedValue}`);
+            }
+
+        })
+     
     });
 </script>
 </body>

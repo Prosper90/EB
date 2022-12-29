@@ -61,7 +61,7 @@
                                                 <%if(data.available) {%>
                                                     <div class="text-warning">Not sold</div>
                                                     <%} else {%>
-                                                    <div class="text-success">Bought</div>
+                                                    <div class="text-success">Sold</div>
                                                 <%}%>
                                             </td>
                                             <td><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
@@ -71,8 +71,6 @@
                                                  </button>
                                             </td>
                                         </tr>
-                                        
-                                                                           
                                       <%})%>
 
                                     </tbody>

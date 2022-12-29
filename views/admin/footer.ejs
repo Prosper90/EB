@@ -15,6 +15,61 @@
 <script src="assets/js/admin.js"></script>
 
 
+<script>
+    $(document).ready(function() {
+
+        let increment = 1;
+
+        $("#totals").val(increment - 1); //.text(increment - 1);
+
+    
+        $("#createInputs").click(function(){
+            console.log("Called add function");
+            $('#containCreated').append(`
+             <div id="removediv${increment}">
+                <small>${increment}</small>
+                <div class="form-group mt-3" id="detailsid${increment}" style="margin: 4px !important">
+                    <label>Details (username and password)</label>
+                    <input type="text" name="details${increment}" class="form-control">
+                </div>
+                <div class="form-group" id="descriptionid${increment}" style="margin: 4px !important">
+                    <label>Description</label>
+                    <input type="text" name="description${increment}" class="form-control">
+                </div>
+
+             </div>
+            `);
+            const add =  parseInt(increment);
+            console.log(add, "work");
+             increment = add + 1;
+            console.log(increment, "inc");
+           $("#totals").val(increment - 1)   //.text(increment - 1);
+        })
+
+      
+        //remove
+    $("#removal").click(function(event){
+        event.preventDefault();
+        console.log("clicked clicked");
+        let id = $('#removenumber').val();
+        console.log(id, "id selected");
+        console.log("Called remove");
+        //$(`#detailsid${id}`).remove();
+        //$(`#descriptionid${id}`).remove();
+        $(`#removediv${id}`).remove()
+        console.log(increment, "check increment");
+        let reset = increment - 1;
+        increment = reset;
+            $("#totals").val(reset - 1)  //.text(reset - 1);
+            $('#removenumber').val("");
+    })
+
+
+
+     
+    });
+</script>
+
 
 </body>
 

@@ -78,7 +78,7 @@
 
 
 
-    <% if(message.message !== "") { %>
+    <% if(message.message) { %>
      <div class="d-flex justify-content-center align-items-center" id="messages-notify">
         <div class="alert alert-primary alert-simple alert-inline ms-auto d-flex justify-content-center mb-4 w-100" >
             <h5 class="alert-title text-center"><%= message.message %></h5>

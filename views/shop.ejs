@@ -3,7 +3,7 @@
         <!-- End Header -->
         <main class="main">
             <div class="page-header cph-header pl-4 pr-4" style="background-color: #fff7ec">
-                <h1 class="page-title font-weight-light text-capitalize">Panda Shop</h1>
+                <h1 class="page-title font-weight-light text-capitalize">Shop</h1>
             </div>
             <div class="container-fluid">
                 <nav class="breadcrumb-nav has-border">
@@ -40,16 +40,19 @@
                                       <div class="">
                                         <label>Choose type</label>
                                         <select id="ddlViewBy">
-                                            <% let selectedtype; %>
-                                            <%products.map((data, index) => {%>
+                                            <%let resData = products.filter((item, index) => { %>
+                                               <% return index === products.findIndex((obj) => { %>
+                                                 <% return item.type === obj.type %>
+                                               <% }) %>
+                                            <% }); %>
+                                            <%resData.map((data, index) => {%>
                                                 <%if(data.name == 'facebook') {%>
                                                   <option value="<%=data.type%>"><%=data.type%></option>
-                                                  <% selectedtype = data.type %>
                                                 <%}%>
                                             <%})%>
                                           </select>
                                         </div>
-                                        <a href="/buypage/<%=selectedtype%>" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                        <a id="purchasefacebook" class="btn btn-dim btn-filter mt-3">Purchase</a>
 
                                         
                                 </div>
@@ -76,16 +79,14 @@
                                     <div class="">
                                         <label>Choose type</label>
                                         <select id="ddlViewBy">
-                                            <% let selectedtypetwitter; %>
-                                            <%products.map((data, index) => {%>
+                                            <%resData.map((data, index) => {%>
                                                 <%if(data.name == 'twitter') {%>
                                                   <option value="<%=data.type%>"><%=data.type%></option>
-                                                  <% selectedtypetwitter = data.type %>
                                                 <%}%>
                                             <%})%>
                                           </select>
                                         </div>
-                                     <a href="/buypage/<%=selectedtypetwitter%>" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                     <a id="purchasetwitter" class="btn btn-dim btn-filter mt-3">Purchase</a>
                                 </div>
                             </div>
                             <!-- End .product -->
@@ -109,16 +110,14 @@
                                     <div class="">
                                         <label>Choose type</label>
                                         <select id="ddlViewBy">
-                                            <% let selectedtypeinstagram; %>
-                                            <%products.map((data, index) => {%>
+                                            <%resData.map((data, index) => {%>
                                                 <%if(data.name == 'instagram') {%>
                                                   <option value="<%=data.type%>"><%=data.type%></option>
-                                                  <% selectedtypeinstagram = data.type %>
                                                 <%}%>
                                             <%})%>
                                           </select>
-                                        </div>
-                                     <a href="/buypage/<%=selectedtypeinstagram%>" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                    </div>
+                                     <a id="purchaseinstagram" class="btn btn-dim btn-filter mt-3">Purchase</a>
                                 </div>
                             </div>
                             <!-- End .product -->
@@ -143,16 +142,14 @@
                                     <div class="">
                                         <label>Choose type</label>
                                         <select id="ddlViewBy">
-                                            <% let selectedtypegoogle; %>
-                                            <%products.map((data, index) => {%>
+                                            <%resData.map((data, index) => {%>
                                                 <%if(data.name == 'google') {%>
                                                   <option value="<%=data.type%>"><%=data.type%></option>
-                                                  <% selectedtypegoogle = data.type %>
                                                 <%}%>
                                             <%})%>
                                           </select>
                                         </div>
-                                     <a href="/buypage/<%=selectedtypegoogle%>" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                     <a id="purchasegoogle" class="btn btn-dim btn-filter mt-3">Purchase</a>
                                 </div>
                             </div>
                             <!-- End .product -->

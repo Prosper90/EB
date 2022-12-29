@@ -22,6 +22,11 @@ router.get("/", checkAuthenticated, async function(req, res){
 
 router.post("/", checkAuthenticated, async function(req, res){
 
+   if(req.body.amount < 1000) {
+    console.log("Amount too small");
+    return;
+   }
+
     //deposit into account
     const ids = `${req.user._id},${req.body.amount}`;
 
@@ -62,7 +67,7 @@ router.post("/", checkAuthenticated, async function(req, res){
   
   router.get('/payment-callback', async (req, res) => {
   
-      console.log("this gu has started");
+      console.log("this guy has started");
       const ids = req.query.tx_ref;
       const valueId = ids.split(',');
       console.log(valueId);

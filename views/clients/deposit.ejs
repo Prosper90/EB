@@ -7,14 +7,20 @@
         
             <fieldset>
                 <legend>Deposit</legend>
-                <label>Amount to deposit (min is N5000)</label>
+                <label>Amount to deposit (min is N1000)</label>
                 <input type="number" name="amount">
 
-                <label>deposit id</label>
+                <label>depositor id</label>
                 <input type="text" value="<%=user._id%>" disabled>
 
-                <label>method</label>
-                <input type="text" value="Card" disabled>
+                <div class="">
+                    <label>Choose Method</label>
+                    <select id="method">
+                        <option value="Card" name="Card" >Card</option>
+                        <option value="Transfer" disabled>Transfer</option>
+                      </select>
+                </div>
+                
             </fieldset>
 
             <button type="submit" class="btn btn-primary">Deposit</button>

@@ -18,7 +18,7 @@
     <div class="card-body">
     <form method="post" action="/addproducts">
     <div class="form-group">
-    <label>Name</label>
+    <label>Product Names</label>
     <input type="text" name="name" class="form-control">
     </div>
     <div class="form-group">
@@ -26,7 +26,7 @@
     <input type="text" name="type" class="form-control">
     </div>
     <div class="form-group">
-    <label>Products's password</label>
+    <label>Products's details</label>
     <input type="text" name="password" class="form-control">
     </div>
     <div class="form-group">
@@ -44,5 +44,79 @@
     </div>
     </div>
     </div>
+
+
+
+
+
+    <div class="col-md-12">
+      <div class="card">
+      <div class="card-header">
+      <h4 class="card-title">Add One type</h4>
+      </div>
+      <div class="card-body">
+      <form method="post" action="/addproducts/one">
+        <h6>Product Names</h6>
+      
+      <div class="d-flex justify-content-between align-items-center mt-1">
+
+        <div class="form-group">
+          <input type="radio" name="name" value="facebook"  id="facebook" >
+          <label for="facebook" >Facebook</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="twitter" id="twitter" >
+          <label for="twitter" >Twitter</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="instagram" id="instagram" >
+          <label for="instagram" >Instagram</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="google" id="google" >
+          <label for="google" >Google</label>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label>type <small>type of media</small> </label>
+        <input type="text" name="type" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>price </label>
+        <input type="number" name="price" class="form-control">
+      </div>
+
+      <div class="d-flex justify-content-between" style="border-bottom: 1px solid;">
+
+        <div class="text-primary mt-3" style="cursor: pointer; border-bottom: 1px solid;" id="createInputs">Add Details</div>
+
+        <div class="text-primary mt-3" style="cursor: pointer; border-bottom: 1px solid;" >
+           <input type="number" id="removenumber"> <div class="btn btn-primary" id="removal" style="height: 30px; font-size: 12px; border-radius: 0px; width: 67px" >Remove</div>
+        </div>
+        
+        <div class="d-flex align-items-end">
+          <div class="mr-2">Total No</div>
+          <input name="totals" class="" style="border: none; outline: none; width: 20px;" id="totals" />
+        </div>
+      </div>
+
+      <div class="" id="containCreated">
+
+      </div>
+
+
+      <div class="text-end mt-5">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+      </div>
+      </div>
+      </div>
+
 </div>
 <%- include ("footer.ejs"); %>

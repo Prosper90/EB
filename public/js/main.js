@@ -1251,9 +1251,9 @@ window.Panda = {};
             Panda.Minipopup.open( {
                 message: 'Someone Purchased',
                 productClass: 'product-mini',
-                name: 'Actinidia Arguta',
+                name: '',
                 nameLink: 'product-simple.html',
-                imageSrc: 'images/cart/product-1.jpg',
+                imageSrc: 'images/products/twitter.png',
                 isPurchased: true
             }, function ( $box ) {
                 Panda.ratingTooltip( $box[ 0 ] );
