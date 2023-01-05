@@ -339,6 +339,22 @@
                 });
 
             */
+
+
+
+
+
+        $("#method").click(function(){
+            //console.log($('#method').val());
+            if($('#method').val() == "TransferBank" || $('#method').val() == "TransferUssd") {
+                console.log("bank Selected");
+               $('#bankdiv').show();
+            } else {
+               $('#bankdiv').hide();     
+            }
+        })
+
+
     });
 </script>
 </body>

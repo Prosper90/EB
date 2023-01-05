@@ -4,13 +4,25 @@ const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const router = express.Router();
 const got = require("got");
-
+const axios = require("axios");
+const Flutterwave = require('flutterwave-node-v3');
 
 
 
 router.get("/", checkAuthenticated, async function(req, res){
   //console.log(req.user);
-  res.render("clients/deposit", { user: req.user});
+  console.log(req.params);
+
+  const banks = await axios.get( `https://api.flutterwave.com/v3/banks/NG`,
+    {
+      headers: {
+        'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`
+      }
+
+    }
+  );
+  //console.log(banks.data);
+  res.render("clients/deposit", { user: req.user, banks: banks.data.data});
 });
 
 
@@ -26,36 +38,69 @@ router.post("/", checkAuthenticated, async function(req, res){
     console.log("Amount too small");
     return;
    }
+   console.log(req.body);
 
     //deposit into account
     const ids = `${req.user._id},${req.body.amount}`;
+    console.log(ids);
 
+
+
+    if(req.body.methodselect == "Card") {
+      //call flutterwave
+
+          try {
+            const response = await got.post("https://api.flutterwave.com/v3/payments", {
+                headers: {
+                    Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
+                },
+                json: {
+                    tx_ref: ids,
+                    amount: req.body.amount,
+                    currency: "NGN",
+                    redirect_url: "https://www.socialogs.org/recievepayment",
+                    customer: {
+                        email: req.user.Email,
+                    },
+        
+                }
+            }).json();
+        
+            console.log(response);
+            res.redirect(response.data.link);
+        } catch (err) {
+            console.log(err.code);
+            console.log(err);
+        }
+
+    } else if(req.body.methodselect == "TransferBank") {
+
+      const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
+        const details = {
+            tx_ref: ids,
+            amount: req.body.amount,
+            email: req.user.Email,
+            currency: "NGN",
+        };
+        const response = await flw.Charge.bank_transfer(details);
+        console.log(response);
+
+    } else {
+      const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
+      const payload = {
+          account_bank: req.body.bankselect,
+          amount: req.body.amount,
+          currency: 'NGN',
+          email: req.body.Email,
+          tx_ref: ids,
+          fullname: req.user.username,
+      };
+      flw.Charge.ussd(payload)
+          .then(console.log)
+          .catch(console.log);
+    }
   
-    //call flutterwave
-    try {
-      const response = await got.post("https://api.flutterwave.com/v3/payments", {
-          headers: {
-              Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
-          },
-          json: {
-              tx_ref: ids,
-              amount: req.body.amount,
-              currency: "NGN",
-              redirect_url: "https://www.socialogs.org/recievepayment",
-              customer: {
-                  email: req.user.Email,
-              },
   
-          }
-      }).json();
-  
-      console.log(response);
-      res.redirect(response.data.link);
-  } catch (err) {
-      console.log(err.code);
-      console.log(err);
-  }
-              
   
     //end of main if
   });

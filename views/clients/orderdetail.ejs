@@ -23,19 +23,21 @@
                     <td class="product-price"><%=item.type%></td>
                 </tr>
                 <tr>
-                    <td class="product-name"> Details <span>
+                    <td class="product-name"> Details </td>
                   <%if(item.status == 0) {%>
                     <td class="product-price">******</td>
                   <%} else {%>
                     <%  const valueId = item.password.split(','); %>
-                     <td class="product-price">
-                        Name
-                        <%=valueId[0]%>
-                    </td>
+                    <td class="d-flex justify-content-around">
+                        <div class="product-price d-flex">
+                            <div class="mr-1">Name</div> 
+                            <div class=""><%=valueId[0]%></div> 
+                        </div>
 
-                    <td class="product-price">
-                        Password
-                        <%=valueId[1]%>
+                        <div class="product-price d-flex">
+                            <div class="mr-1">Password</div>
+                            <div class=""><%=valueId[1]%></div>
+                        </div>
                     </td>
                   <%}%>
                 </tr>

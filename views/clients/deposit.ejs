@@ -15,9 +15,19 @@
 
                 <div class="">
                     <label>Choose Method</label>
-                    <select id="method">
+                    <select id="method" name="methodselect">
                         <option value="Card" name="Card" >Card</option>
-                        <option value="Transfer" disabled>Transfer</option>
+                        <option value="TransferBank" name="Bankt" >Transfer Bank</option>
+                        <option value="TransferUssd" name="Ussdt" >Transfer USSD </option>
+                      </select>
+                </div>
+
+                <div id="bankdiv" style="display: none;">
+                    <label>Choose Bank</label>
+                      <select id="bankselect" name="bankselect">
+                        <%banks.map((data) => {%>
+                              <option value="<%=data.code%>" name="<%=data.code%>" ><%=data.name%></option>
+                        <%})%>
                       </select>
                 </div>
                 

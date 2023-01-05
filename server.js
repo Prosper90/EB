@@ -10,7 +10,7 @@ const orderdetail = require("./routes/clients/orderdetail");
 const recievepayment = require("./routes/clients/recievepayment");
 const deposit = require('./routes/clients/deposit');
 const deposithistory = require('./routes/clients/deposithistory');
-
+const webhook = require('./routes/clients/webhook');
 
 const adminlogin = require("./routes/admin/adminlogin");
 const admin = require("./routes/admin/dashboard");
@@ -86,6 +86,7 @@ app.use("/addproducts", addproducts);
 app.use("/products", products);
 app.use("/allorders", allorders);
 app.use("/recievepayment", recievepayment);
+app.use("/webhook", webhook);
 
 
 
