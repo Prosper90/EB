@@ -48,26 +48,55 @@
 
 
 
-<!-- Edit More
- <%if(user.balance === 0) {%>
 
-    <div class="modalworks"   tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <%if(transferAccount) {%>
 
-            <div class="modal-child d-flex flex-column justify-content-center align-items-center">
-                    
+    <div class="modal modalworks" id="myModaldashboard"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Deposit <%=transferAccount.transfer_amount%> to Account</h5>
+                <button type="button" id="buttonClose" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+
                 <div class="">
-                    Deposit to access features
+                   <%=transferAccount.transfer_account%>
                 </div>
+                <div class="">
+                    <%=transferAccount.transfer_bank%>
+                 </div>
 
-                <button class="btn btn-primary" id="buttonchange" style="border-radius: 5px; margin-top: 5px";> Deposit</button>
-    
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary"> Your account would be automatically funded</button>
+              </div>
             </div>
+          </div>
             
 
     </div>
 
  <%}%>
--->
+
+
+
+<div class="d-flex justify-content-center align-items-center" id="messages-notify">
+    <% if(message.message  == "Deposit Successful") { %>
+      <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+          <h5 class="alert-title text-center"><%= message.message %></h5>
+          <button type="button" class="btn btn-link btn-close">
+              <i class="p-icon-close"></i>
+          </button>
+      </div>
+    <% } %>
+</div>
+
 
 
     <div class="page-wrapper">

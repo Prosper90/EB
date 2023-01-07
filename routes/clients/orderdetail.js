@@ -18,7 +18,7 @@ router.get("/:id", checkAuthenticated, async function(req, res){
         }
 
     }).clone();
-  res.render("clients/orderdetail", {item: getItem} );
+  res.render("clients/orderdetail", {item: getItem, message: req.flash(), transferAccount: undefined} );
 });
 
 

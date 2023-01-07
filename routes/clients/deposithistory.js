@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get("/", checkAuthenticated, function(req, res){
-  res.render("clients/deposithistory", {user: req.user});
+  res.render("clients/deposithistory", {user: req.user, message: req.flash(), transferAccount: undefined});
 });
 
 

@@ -21,8 +21,9 @@ router.get("/", checkAuthenticated, async function(req, res){
 
     }
   );
+  const transferAccount = req.session.transferAccount;
   //console.log(banks.data);
-  res.render("clients/deposit", { user: req.user, banks: banks.data.data});
+  res.render("clients/deposit", { user: req.user, banks: banks.data.data, transferAccount: transferAccount, message: req.flash()});
 });
 
 
@@ -75,6 +76,7 @@ router.post("/", checkAuthenticated, async function(req, res){
 
     } else if(req.body.methodselect == "TransferBank") {
 
+      
       const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
         const details = {
             tx_ref: ids,
@@ -84,20 +86,27 @@ router.post("/", checkAuthenticated, async function(req, res){
         };
         const response = await flw.Charge.bank_transfer(details);
         console.log(response);
+        req.session.transferAccount = response.meta.authorization;
+    
+        console.log("Bank");
+        res.redirect("/deposit");
 
     } else {
+      
       const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
       const payload = {
           account_bank: req.body.bankselect,
           amount: req.body.amount,
           currency: 'NGN',
-          email: req.body.Email,
+          email: req.user.Email,
           tx_ref: ids,
           fullname: req.user.username,
       };
-      flw.Charge.ussd(payload)
-          .then(console.log)
-          .catch(console.log);
+      const response = await flw.Charge.ussd(payload);
+
+        req.session.transferAccount = response.meta.authorization;
+
+          res.redirect("/deposit");
     }
   
   

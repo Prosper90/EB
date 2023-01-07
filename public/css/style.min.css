@@ -15432,11 +15432,12 @@ ul.pagination {
     border-width: 0 1px 1px
 }
 
+
 .modalworks {
     position: fixed;
     width: 100%;
-    background: #F9F8F4;
-    display: flex;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex !important;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -15444,9 +15445,31 @@ ul.pagination {
 }
 
 
-.modal-child {
+.modal-dialog {
+    background: #FFF;
     width: 50%;
-    border: 1px solid;
-    height: 50%;
-    border-radius: 20px;
+}
+
+
+.modal-header {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-footer {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+}
+
+.hideo {
+    display: none !important;
 }
