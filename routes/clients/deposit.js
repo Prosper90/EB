@@ -86,7 +86,7 @@ router.post("/", checkAuthenticated, async function(req, res){
         };
         const response = await flw.Charge.bank_transfer(details);
         console.log(response);
-        req.session.transferAccount = response.meta.authorization;
+        req.session.transferAccount =  response.meta.authorization;
     
         console.log("Bank");
         res.redirect("/deposit");
@@ -104,7 +104,7 @@ router.post("/", checkAuthenticated, async function(req, res){
       };
       const response = await flw.Charge.ussd(payload);
 
-        req.session.transferAccount = response.meta.authorization;
+        req.session.transferAccount =  response.meta.authorization;
 
           res.redirect("/deposit");
     }
