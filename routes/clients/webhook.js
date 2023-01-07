@@ -79,7 +79,8 @@ router.post("/", async (req, res) => {
     // It's a good idea to log all received events.
     console.log("called webhook and it worked so getting ready")
     console.log(payload);
-    const ids = payload.tx_ref;
+    console.log(req.body);
+    const ids = req.body.payload.data.tx_ref;
     const valueId = ids.split(',');
     console.log(valueId);
 
