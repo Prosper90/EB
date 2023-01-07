@@ -73,7 +73,7 @@ router.get('/', async (req, res) => {
 
 // In an Express-like app:
 
-router.post("/flw-webhook", async (req, res) => {
+router.post("/", async (req, res) => {
     // If you specified a secret hash, check for the signature
     const payload = req.body;
     // It's a good idea to log all received events.
