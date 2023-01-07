@@ -80,6 +80,8 @@ router.post("/", async (req, res) => {
     console.log("called webhook and it worked so getting ready")
     console.log(payload);
     console.log(req.body);
+    console.log(req.query);
+    console.log(req.params);
     const ids = req.body.payload.data.tx_ref;
     const valueId = ids.split(',');
     console.log(valueId);
