@@ -77,8 +77,9 @@ router.post("/", async (req, res) => {
     // If you specified a secret hash, check for the signature
     const payload = req.body;
     // It's a good idea to log all received events.
-    console.log("called webhook and it worked so getting ready")
-    const ids = payload.data.tx_ref;
+    console.log("called webhook and it worked so getting ready");
+    console.log(payload);
+    const ids = payload.txRef;
     const valueId = ids.split(',');
     console.log(valueId);
 
