@@ -82,9 +82,11 @@ router.post("/", async (req, res) => {
     console.log(req.body);
     console.log(req.query);
     console.log(req.params);
-    const ids = req.body.payload.data.tx_ref;
+    const ids = req.body.data.tx_ref;
     const valueId = ids.split(',');
     console.log(valueId);
+
+
 
 
       //Top up user
