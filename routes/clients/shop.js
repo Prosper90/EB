@@ -16,7 +16,7 @@ router.get("/", async function(req, res){
 
 
 
-router.get("/", async function(req, res){
+router.get("/", checkAuthenticated, async function(req, res){
 
   let page = req.query.page;
   let size = 12;
@@ -48,6 +48,23 @@ router.get("/", async function(req, res){
 
 
 
+
+function checkAuthenticated(req, res, next){
+  if(req.isAuthenticated()){
+    return next()
+  }
+
+ //console.log("Not authenticated");
+ /*
+  req.session.message = {
+    type: "danger",
+    intro: "Error",
+    message: "Log in to proceed"
+  }
+  */
+  req.flash('message', 'Log in to proceed');
+  res.redirect("/")
+}
 
 
 

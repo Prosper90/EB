@@ -136,14 +136,14 @@
                                 <div class="product-details">
                                     <h5 class="product-name">
                                         <a href="/buypage/google">
-                                            Google
+                                            Others
                                         </a>
                                     </h5>
                                     <div class="">
                                         <label>Choose type</label>
                                         <select id="ddlViewBy">
                                             <%resData.map((data, index) => {%>
-                                                <%if(data.name == 'google') {%>
+                                                <%if(data.name == 'others') {%>
                                                   <option value="<%=data.type%>"><%=data.type%></option>
                                                 <%}%>
                                             <%})%>
