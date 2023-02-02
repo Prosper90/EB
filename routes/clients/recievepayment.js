@@ -116,7 +116,7 @@ router.get('/', async (req, res) => {
 router.get('/', async (req, res) => {
 
   //console.log("badddd people")
-  console.log(req.query.pay);
+  console.log(req.query.reference);
   const ids = req.query;
   const valueId = ids.split('AMOUNT');
     
