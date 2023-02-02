@@ -45,14 +45,40 @@ router.post("/", checkAuthenticated, async function(req, res){
     const ids = `${req.user._id}AMOUNT${req.body.amount}`;
     console.log(ids);
 
+ try{
+
+    const response = await axios({
+      method: "POST",
+      url: "https://sandbox-api-d.squadco.com/transaction/initiate",
+      headers: {
+        Authorization:`Bearer ${process.env.SQUAD_SECRET_KEY}`
+      },
+      data: {
+        email: req.user.Email,
+        amount: parseFloat(req.body.amount),
+        initiate_type: "inline",
+        currency: "NGN",
+        transaction_ref: ids,
+        customer_name: req.user.username,
+        callback_url: "https://www.socialogs.org/recievepayment",
+      },
+    })
+    //console.log(response.data);
+    res.redirect(response.data.data.checkout_url);
+  } catch (err) {
+      console.log(err.code);
+      console.log(err);
+   }
 
 
+
+  /*
     if(req.body.methodselect == "Card") {
       //call flutterwave
 
           try {
             //flutter wave
-            /*
+            
             const response = await got.post("https://api.flutterwave.com/v3/payments", {
                 headers: {
                     Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
@@ -71,21 +97,8 @@ router.post("/", checkAuthenticated, async function(req, res){
         
             console.log(response);
             res.redirect(response.data.link);
-            */
-            /*
-            const response = await got.post("https://sandbox-api-d.squadco.com/transaction/charge_card", {
-              headers: {
-                  Authorization: `Bearer ${process.env.SQUAD_SECRET_KEY}`
-              },
-              json: {
-                  amount: req.body.amount,
-                  email: req.user.Email,
-                  currency: "NGN",
-                  transaction_ref: ids,
-                  callback_url: "https://www.socialogs.org/recievepayment",
-              }
-          }).json();
-         */
+            
+        
 
           console.log(typeof(req.body.amount));
 
@@ -146,11 +159,11 @@ router.post("/", checkAuthenticated, async function(req, res){
 
           res.redirect("/deposit");
     }
-  
+    */
   
   
     //end of main if
-  });
+ });
   
   
   
