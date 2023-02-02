@@ -121,9 +121,6 @@ router.get('/', async (req, res) => {
   const valueId = ids.split('AMOUNT');
     
 
-    if (req.query.status === "successful") {
-        // Success! Confirm the customer's payment
-
                       //Top up user
                       await User.findById({_id: valueId[0]}, function(err, user) {
                         if(err) {
@@ -159,14 +156,6 @@ router.get('/', async (req, res) => {
 
                       }).clone();
 
-
-    } else {
-        // Inform the customer their payment was unsuccessful
-            req.flash('message', 'Payment unsuccessful');
-            res.redirect("/");
-    }
-
-    
 
 });
 
