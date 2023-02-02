@@ -60,7 +60,7 @@ router.post("/", checkAuthenticated, async function(req, res){
         currency: "NGN",
         transaction_ref: ids,
         customer_name: req.user.username,
-        callback_url: "https://www.socialogs.org/recievepayment",
+        callback_url: `https://www.socialogs.org/recievepayment?pay=${ids}`,
       },
     })
     //console.log(response.data);
