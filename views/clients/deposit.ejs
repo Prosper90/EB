@@ -12,7 +12,8 @@
 
                 <label>depositor id</label>
                 <input type="text" value="<%=user._id%>" disabled>
-
+               
+                <!--
                 <div class="">
                     <label>Choose Method</label>
                     <select id="method" name="methodselect">
@@ -21,13 +22,23 @@
                         <option value="TransferUssd" name="Ussdt" >Transfer USSD </option>
                       </select>
                 </div>
+               -->
 
                 <div id="bankdiv" style="display: none;">
                     <label>Choose Bank</label>
                       <select id="bankselect" name="bankselect">
-                        <%banks.map((data) => {%>
-                              <option value="<%=data.code%>" name="<%=data.code%>" ><%=data.name%></option>
-                        <%})%>
+                              <option value="426" name="Accessbank" >Access (Diamond) Bank</option>
+                              <option value="901" name="AccessbankTwo" >Access Bank</option>
+                              <option value="326" name="EcoBank" >EcoBank</option>
+                              <option value="329" name="First City Monument Bank (FCMB)" >First City Monument Bank (FCMB)</option>
+                              <option value="770" name="Fidelity Bank" >Fidelity Bank</option>
+                              <option value="894" name="First Bank" >First Bank</option>
+                              <option value="737" name="Guaranty Trust" >Guaranty Trust</option>
+                              <option value="7111" name="Keystone Bank" >Keystone Bank</option>
+                              <option  value="945" name="Wema Bank" >Wema Bank</option>
+                              <option  value="826" name="Wema Bank" >Union Bank</option>
+                              <option value="966" name="Zenith Bank" >Zenith Bank</option>
+
                       </select>
                 </div>
                 

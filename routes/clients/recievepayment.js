@@ -117,7 +117,7 @@ router.get('/', async (req, res) => {
 
   //console.log("badddd people")
   const ids = req.query.tx_ref;
-  const valueId = ids.split(',');
+  const valueId = ids.split('AMOUNT');
   console.log(valueId);
     
 
