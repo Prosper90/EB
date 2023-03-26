@@ -60,6 +60,7 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
     else {
      
       console.log(JSON.stringify(req.file), "req file");
+      console.log("lets work");
     //get the latest uploaded file
     function getLatestFile(dirpath) {
       console.log("one");
