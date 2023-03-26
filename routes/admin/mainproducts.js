@@ -28,7 +28,7 @@ router.get("/", checkAuthenticated, async function(req, res){
 router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
    //updating product
-    console.log(req.params.id);
+    console.log(req.params);
     //getting the particular data to update
     let productRemove = await ProductsTwo.findById(req.params.id);
     //console.log(uploadedSong);
@@ -42,13 +42,13 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
         const files = fs.readdirSync(dirpath);
         files.forEach(filename => {
-        let check = "/assets/media/" + filename + " ";
+        let check = "public/assets/uploads/" + filename + " ";
         // Get the stat
-        //console.log(filename);
-        //console.log(check);
+        console.log(filename);
+        console.log(check);
         if(oldImage == check){
         try {
-        fs.unlinkSync("public/assets/media/" + filename + "");
+        fs.unlinkSync("public/assets/uploads/" + filename + "");
         console.log("file deleted");
         //file removed
         } catch(err) {
@@ -79,17 +79,17 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
          message: "Something went wrong"
        }
 
-       res.redirect("/products");
+       res.redirect("/mainproducts");
 
      } else {
 
        req.session.message = {
          type: "success",
          intro: "Success",
-         message: "Product removed"
+         message: "Products removed"
        }
 
-       res.redirect("/products");
+       res.redirect("/mainproducts");
 
      }
 
@@ -110,7 +110,7 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
 
 
-
+/*
 router.post("/user/:id", checkAuthenticated, async function(req, res){
   
 
@@ -189,6 +189,7 @@ router.post("/user/:id", checkAuthenticated, async function(req, res){
 
 
 });
+*/
 
 
 
