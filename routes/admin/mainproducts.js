@@ -28,7 +28,7 @@ router.get("/", checkAuthenticated, async function(req, res){
 router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
    //updating product
-    console.log(req.params);
+    //console.log(req.params);
     //getting the particular data to update
     let productRemove = await ProductsTwo.findById(req.params.id);
     //console.log(uploadedSong);
@@ -36,7 +36,7 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
     let oldImage = productRemove.imgUrl;
 
 
-    console.log(oldImage);
+    //console.log(oldImage);
 
     function deleteFile(dirpath) {
 
@@ -44,10 +44,10 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
         files.forEach(filename => {
         let check = "/assets/uploads/" + filename + " ";
         // Get the stat
-        console.log(filename);
-        console.log(check);
+        //console.log(filename);
+        //console.log(check);
         if(oldImage == check){
-          console.log(check, "two");
+          //console.log(check, "two");
         try {
         fs.unlinkSync("public/assets/uploads/" + filename + "");
         console.log("file deleted");
@@ -64,40 +64,26 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
    deleteFile("public/assets/uploads");
 
-   await Products.deleteMany({name: req.params.name}, function(err, product){
+    const getResult = await ProductsTwo.deleteMany({name: req.params.name}).clone();
+    
+    if(getResult.deletedCount) {
+      req.session.message = {
+        type: "success",
+        intro: "Success",
+        message: "Products removed"
+      }
 
-   if(err){
-     console.log(err);
-   } else {
-
-
-
-     if(product){
-
-       req.session.message = {
-         type: "danger",
-         intro: "invest error",
-         message: "Something went wrong"
-       }
-
-       res.redirect("/mainproducts");
-
-     } else {
-
-       req.session.message = {
-         type: "success",
-         intro: "Success",
-         message: "Products removed"
-       }
-
-       res.redirect("/mainproducts");
-
-     }
-
+      res.redirect("/mainproducts");
+    } else {
+      req.session.message = {
+        type: "danger",
+        intro: "Success",
+        message: "Process failed"
+      }
+      res.redirect("/mainproducts");
     }
 
 
- }).clone();
  
  //end of invest if
 
