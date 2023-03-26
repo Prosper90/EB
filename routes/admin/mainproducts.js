@@ -84,11 +84,6 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
     }
 
 
- 
- //end of invest if
-
-
-
 });
 
 
