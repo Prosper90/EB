@@ -42,11 +42,12 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
         const files = fs.readdirSync(dirpath);
         files.forEach(filename => {
-        let check = "public/assets/uploads/" + filename + " ";
+        let check = "/assets/uploads/" + filename + " ";
         // Get the stat
         console.log(filename);
         console.log(check);
         if(oldImage == check){
+          console.log(check, "two");
         try {
         fs.unlinkSync("public/assets/uploads/" + filename + "");
         console.log("file deleted");
