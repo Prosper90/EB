@@ -743,7 +743,7 @@
                             <% }) %>
                          <% }); %>
                     <%let checkOne = sideProducts.filter((item, index) => { %>
-                        <% return item.type == "top" && item.available == true %>
+                        <% return item.type == "tops" && item.available == true %>
                     <% }); %>
 
                         <!--Add details-->
@@ -751,7 +751,7 @@
 
 
                         <% resDataTwo.forEach((data) => { %>
-                            <%if(data.type == 'top') {%>
+                            <%if(data.type == 'tops') {%>
                                 <% if(data.available) { %>
                                   
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" >
@@ -807,14 +807,14 @@
                 <div class="tab-pane fade" id="two">
                     <div class="row">
                 <%let checkTwo = sideProducts.filter((item, index) => { %>
-                        <% return item.type == "trouser" && item.available == true %>
+                        <% return item.type == "trousers" && item.available == true %>
                 <% }); %>
 
                         <!--Add details-->
                   <% if (checkTwo.length !== 0) { %> 
 
                         <% resDataTwo.forEach((data) => { %>
-                            <%if(data.type == 'trouser') {%>
+                            <%if(data.type == 'trousers') {%>
                                 <% if(data.available) { %>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" >
                                         <div class="product-style-02 margin-top-40">
