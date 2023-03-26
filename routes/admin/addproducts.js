@@ -3,8 +3,11 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const Products = require("../../model-database/products").Products;
+const ProductTwo = require("../../model-database/productTwo").ProductTwo;
 const Admin = require("../../model-database/users").Admin;
 const router = express.Router()
+const multer = require("multer");
+const fs = require("fs");
 
 
 
@@ -13,8 +16,9 @@ router.get("/", checkAuthenticated, async function(req, res){
   //console.log(req.user);
    let users = await User.find().clone();
    let products = await Products.find().clone();
+   let productsTwo = await ProductsTwo.find().clone();
    let totalusers = await User.find().count().clone();
-  res.render("admin/addproducts", { users: users, totalusers: totalusers, user: req.user, products: products, active: "addproducts", message: req.flash()});
+  res.render("admin/addproducts", { users: users, productsTwo: productsTwo, totalusers: totalusers, user: req.user, products: products, active: "addproducts", message: req.flash()});
 });
 
 
@@ -23,11 +27,23 @@ router.get("/", checkAuthenticated, async function(req, res){
 
 
 
+//multer package to help with upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/assets/uploads")
+  },
+  filename: function (req, file, cb) {
+    const { originalname} = file;
+    cb(null, originalname);
+  }
+});
+
+
+const upload = multer({ storage: storage });
 
 
 
-
-router.post("/", async function(req, res){
+router.post("/", upload.single("mediaImg"), async function(req, res) {
   
   //checking if fields are empty
     if(req.body.name == "" || req.body.password == "" || req.body.type == "" || req.body.price == ""|| req.body.description == ""  ){
@@ -40,46 +56,90 @@ router.post("/", async function(req, res){
   
      res.redirect("register");
     }
-    //checks if the confirm password matches the first password
+    
     else {
+     
+      console.log(JSON.stringify(req.file), "req file");
+    //get the latest uploaded file
+    function getLatestFile(dirpath) {
+      console.log("one");
+      // Check if dirpath exist or not right here
+      let latest;
+      console.log("two");
+      const files = fs.readdirSync(dirpath);
+      files.forEach(filename => {
+        // Get the stat
+        console.log("three", filename);
+        const stat = fs.lstatSync(path.join(dirpath, filename));
+        // Pass if it is a directory
+        if (stat.isDirectory())
+          return;
+        // latest default to first file
+        if (!latest) {
+          console.log("four");
+          latest = {filename, mtime: stat.mtime};
+          return;
+        }
+        // update latest if mtime is greater than the current latest
+        if (stat.mtime > latest.mtime) {
+          console.log("four");
+          latest.filename = filename;
+          latest.mtime = stat.mtime;
+        }
+      });
 
+      return latest.filename;
+    }
+
+
+
+    let img = getLatestFile("public/assets/uploads");
+
+    //get the src of the new uploaded media
+    
+    let src = "/assets/uploads/"+ img + " ";
+    console.log(src, "source");
 
         //name
-        const tempNames = req.body.name;
-        const productNames = tempNames.split(",");
+        const tempNames = req.body.productName;
+  
         //type
-        const tempType = req.body.type;
-        const productType = tempType.split(",");
-        //password
-        const tempPassword = req.body.password;
-        const productPassword = tempPassword.split(",");
+        const tempType = req.body.productType;
+
         //price
-        const tempPrice = req.body.price;
-        const productPrice = tempPrice.split(",");
-        //price
-        const tempDesc = req.body.price;
-        const productDesc = tempDesc.split(",");
+        const tempPrice = req.body.productPrice;
+
+        //details
+        const details = req.body.details;
+ 
   
   //putting data to the database
   
   try{
+
+
   
-    console.log(productNames, "namesing");
+  console.log(req.body.productNumber, "namesing");
   const dataUpload = [];
 
-  productNames.map((data, index) => {
+  for (let index = 0; index < req.body.productNumber; index++) {
+     console.log("for loop", index);
     dataUpload.push({
-      name: data,
-      type: productType[index],
-      password: productPassword[index],
+      name: tempNames,
+      type: tempType,
+      imgUrl: src,
       available: true,
-      price: parseInt(productPrice[index]),
-      description: productDesc[index],
+      price: parseInt(tempPrice),
+      details: details
     })
-  })
-   
-   console.log(dataUpload);
-   await Products.insertMany(dataUpload);
+    
+  }
+  
+   console.log("Reached here");
+   //console.log(dataUpload);
+   await ProductTwo.insertMany(dataUpload);
+
+   console.log("All done");
 
    req.flash('message', 'Added data successfully');
    res.redirect("admin");
@@ -110,8 +170,8 @@ router.post("/", async function(req, res){
   });
 
 
-//submit one
 
+//submit one
 router.post("/one", async function(req, res){
   console.log(req.body);
   //console.log(req.body.details1);

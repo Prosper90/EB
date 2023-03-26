@@ -14,12 +14,16 @@ mongoose.connect(
         }
     });
 
+const subscribers = mongoose.Schema({
+  email: {type: String}
+})
+
 
 const adminSchema = mongoose.Schema({
 
   email: {type: String, required: true},
   password: {type: String, required: true},
-
+  Subscribers: [subscribers]
 });
 
 

@@ -42,11 +42,12 @@ router.post("/", checkAuthenticated, async function(req, res){
    console.log(req.body);
 
     //deposit into account
-    const ids = `${req.user._id}AMOUNT${req.body.amount}`;
+    const ids = `${req.user._id},${req.body.amount}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
     console.log(ids);
 
  try{
-
+    
+    /*
     const response = await axios({
       method: "POST",
       url: "https://sandbox-api-d.squadco.com/transaction/initiate",
@@ -65,6 +66,28 @@ router.post("/", checkAuthenticated, async function(req, res){
     })
     //console.log(response.data);
     res.redirect(response.data.data.checkout_url);
+    */
+ 
+      const valueB = ( req.body.amount / 2 ) * 200;
+      //http://localhost:3000/recievepayment
+      //https://www.socialogs.org/recievepayment
+      const response = await axios({
+        method: "POST",
+        url: "https://api.paystack.co/transaction/initialize",
+        headers: {
+          Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+        },
+        data: {
+          "email": req.user.Email,
+          "amount": valueB,
+          "callback_url": "http://localhost:3000/recievepayment",
+          "reference": ids
+        },
+      })
+
+
+    res.redirect(response.data.data.authorization_url);
+
   } catch (err) {
       console.log(err.code);
       console.log(err);
@@ -288,7 +311,7 @@ function checkAuthenticated(req, res, next){
   }
   */
   req.flash('message', 'Log in to proceed');
-  res.redirect("/")
+  res.redirect("/home")
 }
 
 

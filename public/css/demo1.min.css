@@ -11129,8 +11129,9 @@ input.quantity {
 #messages-notify { 
     display: flex;
     /* background: blue; */
-    position: absolute;
+    position: fixed;
     top: 31px;
     left: 0%;
     width: 100%;
+    z-index: 9999999;
 }

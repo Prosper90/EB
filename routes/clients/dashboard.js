@@ -34,7 +34,7 @@ function checkAuthenticated(req, res, next){
   }
   */
   req.flash('message', 'Log in to proceed');
-  res.redirect("/")
+  res.redirect("/home")
 }
 
 

@@ -106,9 +106,21 @@ router.post("/", async function(req, res){
       } else {
         req.session.cookie.expires = false; // Cookie expires at end of session
       }
-      res.redirect('/dashboard');
+      res.redirect('/');
     });
   
+
+    router.post("/login/other", passport.authenticate("local", {
+      failureFlash: true,
+      failureRedirect: "/"
+      }), (req, res, next) => {
+        if (req.body.remember) {
+          req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+        } else {
+          req.session.cookie.expires = false; // Cookie expires at end of session
+        }
+        res.redirect('/dashboard');
+      });
   
 
 

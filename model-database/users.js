@@ -25,16 +25,27 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
     Doge: {type: String},
   });
 
-     //for investment
+  //for investment
   const ordersSchema = mongoose.Schema({
   dateandtime : {type: Date, default: Date.now},
   price: {type: Number},
   paymentmethod: {type: String},
   status: {type: Number},
   buyid: {type: String}
-});
+  });
 
 
+  
+
+  //for investment
+  const ordersSchemaMain = mongoose.Schema({
+    dateandtime : {type: Date, default: Date.now},
+    price: {type: Number},
+    paymentmethod: {type: String},
+    status: {type: Number},
+    buyid: {type: String},
+    size: {type: String}
+  });
 
 
 
@@ -71,6 +82,7 @@ const userSchema = mongoose.Schema({
  balance: {type: Number},
  CryptoAddress: WalletAddressSchema,
  Orders: [ordersSchema],
+ OrdersMain: [ordersSchemaMain],
  Deposit: [depositSchema],
  DepositHistory: [depositHistorySchema],
 });

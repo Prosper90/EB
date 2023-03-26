@@ -76,6 +76,49 @@
  <%})%>
 
 
+ <!-- Edit More Main products-->
+ <%productsTwo.forEach((data, index) => {%>
+
+    <div class="modal fade" id="exampleModaltwo<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                    
+
+            <form method="post" action="/mainproducts/<%=data._id%>/<%=data.name%>" class="w-100">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input class="form-control" name="name" type="text" value="<%=data.name%>">
+                </div>
+                <div class="form-group">
+                    <label>Product Type</label>
+                    <input class="form-control"  name="type" type="text" value="<%=data.type%>">
+                </div>
+                
+                
+                    <div class="mt-4 d-flex justify-content-center gap-4">
+                          <button type="submit" class=""  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </button> 
+                    </div>
+
+
+
+            </form>
+    
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+ <%})%>
+
+
 
 
     <% if(message.message) { %>
@@ -112,12 +155,6 @@
 </div>
 
 </div>
-
-            uint256 newRND = _rID++;
-            console.log(_rID, "Round check 1");
-            console.log(newRND, "Round check 2");
-
-            core(newRND, _pID, _amount, _affID,  _eventData_);
 
             
 <div class="sidebar" id="sidebar">
@@ -159,6 +196,16 @@
 </a>
 </li>
 <li
+<%if(active == "mainproducts") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/mainproducts">
+    <i class="fab fa-buffer"></i> 
+    <span>mainProducts</span>
+</a>
+</li>
+<li
 <%if(active == "allorders") { %>
     class="active" 
   <% } %>
@@ -166,6 +213,17 @@
 <a href="/allorders">
     <i class="fas fa-bullhorn"></i> 
     <span>All orders</span>
+</a>
+</li>
+
+<li
+<%if(active == "mainorder") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/mainorder">
+    <i class="fas fa-bullhorn"></i> 
+    <span>Main orders</span>
 </a>
 </li>
 
@@ -238,8 +296,20 @@
     <i class="fas fa-qrcode"></i>
     </span>
     <div class="dash-widget-info">
-    <h3>124</h3>
-    <h6 class="text-muted">Services</h6>
+        <% let counterCheck = productsTwo.filter((info, index) => { %>
+            <%if(!info.available) { %>
+                <% return info ;%>
+             <% } %>
+          <% }) %>
+          <% let oldnumber = 0; %>
+          <% let Tsold = counterCheck.map((data) => { %>
+            <% data.price + oldnumber %>
+         <% }) %>
+    <div class="d-flex flex-column p4">
+      <h3><%= counterCheck.length %> sold</h3>
+      <small>N <%=oldnumber%> </small>
+    </div>
+    <h6 class="text-muted">Main Sales</h6>
     </div>
     </div>
     </div>

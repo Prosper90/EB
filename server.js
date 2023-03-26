@@ -10,16 +10,22 @@ const orderdetail = require("./routes/clients/orderdetail");
 const recievepayment = require("./routes/clients/recievepayment");
 const deposit = require('./routes/clients/deposit');
 const deposithistory = require('./routes/clients/deposithistory');
+const buymain = require('./routes/clients/buymain');
 const webhook = require('./routes/clients/webhook');
+const home = require('./routes/clients/home');
 
 const adminlogin = require("./routes/admin/adminlogin");
 const admin = require("./routes/admin/dashboard");
 const addproducts = require("./routes/admin/addproducts.js");
 const products = require("./routes/admin/products.js");
+const mainproducts = require("./routes/admin/mainproducts");
 const allorders = require("./routes/admin/allorders.js");
+const mainorder = require("./routes/admin/mainorder.js");
 //const manageInvestments = require("./routes/admin/manageInvestments.js");
 const bodyParser = require('body-parser');
 const User = require("./model-database/users").User;
+const ProductTwo = require("./model-database/productTwo").ProductTwo;
+const Admin = require("./model-database/admin").Admin;
 const passport = require("passport");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
@@ -78,6 +84,8 @@ app.use("/dashboard", dashboard);
 app.use("/orderdetail", orderdetail);
 app.use("/deposit", deposit);
 app.use("/deposithistory", deposithistory);
+app.use("/buymain", buymain);
+app.use("/home", home);
 
 //admin section
 app.use("/adminlogin", adminlogin);
@@ -85,7 +93,9 @@ app.use("/admin", admin);
 app.use("/addproducts", addproducts);
 //app.use("/investmentstrack", investmentstrack);
 app.use("/products", products);
+app.use("/mainproducts", mainproducts);
 app.use("/allorders", allorders);
+app.use("/mainorder", mainorder);
 app.use("/recievepayment", recievepayment);
 app.use("/webhook", webhook);
 
@@ -94,11 +104,61 @@ app.use("/webhook", webhook);
 
 
 
-app.get("/",  function(req, res){
-  res.render("home", {message: req.flash(), active: "home"});
+app.get("/",  checkAuthenticated, async function(req, res){
+  const sideProducts = await ProductTwo.find({}).clone();
+  //const user = checkAuthenticated();
+  //console.log(user, "Authenticating");
+  res.render("homemain", {message: req.flash(), sideProducts: sideProducts, user: req.user });
 });
 
 
+app.post("/",  async function(req, res) {
+
+  await Admin.findById({_id: "6331ef970fcb743e2f09df99" }, (err, data) => {
+
+    if(err) console.log(err);
+
+    data.Subscribers.push({
+      email: req.body.email
+    });
+
+    data.markModified('Subscribers');
+    data.save(function(saveerr, saveresult){
+      if(saveerr){
+        req.flash('message', 'Failed');
+        res.redirect(`/`);
+      } else {
+        req.flash('message', 'Suscribed Successfully');
+        res.redirect(`/`);
+      }
+    });
+
+  })
+
+
+});
+
+
+
+app.get("/home",  checkAuthenticated, async function(req, res) {
+  res.render("home", { message: req.flash() });
+});
+
+
+
+async function checkAuthenticated(req, res, next){
+
+  if(req.isAuthenticated()){
+    //console.log("running")
+    return next()
+  }
+ //console.log("Something else");
+  const sideProducts = await ProductTwo.find({}).clone();
+  //const user = checkAuthenticated();
+  //console.log(user, "Authenticating");
+  res.render("homemain", {message: req.flash(), sideProducts: sideProducts, user: false});
+
+}
 
 
 
