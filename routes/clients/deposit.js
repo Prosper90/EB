@@ -41,8 +41,10 @@ router.post("/", checkAuthenticated, async function(req, res){
    }
    console.log(req.body);
 
+
+   const valueB = ( req.body.amount / 2 ) * 200;
     //deposit into account
-    const ids = `${req.user._id},${req.body.amount}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
+    const ids = `${req.user._id}-${valueB}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
     console.log(ids);
 
  try{
