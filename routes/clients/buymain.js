@@ -87,7 +87,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           data: {
             "email": req.user.Email,
             "amount": valueB,
-            "callback_url": "http://localhost:3000/recievepayment",
+            "callback_url": "https://socialogs.org/recievepayment",
             "reference": ids
           },
         })
