@@ -35,20 +35,14 @@ router.post("/:id", checkAuthenticated, async function(req, res){
   //buying items
 
   //check for available market
-   const checking = await Products.find({type: req.params.id}, function(err, product) {
-    if(err) {
-      //handle
-    } else {
+   const checking = await Products.find({type: req.params.id}).clone();
 
-      const check = product.filter((data) => {
-        return data.available == true;
-      });
-      console.log(check, "checkers for real");
-      return check;
-    }
-  }).clone();
-  console.log(checking.length, "check check check");
-  if(checking < 1) {
+  const check = checking.filter((data) => {
+    return data.available == true;
+  });
+
+  console.log(check.length, "check check check");
+  if(check.length < 1) {
     console.log("In here and running");
     req.flash('message', 'Out of stock');
     res.redirect(`/buypage/${req.params.id}`);
@@ -67,19 +61,18 @@ router.post("/:id", checkAuthenticated, async function(req, res){
         const totalPrice = findProduct[0].price * req.body.purchaseNumber;
         console.log(totalPrice);
     
-      //Remove the product from product list
-      await Products.find({type: req.params.id}, function(err, product) {
+    //Remove the product from product list
+      await Products.find({type: req.params.id}, async function(err, product) {
         if(err) {
           //handle
         } else {
-          console.log(product, "working");
-          product.map((data, index) => {
-            if(index < req.body.purchaseNumber) {
-              data.available = false;
+          //console.log(product, "working");
+            product.map( async (data, index) => {
+            if( index < req.body.purchaseNumber ) {
+              await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
             }
-    
-            data.save(function(){});
           });
+  
         }
       }).clone();
     
