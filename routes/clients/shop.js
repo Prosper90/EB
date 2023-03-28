@@ -16,7 +16,7 @@ router.get("/", async function(req, res){
 
 
 
-router.get("/", checkAuthenticated, async function(req, res){
+router.get("/",  async function(req, res){
 
   let page = req.query.page;
   let size = 12;
