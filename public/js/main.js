@@ -2482,10 +2482,12 @@ window.Panda = {};
     /**
      * @function quantityInput
      */
+        /*
+     * @class QuantityInput
+     */
+    /*
     Panda.quantityInput = ( function () {
-        /**
-         * @class QuantityInput
-         */
+
         function QuantityInput( $el ) {
             return this.init( $el );
         }
@@ -2547,6 +2549,7 @@ window.Panda = {};
         }
         QuantityInput.prototype.startIncrease = function ( e ) {
             e && e.preventDefault();
+            console.log("bad guy in here");
             var self = this;
             self.value = self.$value.val();
             self.value < self.max && self.$value.val( ++self.value );
@@ -2562,6 +2565,7 @@ window.Panda = {};
             Panda.deleteTimeout( this.decreaseTimer );
         }
         QuantityInput.prototype.startDecrease = function () {
+            console.log("bad guy in two");
             var self = this;
             self.value = self.$value.val();
             self.value > self.min && self.$value.val( --self.value );
@@ -2581,6 +2585,7 @@ window.Panda = {};
             } );
         }
     } )();
+    */
 
     /**
      * @class Menu

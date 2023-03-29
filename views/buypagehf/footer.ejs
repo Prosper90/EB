@@ -142,6 +142,31 @@
 <script src="../vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
 <!-- Main JS File -->
 <script src="../js/main.js"></script>
+
+<script>
+    $('.quantity-plus').click(function(e){
+      e.preventDefault();
+        console.log($('#purchaseNumber').val());
+
+        $('#purchaseNumber').val( function(i, oldval) {
+            return ++oldval;
+        });
+
+    });
+
+    $('.quantity-minus').click(function(e){
+      e.preventDefault();
+        console.log($('#purchaseNumber').val());
+
+        $('#purchaseNumber').val( function(i, oldval) {
+            if(oldval <= 1) {
+                return oldval;
+            }
+            return --oldval;
+        });
+
+     });
+</script>
 </body>
 
 
