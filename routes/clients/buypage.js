@@ -89,7 +89,8 @@ router.post("/:id", checkAuthenticated, async function(req, res){
             price: totalPrice,
             paymentmethod: "card",
             status: 1,
-            buyid: buyids
+            buyid: buyids,
+            type: findProduct[0].type
           });
           if (user.Orders.length !== 0) {
             index = user.Orders.length - 1;            

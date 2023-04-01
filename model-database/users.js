@@ -31,7 +31,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
   price: {type: Number},
   paymentmethod: {type: String},
   status: {type: Number},
-  buyid: [{type: String}]
+  buyid: [{type: String}],
+  type: {type: String}
   });
 
 
