@@ -107,9 +107,10 @@
              <div class="d-flex justify-content-center align-items-center" id="messages-notify">
                 <% if(message.message  == "Log in to proceed") { %>
                   <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                   style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;">
+                   style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
+                   id="mainMan">
                       <h5 class="alert-title text-center"><%= message.message %></h5>
-                      <button type="button" class="btn btn-link btn-close">
+                      <button type="button" class="btn btn-link btn-close" id="btn-click">
                           <i class="p-icon-close"></i>
                       </button>
                   </div>
@@ -117,9 +118,10 @@
                       <% } else if(message.message  == "Payment successful") { %>
                   
                       <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" 
-                      style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;">
+                      style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;"
+                      id="mainMan">
                           <h5 class="alert-title text-center"><%= message.message %></h5>
-                          <button type="button" class="btn btn-link btn-close">
+                          <button type="button" class="btn btn-link btn-close" id="btn-click">
                               <i class="p-icon-close"></i>
                           </button>
                       </div>
@@ -127,9 +129,10 @@
                       <% } else if(message.message  == "Payment unsuccessful") { %>
                   
                       <div class="alert alert-danger alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                        style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;">
+                        style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
+                        id="mainMan">
                           <h5 class="alert-title text-center"><%= message.message %></h5>
-                          <button type="button" class="btn btn-link btn-close">
+                          <button type="button" class="btn btn-link btn-close" id="btn-click">
                               <i class="p-icon-close"></i>
                           </button>
                       </div>
@@ -137,9 +140,10 @@
                       <% } else if(message.register  == "Registration failed") { %>
                   
                         <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                          style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;">
+                          style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
+                          id="mainMan">
                             <h5 class="alert-title text-center"><%= message.register %></h5>
-                            <button type="button" class="btn btn-link btn-close">
+                            <button type="button" class="btn btn-link btn-close" id="btn-click">
                                 <i class="p-icon-close"></i>
                             </button>
                         </div>
@@ -147,9 +151,10 @@
                         <% } else if(message.registrationsuccessful  == "Registration successful, Login") { %>
                   
                             <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                            style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;">
+                            style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;"
+                            id="mainMan">
                                 <h5 class="alert-title text-center"><%= message.registrationsuccessful %></h5>
-                                <button type="button" class="btn btn-link btn-close">
+                                <button type="button" class="btn btn-link btn-close" id="btn-click">
                                     <i class="p-icon-close"></i>
                                 </button>
                             </div>

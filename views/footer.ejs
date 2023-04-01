@@ -145,7 +145,7 @@
 <script>
     $(document).ready(function() {
 
-        let selectedValue ;
+        let selectedValue = $('#ddlViewBy').val();
     
         $("#ddlViewBy").click(function(){
             console.log($('#ddlViewBy').val());
@@ -189,6 +189,11 @@
             }
 
         })
+
+
+        $('#btn-click').on("click",  (function(t) {
+            $("#mainMan").addClass("hideo");
+        })) 
      
     });
 </script>
