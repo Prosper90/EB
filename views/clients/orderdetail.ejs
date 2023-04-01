@@ -25,7 +25,7 @@
                     <tr>
                         <td class="product-name"> username </td>
                         <%  const valueId = data.password.split(','); %>
-                        <td class="d-flex justify-content-around">
+                        <td class="d-flex justify-content-end">
                             <div class="product-price d-flex">
                                 <div class=""><%=valueId[0]%></div> 
                             </div>
@@ -34,7 +34,7 @@
 
                     <tr>
                         <td class="product-name"> password </td>
-                        <td class="d-flex justify-content-around">
+                        <td class="d-flex justify-content-end">
                             <div class="product-price d-flex">
                                 <div class=""><%=valueId[1]%></div>
                             </div>
@@ -43,14 +43,16 @@
                     <tr>
 
                     <td class="product-name"> Details </td>
-                        <td class="d-flex justify-content-around">
-                            <div class="product-price d-flex">
+                        <td class="d-flex justify-content-end">
+                            <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
                                 <div id="copyItems" style="width: 147px; height: 147px; overflow: auto; border: 1px solid black; border-radius: 5px;">
                                     <%= data.details %>
                                 </div>
+                                <div class="">
                                 <button
                                 style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
                                  id="btcCopy">copy</button>
+                                </div>
                             </div>
                         </td>
                     </tr>
