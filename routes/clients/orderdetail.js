@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.get("/:id/:index", checkAuthenticated, async function(req, res){
-    const getItem = await Products.findOne({type: req.params.id}, function(err, products) {
+    const getItem = await Products.find({type: req.params.id}, function(err, products) {
         if(err) {
           console.log(err);
         } else {
@@ -18,6 +18,7 @@ router.get("/:id/:index", checkAuthenticated, async function(req, res){
         }
 
     }).clone();
+    console.log(getItem);
 
     const itemsbought = getItem.filter(({_id}) => user.Orders[index].buyid.includes(_id));
 
