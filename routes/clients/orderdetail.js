@@ -21,6 +21,7 @@ router.get("/:id/:index", checkAuthenticated, async function(req, res){
     console.log(getItem);
 
     const itemsbought = getItem.filter(({_id}) => req.user.Orders[req.params.index].buyid.includes(_id));
+    console.log(itemsbought);    
 
   res.render("clients/orderdetail", {item: itemsbought, message: req.flash(), transferAccount: undefined} );
 });
