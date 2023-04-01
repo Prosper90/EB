@@ -14,67 +14,53 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="product-subtitle"><%=item.name%></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="product-name">Type </td>
-                    <td class="product-price"><%=item.type%></td>
-                </tr>
-                <tr>
-                    <td class="product-name"> username </td>
-                  <%if(item.status == 0) {%>
-                    <td class="product-price">******</td>
-                  <%} else {%>
-                    <%  const valueId = item.password.split(','); %>
-                    <td class="d-flex justify-content-around">
-                        <div class="product-price d-flex">
-                            <div class=""><%=valueId[0]%></div> 
-                        </div>
-                    </td>
-                  <%}%>
-                </tr>
-                <tr>
-                    <td class="product-name"> password </td>
-                  <%if(item.status == 0) {%>
-                    <td class="product-price">******</td>
-                  <%} else {%>
-                    <%  const valueId = item.password.split(','); %>
-                    <td class="d-flex justify-content-around">
-                        <div class="product-price d-flex">
-                            <div class=""><%=valueId[1]%></div>
-                        </div>
-                    </td>
-                  <%}%>
-                </tr>
-                <tr>
-                    <td class="product-name"> Details </td>
-                  <%if(item.status == 0) {%>
-                    <td class="product-price">Empty</td>
-                  <%} else {%>
-                    <td class="d-flex justify-content-around">
-                        <div class="product-price d-flex">
-                            <div id="copyItems" >
-                                <%= item.details %>
+                <%item.map((data, index) => {%>
+                 <div style="border-bottom-color: green;">
+
+                    <tr>
+                        <td class="product-name">Type </td>
+                        <td class="product-price"><%=data.type%></td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name"> username </td>
+                        <%  const valueId = data.password.split(','); %>
+                        <td class="d-flex justify-content-around">
+                            <div class="product-price d-flex">
+                                <div class=""><%=valueId[0]%></div> 
                             </div>
-                            <button onclick="copyToClipboard('#copyItems')">copy</button>
-                        </div>
-                    </td>
-                  <%}%>
-                </tr>
-                <tr class="summary-subtotal">
-                    <td>
-                        <h4 class="summary-subtitle">Amount:</h4>
-                    </td>
-                    <td class="summary-value font-weight-normal">N<%=item.price%></td>
-                </tr>
-                <tr class="summary-subtotal">
-                    <td>
-                        <h4 class="summary-subtitle">Payment method:</h4>
-                    </td>
-                    <td class="summary-value">Card</td>
-                </tr>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name"> password </td>
+                        <td class="d-flex justify-content-around">
+                            <div class="product-price d-flex">
+                                <div class=""><%=valueId[1]%></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                    <td class="product-name"> Details </td>
+                        <td class="d-flex justify-content-around">
+                            <div class="product-price d-flex">
+                                <div id="copyItems" >
+                                    <%= data.details %>
+                                </div>
+                                <button onclick="copyToClipboard('#copyItems')">copy</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="summary-subtotal">
+                        <td>
+                            <h4 class="summary-subtitle">Amount:</h4>
+                        </td>
+                        <td class="summary-value font-weight-normal">N<%=data.price%></td>
+                    </tr>
+                  </div>
+                <%})%>
             </tbody>
         </table>
     </div>

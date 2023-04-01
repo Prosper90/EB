@@ -58,7 +58,8 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     
         const totalPrice = findProduct[0].price * req.body.purchaseNumber;
         console.log(totalPrice);
-    
+        const buyids = [];
+        let index;
     //Remove the product from product list
       await Products.find({type: req.params.id}, async function(err, product) {
         if(err) {
@@ -68,6 +69,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
             product.map( async (data, index) => {
             if( index < req.body.purchaseNumber ) {
               await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
+              buyids.push(data._id);
             }
           });
   
@@ -81,20 +83,18 @@ router.post("/:id", checkAuthenticated, async function(req, res){
         } else {
     
           user.balance -= totalPrice;
-          
-    
-          findProduct.map((data, index) => {
-           
-            if(index < req.body.purchaseNumber) {
-                user.Orders.push({
-                  price: data.price,
-                  paymentmethod: "card",
-                  status: 1,
-                  buyid: data._id
-                });
-            }
-    
-          })
+          user.Orders.push({
+            price: data.price,
+            paymentmethod: "card",
+            status: 1,
+            buyid: buyids
+          });
+          if (user.Orders.length !== 0) {
+            index = user.Orders.length - 1;            
+          }else{
+            index = user.Orders.length;            
+          }
+  
     
     
           user.markModified("Orders");
@@ -102,10 +102,9 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           if(saveerr){
             req.flash('message', 'Purchase fail');
             res.redirect(`/buypage/${req.params.id}`);
-    
           } else {
             req.flash('message', 'Purchase successful');
-            res.redirect(`/orderdetail/${req.params.id}`);
+            res.redirect(`/orderdetail/${findProduct.type}/${index}`);
     
           }
     

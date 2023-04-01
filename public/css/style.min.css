@@ -12219,18 +12219,29 @@ ul.pagination {
         display: none
     }
 
-    .breadcrumb {
-        display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    .container .breadcrumb {
+        display: none !important;
     }
 
-    .selected {
-        display: none;
+    .tab  .nav  {
+        display: none !important ;
     }
 
     .header-middle .main-nav {
         display: none
     }
+
+    .mobile-menu-toggle {
+        display: none !important
+    }
+
 }
+
+
 
 @media (min-width:576px) {
     .sticky-footer {

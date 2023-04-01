@@ -9,16 +9,19 @@ const router = express.Router();
 
 
 
-router.get("/:id", checkAuthenticated, async function(req, res){
-    const getItem = await Products.findById({_id: req.params.id}, function(err, user) {
+router.get("/:id/:index", checkAuthenticated, async function(req, res){
+    const getItem = await Products.findById({type: req.params.id}, function(err, products) {
         if(err) {
           console.log(err);
         } else {
-          return user;
+          return products;
         }
 
     }).clone();
-  res.render("clients/orderdetail", {item: getItem, message: req.flash(), transferAccount: undefined} );
+
+    const itemsbought = getItem.filter(({_id}) => user.Orders[index].buyid.includes(_id));
+
+  res.render("clients/orderdetail", {item: itemsbought, message: req.flash(), transferAccount: undefined} );
 });
 
 

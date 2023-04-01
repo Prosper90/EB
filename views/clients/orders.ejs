@@ -94,7 +94,7 @@
             </thead>
             <tbody>
                 <%let orderReverse = user.Orders.reverse(); %>
-                <%orderReverse.map((data) => {%>
+                <%orderReverse.map((data, index) => {%>
                 <tr>
                     <td class="order-number"><a href="#"><%=data._id%></a></td>
                     <td class="order-date"><span><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></span></td>
@@ -106,7 +106,7 @@
                          <% } %>
                     </td>
                     <td class="order-total"><span>N<%=data.price%></span></td>
-                    <td class="order-action"><a href="/orderdetail/<%=data.buyid%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
+                    <td class="order-action"><a href="/orderdetail/<%=data.type%>/<%=index%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
                     </td>
                 </tr>
 
