@@ -60,7 +60,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     
         const totalPrice = findProduct[0].price * req.body.purchaseNumber;
         console.log(totalPrice);
-        const buyids = [];
+        let buyi = [];
         let index;
     //Remove the product from product list
       await Products.find({type: req.params.id}, async function(err, product) {
@@ -71,7 +71,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
             product.map( async (data, index) => {
             if( index < req.body.purchaseNumber ) {
               await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
-              buyids.push(data._id);
+              buyi.push(data._id);
             }
           });
   
@@ -90,7 +90,6 @@ router.post("/:id", checkAuthenticated, async function(req, res){
             price: totalPrice,
             paymentmethod: "card",
             status: 1,
-            buyid: buyids,
             type: findProduct[0].type
           });
           if (user.Orders.length !== 0) {
@@ -98,7 +97,10 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           }else{
             index = user.Orders.length;            
           }
-  
+
+          buyi.map((data)=> {
+            user.Orders[data].buyid.push(item);
+          })
     
     
           user.markModified("Orders");

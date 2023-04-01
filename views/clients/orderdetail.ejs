@@ -23,34 +23,37 @@
                     </tr>
 
                     <tr>
-                        <td class="product-name"> username </td>
+                        <div class="product-name"> username </div>
                         <%  const valueId = data.password.split(','); %>
-                        <td class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-around">
                             <div class="product-price d-flex">
                                 <div class=""><%=valueId[0]%></div> 
                             </div>
-                        </td>
+                        </div>
                     </tr>
 
                     <tr>
-                        <td class="product-name"> password </td>
-                        <td class="d-flex justify-content-around">
+                        <div class="product-name"> password </div>
+                        <div class="d-flex justify-content-around">
                             <div class="product-price d-flex">
                                 <div class=""><%=valueId[1]%></div>
                             </div>
-                        </td>
+                        </div>
                     </tr>
                     <tr>
-
                     <td class="product-name"> Details </td>
-                        <td class="d-flex justify-content-around">
+                        <div class="d-flex justify-content-between">
                             <div class="product-price d-flex">
-                                <div id="copyItems" >
+                                <div id="copyItems" style="width: 147px; height: 147px; overflow: auto; border: 1px solid black; border-radius: 5px;">
                                     <%= data.details %>
                                 </div>
-                                <button onclick="copyToClipboard('#copyItems')">copy</button>
+                                <div class="">
+                                        <button
+                                        style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
+                                        onclick="copyToClipboard('#copyItems')">copy</button>
+                                </div>
                             </div>
-                        </td>
+                        </div>
                     </tr>
 
                     <tr class="summary-subtotal">
