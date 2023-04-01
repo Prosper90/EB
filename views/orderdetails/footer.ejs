@@ -304,6 +304,22 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <!-- Main JS File -->
 <script src="../js/main.min.js"></script>
+<script>
+        $(document).ready(function() {
+
+            function copyToClipboard(element) {
+                $(element).click(function () {
+                    var $temp = $("<input>");
+                    $("body").append($temp);
+                    $temp.val($(this).closest("tr").find(".copy-me").text()).select();
+                    document.execCommand('copy');
+                    alert("Copied");
+                    $temp.remove();
+                });
+            }
+            
+        })
+</script>
 </body>
 
 
