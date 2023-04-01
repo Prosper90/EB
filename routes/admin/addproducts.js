@@ -204,7 +204,7 @@ router.post("/one", async function(req, res){
       dataUpload.push({
         name: req.body.name,
         type: req.body.type,
-        password: req.body[`details${index}`],
+        password: req.body[`info${index}`],
         available: true,
         price: req.body.price,
         details: req.body[`details${index}`],

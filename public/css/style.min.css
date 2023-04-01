@@ -12218,6 +12218,18 @@ ul.pagination {
     .sticky-footer {
         display: none
     }
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .selected {
+        display: none;
+    }
+
+    .header-middle .main-nav {
+        display: none
+    }
 }
 
 @media (min-width:576px) {

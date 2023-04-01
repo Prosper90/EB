@@ -105,7 +105,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     
           } else {
             req.flash('message', 'Purchase successful');
-            res.redirect(`/buypage/${req.params.id}`);
+            res.redirect(`/orderdetail/${req.params.id}`);
     
           }
     
