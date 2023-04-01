@@ -86,7 +86,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     
           user.balance -= totalPrice;
           user.Orders.push({
-            price: data.price,
+            price: totalPrice,
             paymentmethod: "card",
             status: 1,
             buyid: buyids
