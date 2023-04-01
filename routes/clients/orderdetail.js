@@ -20,7 +20,7 @@ router.get("/:id/:index", checkAuthenticated, async function(req, res){
     }).clone();
     console.log(getItem);
 
-    const itemsbought = getItem.filter(({_id}) => user.Orders[index].buyid.includes(_id));
+    const itemsbought = getItem.filter(({_id}) => req.user.Orders[index].buyid.includes(_id));
 
   res.render("clients/orderdetail", {item: itemsbought, message: req.flash(), transferAccount: undefined} );
 });
