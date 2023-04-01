@@ -10,7 +10,7 @@ const router = express.Router();
 
 
 router.get("/:id/:index", checkAuthenticated, async function(req, res){
-    const getItem = await Products.findById({type: req.params.id}, function(err, products) {
+    const getItem = await Products.findOne({type: req.params.id}, function(err, products) {
         if(err) {
           console.log(err);
         } else {

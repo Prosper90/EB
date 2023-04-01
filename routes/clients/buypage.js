@@ -5,13 +5,15 @@ const User = require("../../model-database/users").User;
 //const passport = require("passport");
 //const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
+const console = require("console");
 const router = express.Router();
 
 
 //checkAuthenticated,
 router.get("/:id",  async function(req, res) {
-
-  const getItem = await Products.findOne({type: req.params.id}, function(err, product) {
+  
+  console.log("check check check main");
+  const getItem = await Products.find({type: req.params.id}, function(err, product) {
     if(err) {
       console.log(err);
     } else {
