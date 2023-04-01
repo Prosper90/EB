@@ -207,6 +207,7 @@ router.post("/one", async function(req, res){
         password: req.body[`details${index}`],
         available: true,
         price: req.body.price,
+        details: req.body[`details${index}`],
         description: req.body[`description${index}`],
       })
   

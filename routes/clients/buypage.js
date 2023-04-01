@@ -40,9 +40,9 @@ router.post("/:id", checkAuthenticated, async function(req, res){
   });
 
   console.log(check.length, "check check check");
-  if(check.length < 1) {
+  if(check.length < req.body.purchaseNumber) {
     console.log("In here and running");
-    req.flash('message', 'Out of stock');
+    req.flash('message', 'Not enough stock to order. Kindly order in lesser quantity');
     res.redirect(`/buypage/${req.params.id}`);
   } else {
 

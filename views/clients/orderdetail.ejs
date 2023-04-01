@@ -23,20 +23,42 @@
                     <td class="product-price"><%=item.type%></td>
                 </tr>
                 <tr>
-                    <td class="product-name"> Details </td>
+                    <td class="product-name"> username </td>
                   <%if(item.status == 0) {%>
                     <td class="product-price">******</td>
                   <%} else {%>
                     <%  const valueId = item.password.split(','); %>
                     <td class="d-flex justify-content-around">
                         <div class="product-price d-flex">
-                            <div class="mr-1">Name</div> 
                             <div class=""><%=valueId[0]%></div> 
                         </div>
-
+                    </td>
+                  <%}%>
+                </tr>
+                <tr>
+                    <td class="product-name"> password </td>
+                  <%if(item.status == 0) {%>
+                    <td class="product-price">******</td>
+                  <%} else {%>
+                    <%  const valueId = item.password.split(','); %>
+                    <td class="d-flex justify-content-around">
                         <div class="product-price d-flex">
-                            <div class="mr-1">Password</div>
                             <div class=""><%=valueId[1]%></div>
+                        </div>
+                    </td>
+                  <%}%>
+                </tr>
+                <tr>
+                    <td class="product-name"> Details </td>
+                  <%if(item.status == 0) {%>
+                    <td class="product-price">Empty</td>
+                  <%} else {%>
+                    <td class="d-flex justify-content-around">
+                        <div class="product-price d-flex">
+                            <div id="copyItems" >
+                                <%= item.details %>
+                            </div>
+                            <button onclick="copyToClipboard('#copyItems')">copy</button>
                         </div>
                     </td>
                   <%}%>

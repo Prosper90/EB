@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Socialogs - Purchase </title>
+    <title>Socialogs</title>
     <!-- favicon -->
     <link rel="icon" type="image/png" href="../images/icons/favicon.png">
     <!-- Vendor Stylesheet -->
@@ -286,8 +286,14 @@
                                             id="qty_input"
                                         </div>
                                         -->
-                                        <input type="number"  name="purchaseNumber" class="form-control text-right form-control-sm" placeholder="Number of items" min="1">
+                                        <div class="input-group">
+                                            <button class="quantity-minus p-icon-minus-solid"></button>
+                                             <input id="purchaseNumber" class="form-control" value="1" name="purchaseNumber" type="number" min="1" max="1000000">
+                                            <button class="quantity-plus p-icon-plus-solid"></button>
+                                        </div>                                        
+                                        
                                         <!--
+                                            <input type="number"  name="purchaseNumber" class="form-control text-right form-control-sm" placeholder="Number of items" min="1">
                                         <div class="input-group-prepend align-self-center">
                                             <a class="btn btn-sm" id="plus-btn"><i class="fa fa-plus"></i></a>
                                         </div>
@@ -733,7 +739,30 @@
     <script src="../assetstwo/js/vendor.js"></script>
     <!-- main js  -->
     <script src="../assetstwo/js/main.js"></script>
+    <script>
+        $('.quantity-plus').click(function(e){
+          e.preventDefault();
+            console.log($('#purchaseNumber').val());
     
+            $('#purchaseNumber').val( function(i, oldval) {
+                return ++oldval;
+            });
+    
+        });
+    
+        $('.quantity-minus').click(function(e){
+          e.preventDefault();
+            console.log($('#purchaseNumber').val());
+    
+            $('#purchaseNumber').val( function(i, oldval) {
+                if(oldval <= 1) {
+                    return oldval;
+                }
+                return --oldval;
+            });
+    
+         });
+    </script>
 </body>
 
 <!-- Mirrored from zwin.io/html/stooon/single-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:59:45 GMT -->
