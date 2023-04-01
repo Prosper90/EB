@@ -83,7 +83,8 @@ router.post("/:id", checkAuthenticated, async function(req, res){
         if(err) {
           //handle it
         } else {
-    
+          
+          console.log(buyids, "buyids");
           user.balance -= totalPrice;
           user.Orders.push({
             price: totalPrice,

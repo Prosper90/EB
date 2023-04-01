@@ -18,7 +18,7 @@ router.get("/:id/:index", checkAuthenticated, async function(req, res){
         }
 
     }).clone();
-    console.log(getItem);
+    console.log(req.user.Orders[req.params.index].buyid);
 
     const itemsbought = getItem.filter(({_id}) => req.user.Orders[req.params.index].buyid.includes(_id));
     console.log(itemsbought);    
