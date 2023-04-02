@@ -44,12 +44,21 @@
                 <!-- End of Social Links -->
             </div>
             <div class="footer-right">
-
+                <div class="widget-newsletter">
+                    <h4 class="widget-title">Subscribe Newsletter</h4>
+                    <p>Subscribe to the Panda eCommerce Newsletter<br> updates from your favourite products.
+                    </p>
+                    <form action="#" class="form-simple">
+                        <input type="email" name="email" id="email" placeholder="Email address here..."
+                            required="">
+                        <button class="btn btn-link" type="submit">sign up</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!-- End FooterMiddle -->
         <div class="footer-bottom">
-            <p class="copyright">Socialogs © 2023. All Rights Reserved</p>
+            <p class="copyright">Panda eCommerce © 2022. All Rights Reserved</p>
             <figure>
                 <img src="../../images/payment.png" alt="payment" width="159" height="29">
             </figure>
@@ -58,39 +67,41 @@
     </div>
 </footer>
 <!-- End Footer -->
+
+
 </div>
 <!-- Sticky Footer -->
 <div class="sticky-footer sticky-content fix-bottom">
-    <a href="/home" class="sticky-link">
-        <i class="p-icon-home"></i>
-        <span>Home</span>
+<a href="/home" class="sticky-link">
+    <i class="p-icon-home"></i>
+    <span>Home</span>
+</a>
+<a href="/shop" class="sticky-link">
+    <i class="p-icon-category"></i>
+    <span>shop</span>
+</a>
+<a href="/orders" class="sticky-link">
+    <i class="p-icon-heart-solid"></i>
+    <span>orders</span>
+</a>
+<a href="/dashboard" class="sticky-link">
+    <i class="p-icon-user-solid"></i>
+    <span>dashboard</span>
+</a>
+<div class="header-search hs-toggle dir-up">
+    <a href="/dashboard/logout" class="search-toggle sticky-link">
+        <i class="p-icon-search-solid"></i>
+        <span>logOut</span>
     </a>
-    <a href="/shop" class="sticky-link">
-        <i class="p-icon-category"></i>
-        <span>shop</span>
-    </a>
-    <a href="/orders" class="sticky-link">
-        <i class="p-icon-heart-solid"></i>
-        <span>orders</span>
-    </a>
-    <a href="/dashboard" class="sticky-link">
-        <i class="p-icon-user-solid"></i>
-        <span>dashboard</span>
-    </a>
-    <div class="header-search hs-toggle dir-up">
-        <a href="/dashboard/logout" class="search-toggle sticky-link">
+    <!--
+    <form action="#" class="form-simple">
+        <input type="text" name="search" autocomplete="off" placeholder="Search your keyword..." required />
+        <button class="btn btn-search" type="submit">
             <i class="p-icon-search-solid"></i>
-            <span>logOut</span>
-        </a>
-        <!--
-        <form action="#" class="form-simple">
-            <input type="text" name="search" autocomplete="off" placeholder="Search your keyword..." required />
-            <button class="btn btn-search" type="submit">
-                <i class="p-icon-search-solid"></i>
-            </button>
-        </form>
-       -->
-    </div>
+        </button>
+    </form>
+   -->
+</div>
 </div>
 <!-- Scroll Top -->
 <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="p-icon-arrow-up"></i>
@@ -120,7 +131,7 @@
             <a href="/home">Home</a>
         </li>
         <li>
-            <a href="/shop" >Shop</a>
+            <a href="/shop" class="active">Shop</a>
             <ul>
                 <li>
                     <a href="#">
@@ -275,10 +286,35 @@
 </div>
 </div>
 <!-- Plugins JS File -->
-<script src="vendor/jquery/jquery.min.js"></script>
+<script src="../../assets/js/jquery-3.6.0.min.js"></script>
+<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Main JS File -->
-<script src="../js/main.min.js"></script>
+<script src="../../js/main.min.js"></script>
 <script>
+    $(document).ready(function() {
+       $('#myModaldashboard').modal('toggle');
+       
+       $("#buttonClose").click(function(){
+        console.log("Called click")
+        $('#myModaldashboard').addClass("hideo")
+       });
+
+
+        $("#method").click(function(){
+            //console.log($('#method').val());
+            if($('#method').val() == "TransferBank" || $('#method').val() == "TransferUssd") {
+                console.log("bank Selected");
+               $('#bankdiv').show();
+            } else {
+               $('#bankdiv').hide();     
+            }
+        })
+
+
+        
+    });
+
+
     function copyText(element, textCopy) {
 
         var textToCopy = element.innerText;
@@ -300,7 +336,8 @@
         document.body.removeChild(myTemporaryInputElement);
         alert("copied");
 
-    }
+     }
+     
 </script>
 </body>
 

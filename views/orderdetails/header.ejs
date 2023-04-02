@@ -8,19 +8,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Panda - Ultimate eCommerce Template</title>
+    <title>Socialogs</title>
 
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Panda - Ultimate eCommerce Template">
     <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png">
+    <link rel="icon" type="image/png" href="../../images/icons/favicon.png">
     <!-- Preload Font -->
 
-    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="../../vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
-    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="../../vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
 
     <script>
@@ -36,11 +36,11 @@
     </script>
 
 
-    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.min.css">
 
     <!-- Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.min.css">
 </head>
 
 <body>
@@ -86,17 +86,31 @@
 
 
 
-<div class="d-flex justify-content-center align-items-center" id="messages-notify">
-    <% if(message.message  == "Deposit Successful") { %>
-      <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+
+ <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+    <% if(message.message  == "Purchase fail") { %>
+      <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
+       style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
+       id="mainMan">
           <h5 class="alert-title text-center"><%= message.message %></h5>
-          <button type="button" class="btn btn-link btn-close">
+          <button type="button" class="btn btn-link btn-close" id="btn-click">
               <i class="p-icon-close"></i>
           </button>
       </div>
-    <% } %>
-</div>
 
+          <% } else if(message.message  == "Payment successful") { %>
+      
+          <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" 
+          style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;"
+          id="mainMan">
+              <h5 class="alert-title text-center"><%= message.message %></h5>
+              <button type="button" class="btn btn-link btn-close" id="btn-click">
+                  <i class="p-icon-close"></i>
+              </button>
+          </div>
+
+        <% } %>
+   </div>
 
 
     <div class="page-wrapper">
@@ -109,7 +123,7 @@
                             <span>+456 789 000</span>
                         </a>
                         <span class="divider"></span>
-                        <a href="contact.html" class="contact">
+                        <a href="/" class="contact">
                             <i class="p-icon-map"></i>
                             <span>25 West 21th STREET, Miami FL, USA</span>
                         </a>
@@ -124,15 +138,15 @@
                         </div>
                         <!-- End DropDown Menu -->
                         <div class="dropdown switcher">
-                            <a href="#language"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                            <a href="#language"><img src="../../images/flagus.jpg" width="14" height="10" class="mr-1"
                                     alt="flagus">ENG</a>
                             <ul class="dropdown-box">
                                 <li>
-                                    <a href="#USD"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#USD"><img src="../../images/flagus.jpg" width="14" height="10" class="mr-1"
                                             alt="flagus">ENG</a>
                                 </li>
                                 <li>
-                                    <a href="#EUR"><img src="images/flagfr.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#EUR"><img src="../../images/flagfr.jpg" width="14" height="10" class="mr-1"
                                             alt="flagfr">FRH</a>
                                 </li>
                             </ul>
