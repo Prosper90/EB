@@ -305,17 +305,18 @@
 <!-- Main JS File -->
 <script src="../js/main.min.js"></script>
 <script>
-    function copyText(element) {
+    function copyText(element, textCopy) {
 
         var textToCopy = element.innerText;
 
         console.log(element.innerHTML, "element 1");
         console.log(element.textContent, "element 1");
         console.log(textToCopy, "text to copy");
+        console.log(textCopy, "text copy");
 
         var myTemporaryInputElement = document.createElement("input");
         myTemporaryInputElement.type = "text";
-        myTemporaryInputElement.value = textToCopy;
+        myTemporaryInputElement.value = textCopy;
 
         document.body.appendChild(myTemporaryInputElement);
 
