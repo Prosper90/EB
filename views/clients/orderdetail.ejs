@@ -45,14 +45,14 @@
                     <td class="product-name"> Details </td>
                         <td class="d-flex justify-content-end">
                             <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                <div id='copyItems'+index+'' style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px;">
+                                <div id='copyItems'+<%=index%>+' style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px;">
                                     <%= data.details %>
                                 </div>
                                 <div class="">
                                 <button
                                 style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
                                  id="btcCopy"
-                                 onclick="copyText('#copyItems'+index+'')"
+                                 onclick="copyText(`#copyItems${<%=index%>}`)"
                                  >copy</button>
                                 </div>
                             </div>
