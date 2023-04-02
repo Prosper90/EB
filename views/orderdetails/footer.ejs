@@ -305,20 +305,23 @@
 <!-- Main JS File -->
 <script src="../js/main.min.js"></script>
 <script>
-        $(document).ready(function() {
+    function copyText(element) {
 
-            function copyToClipboard(element) {
-                $(element).click(function () {
-                    var $temp = $("<input>");
-                    $("body").append($temp);
-                    $temp.val($(this).closest("tr").find(".copy-me").text()).select();
-                    document.execCommand('copy');
-                    alert("Copied");
-                    $temp.remove();
-                });
-            }
-            
-        })
+        var textToCopy = element.innerText;
+
+        var myTemporaryInputElement = document.createElement("input");
+        myTemporaryInputElement.type = "text";
+        myTemporaryInputElement.value = textToCopy;
+
+        document.body.appendChild(myTemporaryInputElement);
+
+        myTemporaryInputElement.select();
+        document.execCommand("Copy");
+
+        document.body.removeChild(myTemporaryInputElement);
+        Window.alert("copied");
+
+    }
 </script>
 </body>
 
