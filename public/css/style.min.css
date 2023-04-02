@@ -12227,7 +12227,7 @@ ul.pagination {
         display: none !important;
     }
 
-    .tab  .nav  {
+    .tab  .selected  {
         display: none !important ;
     }
 
