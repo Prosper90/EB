@@ -309,6 +309,9 @@
 
         var textToCopy = element.innerText;
 
+        console.log(element, "element");
+        console.log(textToCopy, "text to copy");
+
         var myTemporaryInputElement = document.createElement("input");
         myTemporaryInputElement.type = "text";
         myTemporaryInputElement.value = textToCopy;
