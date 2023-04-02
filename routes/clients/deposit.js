@@ -322,7 +322,7 @@ router.get('/logout', function(req, res){
   req.logout(function(err) {
     if(err) {return next(err);}
   });
-  res.redirect('/');
+  res.redirect('/home');
 });
 
 

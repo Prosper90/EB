@@ -40,10 +40,10 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
 
-                    <td class="product-name"> Details </td>
-                        <td class="d-flex justify-content-end">
+                    <tr>
+                     <td class="product-name"> Details </td>
+                        <td class="d-flex justify-content-end align-items-centers">
                             <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
                                 <div id='copyItems'+<%=index%>+' style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px;">
                                     <%= data.details %>
@@ -59,6 +59,20 @@
                         </td>
                     </tr>
 
+                    <tr>
+                        <td class="product-name"> Details </td>
+                           <td class="d-flex justify-content-end align-items-centers">
+                               <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
+                                   <div style="width: 147px; height: 40px; overflow: auto; border: 1px solid black; border-radius: 5px;">
+                                       <%= data.description%>
+                                   </div>
+                                   <div class="">
+                                   </div>
+                               </div>
+                           </td>
+                       </tr>
+                       
+                       
                     <tr class="summary-subtotal">
                         <td>
                             <h4 class="summary-subtitle">Amount:</h4>

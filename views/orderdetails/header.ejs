@@ -8,19 +8,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Socialogs</title>
+    <title>Panda - Ultimate eCommerce Template</title>
 
     <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Socialogs eCommerce">
+    <meta name="description" content="Panda - Ultimate eCommerce Template">
     <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../images/icons/favicon.png">
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
     <!-- Preload Font -->
 
-    <link rel="preload" href="../../vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
-    <link rel="preload" href="../../vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
 
     <script>
@@ -36,14 +36,69 @@
     </script>
 
 
-    <link rel="stylesheet" type="text/css" href="../../vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
 
     <!-- Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="../../css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
 </head>
 
 <body>
+
+
+
+
+
+ <%if(transferAccount) {%>
+
+    <div class="modal modalworks" id="myModaldashboard"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Deposit <%=transferAccount.transfer_amount%> to Account</h5>
+                <button type="button" id="buttonClose" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+
+                <div class="">
+                   <%=transferAccount.transfer_account%>
+                </div>
+                <div class="">
+                    <%=transferAccount.transfer_bank%>
+                 </div>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary"> Your account would be automatically funded</button>
+              </div>
+            </div>
+          </div>
+            
+
+    </div>
+
+ <%}%>
+
+
+
+<div class="d-flex justify-content-center align-items-center" id="messages-notify">
+    <% if(message.message  == "Deposit Successful") { %>
+      <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" >
+          <h5 class="alert-title text-center"><%= message.message %></h5>
+          <button type="button" class="btn btn-link btn-close">
+              <i class="p-icon-close"></i>
+          </button>
+      </div>
+    <% } %>
+</div>
+
+
+
     <div class="page-wrapper">
         <header class="header">
             <div class="header-top">
@@ -69,15 +124,15 @@
                         </div>
                         <!-- End DropDown Menu -->
                         <div class="dropdown switcher">
-                            <a href="#language"><img src="../../images/flagus.jpg" width="14" height="10" class="mr-1"
+                            <a href="#language"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
                                     alt="flagus">ENG</a>
                             <ul class="dropdown-box">
                                 <li>
-                                    <a href="#USD"><img src="../../images/flagus.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#USD"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
                                             alt="flagus">ENG</a>
                                 </li>
                                 <li>
-                                    <a href="#EUR"><img src="../../images/flagfr.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#EUR"><img src="images/flagfr.jpg" width="14" height="10" class="mr-1"
                                             alt="flagfr">FRH</a>
                                 </li>
                             </ul>
@@ -98,21 +153,77 @@
         </header>
         <!-- End Header -->
         <main class="main account-page">
-            <div class="page-header" style="background-color: #f9f8f4">
-                <h1 class="page-title">My Account</h1>
+            <div class="page-header-edit d-flex flex-column" style="background-color: #f9f8f4">
+
+                <h3 class="page-title m-5">My Account</h3>
+
+               <div class="row cols-lg-3 cols-xs-2 cols-1 w-100" >
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                               <a class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-wallet"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Balance</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>N<%=user.balance.toLocaleString()%></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border"><a href="/orders"
+                                class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-table"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Total Orders</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p><%=user.Orders.length%></p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+
+
+                     <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                            <a href="/deposit" class="no-tab-item" style="cursor: pointer;">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-money"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>Deposit</p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+                </div>
+
+
             </div>
             <nav class="breadcrumb-nav has-border">
                 <div class="container">
                     <ul class="breadcrumb">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li>My account</li>
                     </ul>
                 </div>
             </nav>
-            <div class="page-content mt-4 mb-10 pb-6">
+            <div class="page-content mt-4 mb-10 pb-6 ">
                 <div class="container">
                     <div class="tab tab-vertical gutter-lg">
-                        <ul class="nav nav-tabs mb-8 col-lg-3 col-md-4">
+                        <ul class="nav nav-tabs mb-8 col-lg-3 col-md-4 selected">
                             <li class="nav-item pb-2">
                                 <a class="active" href="/dashboard">Dashboard</a>
                             </li>
@@ -120,7 +231,7 @@
                                     <a class="" href="/orders">Orders</a>
                             </li>
                             <li class="nav-item pb-2">
-                                <a class="" href="/orders">Account details</a>
+                                <a class="" href="/deposithistory">Deposit history</a>
                            </li>    
                             <li class="nav-item pb-2">
                                 <a  href="/shop">Shop</a>

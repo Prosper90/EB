@@ -23,7 +23,7 @@ function checkAuthenticated(req, res, next){
       return next()
     }
   
-    res.redirect("/")
+    res.redirect("/home")
   }
   
 
