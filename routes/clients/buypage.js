@@ -56,7 +56,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
             return product;
           }
         }).clone();
-        console.log(findProduct, "Testing");
+        //console.log(findProduct, "Testing");
     
         const totalPrice = findProduct[0].price * req.body.purchaseNumber;
         console.log(totalPrice);
@@ -70,8 +70,8 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           let index;
             product.map( async (data, index) => {
             if( index < req.body.purchaseNumber ) {
-              await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
               buyi.push(String(data._id));
+              await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
             }
           });
 
