@@ -15301,7 +15301,7 @@ ul.pagination {
 }
 
 .order tbody tr:nth-child(3) {
-    border-bottom: 1px solid #e0dede
+    /* border-bottom: 1px solid #e0dede */
 }
 
 .order tbody tr:nth-child(3) .product-name,
