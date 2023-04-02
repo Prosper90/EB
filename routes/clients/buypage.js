@@ -60,66 +60,71 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     
         const totalPrice = findProduct[0].price * req.body.purchaseNumber;
         console.log(totalPrice);
-        let buyi = [];
-        let index;
     //Remove the product from product list
       await Products.find({type: req.params.id}, async function(err, product) {
         if(err) {
           //handle
         } else {
           //console.log(product, "working");
+          let buyi = [];
+          let index;
             product.map( async (data, index) => {
             if( index < req.body.purchaseNumber ) {
               await Products.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
-              buyi.push(data._id);
+              buyi.push(String(data._id));
             }
           });
+
+          //create an order amd update balance
+          await User.findById({_id: req.user._id}, function(err, user) {
+            if(err) {
+              //handle it
+            } else {
+              
+              console.log(buyi, "buyids");
+              user.balance -= totalPrice;
+              user.Orders.push({
+                price: totalPrice,
+                paymentmethod: "card",
+                status: 1,
+                buyid: [buyi],
+                type: findProduct[0].type
+              });
+              if (user.Orders.length !== 0) {
+                index = user.Orders.length - 1;            
+              }else{
+                index = user.Orders.length;            
+              }
+              
+              /*
+              buyi.map((data)=> {
+                user.Orders[data].buyid.push(item);
+              })
+              */
+        
+        
+              user.markModified("Orders");
+              user.save(function(saveerr, saveresult){
+              if(saveerr){
+                req.flash('message', 'Purchase fail');
+                res.redirect(`/buypage/${req.params.id}`);
+              } else {
+                req.flash('message', 'Purchase successful');
+                res.redirect(`/orderdetail/${findProduct[0].type}/${index}`);
+        
+              }
+        
+              
+            });
+        
+          }
+        
+          }).clone();
   
         }
       }).clone();
     
-      //create an order amd update balance
-      await User.findById({_id: req.user._id}, function(err, user) {
-        if(err) {
-          //handle it
-        } else {
-          
-          console.log(buyi, "buyids");
-          user.balance -= totalPrice;
-          user.Orders.push({
-            price: totalPrice,
-            paymentmethod: "card",
-            status: 1,
-            type: findProduct[0].type
-          });
-          if (user.Orders.length !== 0) {
-            index = user.Orders.length - 1;            
-          }else{
-            index = user.Orders.length;            
-          }
 
-          buyi.map((data)=> {
-            user.Orders[data].buyid.push(item);
-          })
-    
-    
-          user.markModified("Orders");
-          user.save(function(saveerr, saveresult){
-          if(saveerr){
-            req.flash('message', 'Purchase fail');
-            res.redirect(`/buypage/${req.params.id}`);
-          } else {
-            req.flash('message', 'Purchase successful');
-            res.redirect(`/orderdetail/${findProduct[0].type}/${index}`);
-    
-          }
-    
-          
-        });
-    
-      }
-    
-       }).clone();
 
   }
             
