@@ -315,18 +315,19 @@
     });
 
 
-    function copyText(element, textCopy) {
+    function copyText(element, textCopy, email, password) {
 
-        var textToCopy = element.innerText;
+        var textToCopy = `${email}|${password}|${textCopy}`;
 
-        console.log(element.innerHTML, "element 1");
-        console.log(element.textContent, "element 1");
-        console.log(textToCopy, "text to copy");
-        console.log(textCopy, "text copy");
+        //console.log(element.innerHTML, "element 1");
+        //console.log(element.textContent, "element 1");
+        //console.log(textToCopy, "text to copy");
+        //console.log(textCopy, "text copy");
+        
 
         var myTemporaryInputElement = document.createElement("input");
         myTemporaryInputElement.type = "text";
-        myTemporaryInputElement.value = textCopy;
+        myTemporaryInputElement.value = textToCopy;
 
         document.body.appendChild(myTemporaryInputElement);
 

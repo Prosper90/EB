@@ -52,7 +52,7 @@
                                 <button
                                 style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
                                  id="btcCopy"
-                                 onclick="copyText(`#copyItems${<%=index%>}`, '<%=data.details%>')"
+                                 onclick="copyText(`#copyItems${<%=index%>}`, '<%=data.details%>', '<%=valueId[0]%>', '<%=valueId[1]%>' )"
                                  >copy</button>
                                 </div>
                             </div>
@@ -60,10 +60,10 @@
                     </tr>
 
                     <tr>
-                        <td class="product-name"> Details </td>
+                        <td class="product-name"> File Format </td>
                            <td class="d-flex justify-content-end align-items-centers">
                                <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                   <div style="width: 147px; height: 40px; overflow: auto; border: 1px solid black; border-radius: 5px;">
+                                   <div style=" height: 40px; border: 1px solid black; border-radius: 5px;">
                                        <%= data.description%>
                                    </div>
                                    <div class="">
