@@ -23,6 +23,7 @@ const productSchema = mongoose.Schema({
     available: {type: Boolean, required: true},
     price: {type: Number, required: true},
     details: {type: String},
+    format: {type: String},
     description: {type: String},
 });
 

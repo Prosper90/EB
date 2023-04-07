@@ -195,7 +195,6 @@ router.post("/one", async function(req, res){
   
   try{
 
-  console.log("In here");
   const dataUpload = [];
 
   for (let index = 1; index <= req.body.totals; index++) {
@@ -208,6 +207,7 @@ router.post("/one", async function(req, res){
         available: true,
         price: req.body.price,
         details: req.body[`details${index}`],
+        format: req.body[`format${index}`],
         description: req.body[`description${index}`],
       })
   

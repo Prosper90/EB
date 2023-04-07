@@ -13,7 +13,6 @@ async function(req, Email, password,  done){
 
 
   if(req.params.admin == "adminmanage"){
-   console.log("starting");
     //check for admin
     try{
    await Admin.findOne({ Email: Email }, function(err, user){
