@@ -186,7 +186,7 @@ router.post("/one", async function(req, res){
        message: "Please insert the requested information"
      }
   
-     res.redirect("addproducts");
+     res.redirect("/addproducts");
     }
 
     else {

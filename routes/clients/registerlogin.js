@@ -38,7 +38,7 @@ router.post("/", async function(req, res){
       req.flash('registration', 'This email has already been registered');
       req.flash('register', 'Registration failed');
   
-      res.redirect("/");
+      res.redirect("/home");
     }
 
           //checks if the confirm password matches the first password
@@ -112,7 +112,7 @@ router.post("/", async function(req, res){
 
     router.post("/login/other", passport.authenticate("local", {
       failureFlash: true,
-      failureRedirect: "/"
+      failureRedirect: "/home"
       }), (req, res, next) => {
         if (req.body.remember) {
           req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
