@@ -18,10 +18,10 @@ router.get("/:id/:index", checkAuthenticated, async function(req, res){
         }
 
     }).clone();
-    console.log(req.user.Orders[req.params.index].buyid);
+    console.log(req.user.Orders[req.params.index].buyid, "id index");
 
     const itemsbought = getItem.filter(({_id}) => req.user.Orders[req.params.index].buyid.includes(_id));
-    console.log(itemsbought);    
+    console.log(itemsbought, "items bought");    
 
   res.render("clients/orderdetail", {user: req.user, item: itemsbought, message: req.flash(), transferAccount: undefined} );
 });
