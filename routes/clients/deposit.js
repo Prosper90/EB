@@ -70,7 +70,7 @@ router.post("/", checkAuthenticated, async function(req, res){
     res.redirect(response.data.data.checkout_url);
     */
  
-      const valueB = ( req.body.amount / 2 ) * 200;
+      const valueB =  req.body.amount / 0.01 ;
       //http://localhost:3000/recievepayment
       //https://www.socialogs.org/recievepayment
       const response = await axios({
