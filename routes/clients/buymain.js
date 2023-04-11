@@ -71,7 +71,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
   } else {
 
         const totalPrice = name.price * req.body.purchaseNumber;
-        const valueB = ( totalPrice / 2 ) * 200;
+        const valueB =  totalPrice ;
   
         const ids = `${req.params.id}-${req.user._id}-${valueB}-${req.body.purchaseNumber}-${req.body.size}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
         console.log(ids);
