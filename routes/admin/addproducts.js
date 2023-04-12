@@ -121,15 +121,7 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
    });
   
     
-   let productCheck = await productTwo.save();
-
-   if(!productCheck) {
-    console.log("found the problem");
-    req.flash('message', 'Failed to insert');
-    res.redirect("admin");
-    return
-   }
-
+   productTwo.save();
 
    req.flash('message', 'Added data successfully');
    res.redirect("admin");
