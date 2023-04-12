@@ -44,6 +44,8 @@ const upload = multer({ storage: storage });
 
 
 router.post("/", upload.single("mediaImg"), async function(req, res) {
+
+  console.log(req.body);
   
   //checking if fields are empty
     if(req.body.name == "" || req.body.password == "" || req.body.type == "" || req.body.price == ""|| req.body.description == ""  ){
