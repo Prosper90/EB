@@ -116,6 +116,7 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
     available: true,
     price: parseInt(req.body.price),
     numOfItem: req.body.productNumber,
+    sold: 0,
     details: req.body.details
    });
   

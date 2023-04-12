@@ -23,6 +23,7 @@ const productTwoSchema = mongoose.Schema({
     available: {type: Boolean, required: true},
     price: {type: Number, required: true},
     numOfItem: {type: Number, required: true},
+    sold: {type: Number, required: true},
     details: {type: String}
 });
 

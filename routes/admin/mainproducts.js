@@ -30,7 +30,7 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
    //updating product
     //console.log(req.params);
     //getting the particular data to update
-    let productRemove = await ProductsTwo.findById(req.params.id);
+    //let productRemove = await ProductsTwo.findById(req.params.id);
     //console.log(uploadedSong);
     //getting the url to delete
     let oldImage = productRemove.imgUrl;
@@ -64,26 +64,20 @@ router.post("/:id/:name", checkAuthenticated, async function(req, res){
 
    deleteFile("public/assets/uploads");
 
-    const getResult = await ProductsTwo.deleteMany({name: req.params.name}).clone();
-    
-    if(getResult.deletedCount) {
-      req.session.message = {
-        type: "success",
-        intro: "Success",
-        message: "Products removed"
-      }
+      //const getResult = await ProductsTwo.findByIdAndRemove({name: req.params.name}).clone();
 
-      res.redirect("/mainproducts");
-    } else {
-      req.session.message = {
-        type: "danger",
-        intro: "Success",
-        message: "Process failed"
-      }
-      res.redirect("/mainproducts");
-    }
-
-
+      await ProductsTwo.findByIdAndRemove(req.params.id).then(product =>{
+         if(product) {
+              req.flash('message', 'Error removing data');
+              res.redirect("/mainproducts");
+          } else {
+            req.flash('message', 'data removed successfully');
+            res.redirect("/mainproducts");
+          }
+      }).catch(err=>{
+        req.flash('message', 'Error removing data');
+        res.redirect("/mainproducts");
+      }).clone();
 });
 
 

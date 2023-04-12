@@ -40,35 +40,59 @@
                                             <% }) %>
                                          <% }); %>
 
-                                        <%workData.forEach((data, index) => {%>
+                                        <%productsTwo.forEach((data, index) => {%>
 
                                          <tr role="row" class="odd">
                                             <td class="sorting_1"><%=data.name%></td>
                                             <td>
-                                               <span><%=data.type%></span> 
-                                               <span> N<%=data.price%></span>
-                                                <% let counter = productsTwo.filter((info, index) => { %>
-                                                  <%if(info.name === data.name) { %>
-                                                     <% if(info.available) { %>
-                                                      <% return info ;%>
-                                                     <% } %>
-                                                   <% } %>
-                                                <% }) %>
-                                               <span> remaining <%=counter.length%> </span>
+                                                <div class="">
+                                                    <span>Type</span>
+                                                    <span><%=data.type%></span> 
+                                                </div>
+
+                                                <div class="">
+                                                    <span>price</span>
+                                                    <span> N<%=data.price%></span>
+                                                </div>
+
+                                                <div class="">
+                                                    <span>available</span>
+                                                    
+                                                        <% if(data.available) { %>
+                                                            <span class="text-success"> available </span>
+                                                        <% } else { %>
+                                                            <span class="text-success">  out of stock </span>
+                                                        <% } %>
+                                                    
+                                                </div>
+
+                                                <%// let counter = productsTwo.filter((info, index) => { %>
+                                                  <% //if(info.name === data.name) { %>
+                                                     <% //if(info.available) { %>
+                                                      <% //return info ;%>
+                                                     <% //} %>
+                                                   <% //} %>
+                                                <% //}) %>
+                                                <div class="">
+                                                    <span>remaining</span>
+                                                    <span> <%=data.numOfItem%> </span>
+                                                </div>
                                             </td>
                                             <td>
-                                                <% let counterTwo = productsTwo.filter((info, index) => { %>
-                                                    <%if(info.name === data.name) { %>
-                                                       <% if(!info.available) { %>
-                                                        <% return info ;%>
-                                                       <% } %>
-                                                     <% } %>
-                                                  <% }) %>
-                                                <%if(counterTwo == 0) {%>
-                                                    <div class="text-warning"> 0 sold</div>
-                                                    <%} else {%>
-                                                    <div class="text-success"> <%=counterTwo.length%> Sold</div>
-                                                <%}%>
+                                                <% //let counterTwo = productsTwo.filter((info, index) => { %>
+                                                    <%//if(info.name === data.name) { %>
+                                                       <% //if(!info.available) { %>
+                                                        <% //return info ;%>
+                                                       <% //} %>
+                                                     <% //} %>
+                                                  <% //}) %>
+                                                <%//if(counterTwo == 0) {%>
+                                                    <!--<div class="text-warning"> 0 sold</div>-->
+                                                    <%//} else {%>
+                                                    <!--<div class="text-success">  Sold</div>-->
+                                                <%//}%>
+
+                                                <div class="text-success"> <%=data.sold%> Sold</div>
                                             </td>
                                             <td><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
                                             <td class="text-end">
