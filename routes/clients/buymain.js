@@ -32,7 +32,6 @@ router.get("/:id", checkAuthenticated, async function(req, res) {
 
 router.post("/:id", checkAuthenticated, async function(req, res){
   
-  console.log(req.body);
 
   console.log(req.body.purchaseNumber, "Total number");
 
