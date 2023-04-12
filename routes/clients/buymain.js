@@ -5,12 +5,16 @@ const User = require("../../model-database/users").User;
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const axios = require("axios");
+const { resourceLimits } = require("worker_threads");
 
 
 
 router.get("/:id", checkAuthenticated, async function(req, res) {
 
   //console.log("Called here");
+  if(!req.user) {
+    resourceLimits.redirect("/");
+  }
   const getItem = await ProductTwo.findOne({_id: req.params.id}, function(err, product) {
     if(err) {
       console.log(err);

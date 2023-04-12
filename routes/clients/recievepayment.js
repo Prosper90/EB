@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
                         } else {
                           //console.log(product, "working");
                           product.numOfItem -= valueId[3];
-                          product.sold += 1;
+                          product.sold += valueId[3];
                           if(product.numOfItem == 1) {
                             product.available = false;
                           }
