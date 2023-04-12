@@ -48,7 +48,7 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
   console.log(req.body);
   
   //checking if fields are empty
-    if(req.body.name == "" || req.body.password == "" || req.body.type == "" || req.body.price == ""|| req.body.description == ""  ){
+    if(req.body.name == "" || req.body.password == "" || req.body.type == "" || req.body.productPrice == ""|| req.body.description == ""  ){
 
      req.session.message = {
        type: "danger",
@@ -116,7 +116,7 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
     type: req.body.productType,
     imgUrl: src,
     available: true,
-    price: parseInt(req.body.price),
+    price: parseInt(req.body.productPrice),
     numOfItem: req.body.productNumber,
     sold: 0,
     details: req.body.details
