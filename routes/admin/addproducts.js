@@ -100,47 +100,34 @@ router.post("/", upload.single("mediaImg"), async function(req, res) {
     
     let src = "/assets/uploads/"+ img + " ";
     console.log(src, "source");
-
-        //name
-        const tempNames = req.body.productName;
-  
-        //type
-        const tempType = req.body.productType;
-
-        //price
-        const tempPrice = req.body.productPrice;
-
-        //details
-        const details = req.body.details;
- 
   
   //putting data to the database
   
   try{
-
-
-  
-  console.log(req.body.productNumber, "namesing");
-  const dataUpload = [];
-
-  for (let index = 0; index < req.body.productNumber; index++) {
-     console.log("for loop", index);
-    dataUpload.push({
-      name: tempNames,
-      type: tempType,
-      imgUrl: src,
-      available: true,
-      price: parseInt(tempPrice),
-      details: details
-    })
-    
-  }
   
    console.log("Reached here");
    //console.log(dataUpload);
-   await ProductTwo.insertMany(dataUpload);
+   //numOfItem
 
-   console.log("All done");
+   let productTwo = new ProductTwo({
+    name: req.body.productName,
+    type: req.body.productType,
+    imgUrl: src,
+    available: true,
+    price: parseInt(req.body.price),
+    numOfItem: req.body.productNumber,
+    details: req.body.details
+   });
+  
+    
+   productTwo = await productTwo.save();
+
+   if(!productTwo) {
+    req.flash('message', 'Failed to insert');
+    res.redirect("admin");
+    return
+   }
+
 
    req.flash('message', 'Added data successfully');
    res.redirect("admin");

@@ -22,6 +22,7 @@ const productTwoSchema = mongoose.Schema({
     imgUrl: {type: String, required: true},
     available: {type: Boolean, required: true},
     price: {type: Number, required: true},
+    numOfItem: {type: Number, required: true},
     details: {type: String}
 });
 

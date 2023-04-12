@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const Products = require("../../model-database/productTwo").ProductTwo;
+const ProductTwo = require("../../model-database/productTwo").ProductTwo;
 const User = require("../../model-database/users").User;
 const bcrypt = require("bcrypt");
 const router = express.Router();
@@ -11,7 +11,7 @@ const axios = require("axios");
 router.get("/:id", checkAuthenticated, async function(req, res) {
 
   //console.log("Called here");
-  const getItem = await Products.findOne({_id: req.params.id}, function(err, product) {
+  const getItem = await ProductTwo.findOne({_id: req.params.id}, function(err, product) {
     if(err) {
       console.log(err);
     } else {
@@ -36,66 +36,48 @@ router.post("/:id", checkAuthenticated, async function(req, res){
 
   console.log(req.body.purchaseNumber, "Total number");
 
-  const name = await Products.findById({_id: req.params.id}, function(err, product) {
+  await ProductTwo.findById({_id: req.params.id}, async function(err, product) {
     if(err) {
      //handle
     } else {
-     return product;
+      if(req.body.purchaseNumber > product.numOfItem) {
+        console.log("In here and running");
+        req.flash('message', 'Out of stock');
+        res.redirect(`/buymain/${req.params.id}`);
+        return;
+      } else {
+
+          const totalPrice = product.price * req.body.purchaseNumber;
+          const valueB =  totalPrice / 0.01;
+    
+          const ids = `${req.params.id}-${req.user._id}-${valueB}-${req.body.purchaseNumber}-${req.body.size}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
+          console.log(ids);
+
+          //call paystack
+
+          //http://localhost:3000/recievepayment
+          //https://www.socialogs.org/recievepayment
+          const response = await axios({
+            method: "POST",
+            url: "https://api.paystack.co/transaction/initialize",
+            headers: {
+              Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+            },
+            data: {
+              "email": req.user.Email,
+              "amount": valueB,
+              "callback_url": "https://socialogs.org/recievepayment",
+              "reference": ids
+            },
+          })
+          
+
+        res.redirect(response.data.data.authorization_url);        
+      }
+
+
     }
    }).clone();
-
-   console.log(name, "Name");
-
-  //check for available market
-   const checking = await Products.find({name: name.name}, function(err, product) {
-    if(err) {
-      //handle
-    } else {
-      
-      /*
-      const check = product.filter((data) => {
-        return data.available == true;
-      });
-      */
-      console.log("checkers for real");
-      return product;
-    }
-  }).clone();
-
-  console.log(checking.length, "check check check");
-
-  if(checking.length < 1) {
-    console.log("In here and running");
-    req.flash('message', 'Out of stock');
-    res.redirect(`/buymain/${req.params.id}`);
-  } else {
-
-        const totalPrice = name.price * req.body.purchaseNumber;
-        const valueB =  totalPrice / 0.01;
-  
-        const ids = `${req.params.id}-${req.user._id}-${valueB}-${req.body.purchaseNumber}-${req.body.size}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
-        console.log(ids);
-
-        //http://localhost:3000/recievepayment
-        //https://www.socialogs.org/recievepayment
-        const response = await axios({
-          method: "POST",
-          url: "https://api.paystack.co/transaction/initialize",
-          headers: {
-            Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`
-          },
-          data: {
-            "email": req.user.Email,
-            "amount": valueB,
-            "callback_url": "https://socialogs.org/recievepayment",
-            "reference": ids
-          },
-        })
-        
-
-      res.redirect(response.data.data.authorization_url);
-      
-  }
   
             
 

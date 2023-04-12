@@ -22,29 +22,21 @@ router.get('/', async (req, res) => {
   
 
                  if(valueId.length == 6) {
-                      //find product by name 
-                      const name = await ProductsTwo.findById({_id: valueId[0]}, function(err, product) {
-                       if(err) {
-                        //handle
-                       } else {
-                        return product;
-                       }
-                      }).clone();
 
-                      console.log(name, "Name two");
+                      console.log("Name two track");
 
                       //Remove the product from product list
-                      await ProductsTwo.find({name: name.name}, async function(err, product) {
+                      await ProductsTwo.findById({_id: valueId[0]}, async function(err, product) {
                         if(err) {
                           //handle
                         } else {
                           //console.log(product, "working");
-                           product.map( async (data, index) => {
-                            if( index < parseInt(valueId[3]) ) {
-                              await ProductsTwo.updateOne({_id: String(data._id)}, {$set: {available: false}}).clone();
-                            }
-                          });
-                  
+                          product.numOfItem -= valueId[3];
+                          if(product.numOfItem == 1) {
+                            product.available = false;
+                          }
+
+                          product.save();
                         }
                       }).clone();
                       
@@ -57,7 +49,7 @@ router.get('/', async (req, res) => {
                     
                           user.OrdersMain.push({
                             price: valueId[2],
-                            paymentmethod: "card",
+                            paymentmethod: "paystack",
                             status: 1,
                             buyid: valueId[0],
                             size: valueId[4]
@@ -68,11 +60,11 @@ router.get('/', async (req, res) => {
                           user.save(function(saveerr, saveresult){
                           if(saveerr){
                             req.flash('message', 'Purchase fail');
-                            res.redirect(`/buymain/${req.params.id}`);
+                            res.redirect(`/buymain/${valueId[0]}`);
                     
                           } else {
                             req.flash('message', 'Purchase successful');
-                            res.redirect(`/buymain/${req.params.id}`);
+                            res.redirect(`/buymain/${valueId[0]}`);
                     
                           }
                     
