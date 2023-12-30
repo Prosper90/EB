@@ -1,0 +1,133 @@
+<%- include ("header.ejs"); %>
+<div class="page-header">
+    <div class="row">
+    <div class="col">
+      <h3 class="page-title">Add new Products</h3>
+      <div class="">This page adds products to existing products</div>
+    </div>
+    </div>
+</div>
+
+
+<div class="row">
+   <div class="col-md-12">
+    <div class="card">
+    <div class="card-header">
+    <h4 class="card-title">Product info</h4>
+    </div>
+    <div class="card-body">
+    <form method="post" action="/addproducts" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label>Product Number</label>
+      <input type="number" name="productNumber" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label>Product Name</label>
+    <input type="text" name="productName" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label> <span>type of product</span>(there are three types => tops, trousers and shoes or items)</label>
+    <input type="text" name="productType" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Details</label>
+      <input type="text" name="details" class="form-control">
+      </div>
+
+    <div class="custom-file mt-4">
+      <input  type="file" class="custom-file-input" name="mediaImg">
+      <label for="logo" class="custom-file-label text-truncate">Choose Image...</label>
+   </div>
+
+    <div class="form-group">
+    <label>price </label>
+    <input type="text" name="productPrice" class="form-control">
+    </div>
+
+    <div class="text-end">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+    <div class="col-md-12">
+      <div class="card">
+      <div class="card-header">
+      <h4 class="card-title">Add One type</h4>
+      </div>
+      <div class="card-body">
+      <form method="post" action="/addproducts/one">
+        <h6>Product Names</h6>
+      
+      <div class="d-flex justify-content-between align-items-center mt-1">
+
+        <div class="form-group">
+          <input type="radio" name="name" value="facebook"  id="facebook" >
+          <label for="facebook" >Facebook</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="twitter" id="twitter" >
+          <label for="twitter" >Twitter</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="instagram" id="instagram" >
+          <label for="instagram" >Instagram</label>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" name="name" value="google" id="google" >
+          <label for="google" >others</label>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label>Add <small>type of product or name of product in the case of others</small> </label>
+        <input type="text" name="type" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>price </label>
+        <input type="number" name="price" class="form-control">
+      </div>
+
+      <div class="d-flex flex-sm-row flex-column justify-content-between" style="border-bottom: 1px solid;">
+
+        <div class="text-primary mt-3" style="cursor: pointer; border-bottom: 1px solid;" id="createInputs">Add Details</div>
+
+        <div class="text-primary mt-3" style="cursor: pointer; border-bottom: 1px solid;" >
+           <input type="number" id="removenumber"> <div class="btn btn-primary" id="removal" style="height: 30px; font-size: 12px; border-radius: 0px; width: 67px" >Remove</div>
+        </div>
+        
+        <div class="d-flex align-items-end">
+          <div class="mr-2">Total No</div>
+          <input name="totals" class="" style="border: none; outline: none; width: 20px;" id="totals" />
+        </div>
+      </div>
+
+      <div class="" id="containCreated">
+
+      </div>
+
+
+      <div class="text-end mt-5">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+      </div>
+      </div>
+      </div>
+
+</div>
+<%- include ("footer.ejs"); %>

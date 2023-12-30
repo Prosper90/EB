@@ -5,16 +5,13 @@ const User = require("../../model-database/users").User;
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const axios = require("axios");
-const { resourceLimits } = require("worker_threads");
+const Cart = require("../../model-database/cart");
 
 
 
 router.get("/:id", checkAuthenticated, async function(req, res) {
 
-  //console.log("Called here");
-  if(!req.user) {
-    resourceLimits.redirect("/");
-  }
+  var cart = new Cart(req.session.cart ? req.session.cart : {items: {}});
   const getItem = await ProductTwo.findOne({_id: req.params.id}, function(err, product) {
     if(err) {
       console.log(err);
@@ -22,12 +19,43 @@ router.get("/:id", checkAuthenticated, async function(req, res) {
       return product;
     }
   }).clone();
-
-  res.render("buypagehf/mainProducts", { message: req.flash(), item: getItem, user: req.user });
+  //res.render("homemain", {message: req.flash(), sideProducts: sideProducts, user: req.user, cartProducts: seletproduct,  });
+  var seletproduct = !req.session.cart ? null : cart.generateArray();
+  res.render("buypagehf/mainProducts", { message: req.flash(), item: getItem, user: req.user, cartProducts: seletproduct });
 });
 
 
 
+
+
+router.get("/add-to-cart/:id", checkAuthenticated, async function(req, res){
+
+  console.log(req.params.id, "called here add-to-cart");
+  var cart = new Cart(req.session.cart ? req.session.cart : {items: {}});
+  var seletproduct = !req.session.cart ? null : cart.generateArray();
+  await ProductTwo.findById({_id: req.params.id}, async function(err, product) {
+    if(err) console.log(err);
+    console.log(seletproduct, "select product")
+    const foundObj = seletproduct?.find(obj => obj.item._id === product._id);
+    if(foundObj !== null) {
+      if(foundObj?.qty > product.numOfItem) {
+        console.log("In here and running");
+        req.flash('warning', 'Out of stock');
+        res.redirect(`/buymain/${req.params.id}`);
+        return;
+      }
+    }
+
+  //this.add = function(item, id) {
+  cart.add(product, product._id);
+  req.session.cart = cart;
+  console.log(req.session.cart);
+  res.redirect(`/buymain/${product._id}`);
+  }).clone()
+  
+  
+
+})
 
 
 
@@ -45,7 +73,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
     } else {
       if(req.body.purchaseNumber > product.numOfItem) {
         console.log("In here and running");
-        req.flash('message', 'Out of stock');
+        req.flash('info', 'Out of stock');
         res.redirect(`/buymain/${req.params.id}`);
         return;
       } else {
@@ -56,26 +84,32 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           const ids = `${req.params.id}-${req.user._id}-${valueB}-${req.body.purchaseNumber}-${req.body.size}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
           console.log(ids);
 
+          const basePath = `${req.protocol}://${req.get('host')}`;
           //call paystack
-
           //http://localhost:3000/recievepayment
           //https://www.socialogs.org/recievepayment
-          const response = await axios({
-            method: "POST",
-            url: "https://api.paystack.co/transaction/initialize",
-            headers: {
-              Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`
-            },
-            data: {
-              "email": req.user.Email,
-              "amount": valueB,
-              "callback_url": "https://socialogs.org/recievepayment",
-              "reference": ids
-            },
-          })
-          
-
-        res.redirect(response.data.data.authorization_url);        
+          try {
+              const response = await axios({
+                method: "POST",
+                url: "https://api.paystack.co/transaction/initialize",
+                headers: {
+                  Authorization:`Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+                },
+                data: {
+                  "email": req.user.Email,
+                  "amount": valueB,
+                  "callback_url": `${basePath}/recievepayment`,
+                  "reference": ids
+                },
+              })
+              
+    
+            res.redirect(response.data.data.authorization_url);              
+          } catch (error) {
+            req.flash('error', 'Network err');
+            res.redirect(`/buymain/${req.params.id}`);            
+          }
+      
       }
 
 
@@ -310,7 +344,7 @@ function checkAuthenticated(req, res, next){
     return next()
   }
 
-  req.flash('message', 'Log in to proceed');
+  req.flash('info', 'Log in to proceed');
   res.redirect("/")
 }
 

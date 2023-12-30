@@ -1,0 +1,136 @@
+
+
+
+
+<%- include ("headermain.ejs"); %>
+
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-inner d-flex justify-content-between">
+                    <h2 class="page-title">Checkout Cart</h2>
+                    <ul class="page-list">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/checkout">Checkout Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="cart-area margin-top-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8">
+                <div class="cart-content margin-top-20">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                          <tr class="text-center">
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quanity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Edit</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% if(cartProducts !== null) {%>
+                            
+                            <% cartProducts.map((data) => { %>
+                                <tr>
+                                    <th scope="row" class="d-flex">
+                                        <div class="left" style="width: 18%; height: auto;">
+                                            <img src="<%= data.item.imgUrl %>" alt="" class="img-thumbnail">
+                                        </div>
+                                        <div class="right" >
+                                            <h6 class="name"><%= data.item.name %></h6>
+                                            <h6 class="title">Size: <span class="values">XL</span></h6>
+                                        </div>
+                                    </th>
+                                    <td>$<%= data.item.price %>.00</td>
+                                    <td><input type="text" value="1"></td>
+                                    <% const showData = data.price * data.qty %>
+                                    <td>$<%= showData %>.00</td>
+                                    <td>
+                                        <div class="action">
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                        </div>
+                                    </td>
+                                  </tr>
+                           <%})%>
+
+                           <% } else  {%>
+                            <li>Empty cart</li>
+                          <% } %>
+                          
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            
+            <di class="col-xl-3 col-lg-4">
+                <div class="summary margin-top-20">
+                    <h6 class="title">Summary</h6>
+                    <h6 class="subtitle">Estimate Shipping and Tax</h6>
+                    <p class="destination">Enter your destination to get a shipping estimate.</p>
+                    <form action="/checkout" method="post">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-control cart-select">
+                                <option>Abia</option>
+                                <option>Adamawa</option>
+                                <option>Delta</option>
+                                <option>London</option>
+                            </select>
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                        <div class="form-group">
+                            <label>check out address</label>
+                            <input type="text" value="<%= user.address %>">
+                        </div>
+                        <div class="form-group">
+                            <label>Total Rate</label>
+                            <!--
+                            <div class="custom-control custom-checkbox mb-3 ml-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                <label class="custom-control-label" for="customCheck">Fixed: $5.00</label>
+                            </div>
+                            -->
+                        </div>
+                        <div class="d-flex justify-content-between total">
+                            <p>Shipping</p>
+                            <p>$1000.00</p>
+                        </div>
+                        <div class="d-flex justify-content-between total">
+                            <p>Order Total</p>
+                            <p>$<%= session.cart.totalPrice %>.00</p>
+                        </div>
+                         <input name="purchaseNumber" type="text" value="<%= session.cart.totalQty %>" hidden>
+                         <input name="totalPrice" type="text" value="<%= session.cart.totalPrice %>" hidden>
+                         <input name="ProductBought" type="text" value="<%= JSON.stringify(cartProducts) %>" hidden>
+                        <div class="btn-wrapper">
+                            <button type="submit" href="/checkout" class="btn btn-checkout" style="font-size: 13px;"> Checkout</button>
+                        </div>
+
+                    </form> 
+
+                </div>
+            </di>
+        </div>
+    </div>
+</div>
+
+
+<%- include ("footermain.ejs"); %>

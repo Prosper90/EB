@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from zwin.io/html/stooon/single-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:59:40 GMT -->
+<!-- Mirrored from zwin.io/html/stooon/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:38:34 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Socialogs</title>
-    <!-- favicon -->
-    <link rel="icon" type="image/png" href="../images/icons/favicon.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
     <!-- Vendor Stylesheet -->
     <link rel="stylesheet" href="../assetstwo/css/vendor.css">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="../assetstwo/css/style.css">
     <!-- responsive Stylesheet -->
     <link rel="stylesheet" href="../assetstwo/css/responsive.css">
-     
-    
+
+    <!--Another styles-->
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
+
+    <!-- Plugin CSS File -->
+    <link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/magnific-popup/magnific-popup.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="css/demo1.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+
 </head>
-<body>
+<body class="home" style="position: relative;">
 
     <!-- preloader area start -->
     <div class="preloader" id="preloader">
@@ -34,22 +46,8 @@
 
     <!--Notification-->
     <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-        
-        <% if(message.message  == "Log in to proceed") { %>
-          <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-          style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-          id="mainMan">
-              <h5 class="alert-title text-center"><%= message.message %></h5>
-              <button type="button" class="btn btn-link btn-close" id="btn-click">
-                  <i class="p-icon-close"></i>
-              </button>
-          </div>
-        <% } else { %>
-           <h5><%= message.message %></h5>
-        <% } %>
-           
+        <%- messages("messages", locals) %>
     </div>
-
 
     <!-- search Popup -->
     <div class="body-overlay" id="body-overlay"></div>
@@ -68,10 +66,10 @@
         <button class="sidebar-menu-close">X</button>
         <div class="sidebar-inner">
             <div class="sidebar-logo">
-                <a href="/"><img src="../images/logo.png" style="width: 74%; height: auto;" alt=""></a>
+                <div class="h2" style="color: #000; font-weight: bold; font-size: 20px;">Socialogs</div>
             </div>
             <div class="sidemenu-text">
-                <p>We believe brand interaction is key in commu- nication. Real inno vations and a positive customer experience are the heart of successful commu- nication.</p>
+                <p>Brand contact, in our opinion, is crucial to communication. Successful communication is based on real innovations and a satisfying consumer experience.</p>
             </div>
             <div class="sidebar-contact">
                 <h4>Contact Us</h4>
@@ -96,6 +94,108 @@
         </div>
     </div>
     <!--sidebar menu end-->
+
+    <!--login menu start-->
+    <div class="sidebar-menu-login" id="login-menu" >
+
+        <button class="login-menu-close" id="toggleLoginButton" >X</button>
+
+        <div class="sidebar" >
+
+
+            <div class="tab tab-nav-underline tab-nav-boxed">
+                <ul class="nav nav-tabs nav-fill mb-4">
+                    <li class="nav-item">
+                        <a class="nav-link lh-1 ls-normal active" href="#signin">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link lh-1 ls-normal" href="#register">Register</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active in" id="signin">
+
+                        <% if (message.error) { %>
+                            <div class="d-flex justify-content-center text-dark">
+                                   <%= message.error %>
+                             </div>
+                          <% } %>
+
+                        <form method="post" action="/registerlogin/login" >
+                            <div class="form-group">
+                                <input type="text" id="singin-email" name="Email" placeholder="Username or Email Address" required="">
+                                <input type="password" id="singin-password" name="password" placeholder="Password" required="">
+                            </div>
+                            <div class="form-footer">
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="signin-remember" name="signin-remember">
+                                    <label for="signin-remember">Remember
+                                        me</label>
+                                </div>
+                                <a href="#" class="lost-link">Lost your password?</a>
+                            </div>
+                            <button class="btn btn-dark btn-block" type="submit">Login</button>
+                        </form>
+                        <div class="form-choice text-center">
+                            <label>or Login With</label>
+                            <div class="social-links social-link-active ">
+                                <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
+                                <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
+                                <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="register">
+
+                       
+                        <%if(message.registration  == "Please insert the requested information") { %>
+                            <div class="alert alert-warning" >
+                                <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                                    <i class="p-icon-close"></i>
+                                </button>
+                            <div class="text-white"><%= message.registration %></div>
+                            </div>
+                            <% } else if(message.registration  == "This email has already been registered") { %>
+                                <div class="alert alert-warning" >
+                                    <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                                        <i class="p-icon-close"></i>
+                                    </button>
+                                <div class="text-white"><%= message.registration %></div>
+                                </div>
+                            <% } %>
+
+                        <form method="post" action="/registerlogin">
+                            <div class="form-group">
+                                <input type="text" id="register-user" name="username" placeholder="Username" required="">
+                                <input type="email" id="register-email" name="email" placeholder="Your Email Address" required="">
+                                <input type="password" id="register-password" name="password" placeholder="Password" required="">
+                            </div>
+                            <div class="form-footer mb-5">
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="register-agree" name="register-agree" required="">
+                                    <label for="register-agree">I
+                                        agree to the
+                                        privacy policy</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-dark btn-block" type="submit">Register</button>
+                        </form>
+                        <div class="form-choice text-center">
+                            <label class="ls-m">or Register With</label>
+                            <div class="social-links social-link-active ">
+                                <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
+                                <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
+                                <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--login menu end-->
 
     <!-- navbar start -->
     <div class="stoon-navbar">
@@ -135,64 +235,114 @@
                         </div>
                     </div>
                     <div class="col-lg-6 order-3 order-lg-2">
+                        <!--
                         <div class="collapse navbar-collapse" id="shop-menu">
-                            <!--
+                            
                             <ul class="navbar-nav menu-open">
-                                <li class="menu-item-has-children">
-                                    <a href="#">Home <i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index-2.html">Home 01</a></li>
-                                        <li><a href="index-3.html">Home 02</a></li>
-                                        <li><a href="index-4.html">Home 03</a></li>
-                                        <li><a href="index-5.html">Home 04</a></li>
-                                        <li><a href="index-6.html">Home 05</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Shop <i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="collection.html">Shop Grid</a></li>
-                                        <li><a href="collection-list.html">Shop List</a></li>
-                                        <li><a href="collection-full.html">Shop Full</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
-                                        <li><a href="single-product.html">Single Product</a></li>
-                                        <li><a href="shoping-cart.html">Shoping Cart</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="error.html">Error</a></li>
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                              
                             </ul>
-                          -->
+                            
                         </div>
+                      -->
                     </div>
+                    <!--Begin left-->
                     <div class="col-lg-3 col-8 justify-content-end d-flex order-2 order-lg-3">
                         <div class="nav-right-part">
                             <ul>
-                              
-                                <li class="has-dropdown">
-                                  <%=user.Email%>
+                                <li>
+                                    <a href="#" id="search"><i class="icon-search"></i></a>
                                 </li>
-
+                                <!--cart here begin-->
+                                <li class="has-dropdown">
+                                    <a href="#"><i class="icon-add-to-cat"></i><span class="badge">
+                                      <% if(session.cart) {%>
+                                        <%= session.cart.totalQty %>
+                                        <% } else {%>
+                                            0
+                                        <% } %>
+                                    </span></a>
+                                    <ul>
+                                     <% if(cartProducts !== null) {%>
+                                         <% cartProducts.map((data) => { %>
+                                            <li>
+                                                <div class="d-flex">
+                                                    <div class="thumb">
+                                                        <img src="<%= data.item.imgUrl %>" alt="sample">
+                                                    </div>
+                                                    <div class="content">
+                                                        <h6 class="title"><a href="single-product.html"><%= data.item.details %></a></h6>
+                                                        <span class="price">$<%= data.item.price %></span>
+                                                    </div>
+                                                    <div class="action">
+                                                        <input type="number" value="1">
+                                                        <a href="/buymain/remove-from-cart/<%= data.item._id %>" class="remove">Remove</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <%})%>
+                                       
+                                        <li>
+                                            <h6 class="tprice"><span>Total price: </span>$<%= session.cart.totalPrice %>.00</h6>
+                                            <div class="btn-wrapper">
+                                                <a href="/checkout" class="btn btn-cart">Checkout</a>
+                                            </div>
+                                        </li>
+                                        <% } else  {%>
+                                            <li>Empty cart</li>
+                                        <% } %>
+                                    </ul>
+                                </li>
+                                <!--cart here end-->
                                 <li>
                                     <a href="#"><i class="icon-user"></i></a>
                                     <ul class="user-dropdown">
-                                        <li><a href="#"><i class="fa fa-briefcase"></i> My Orders</a></li>
-                                        <li><a href="#"><i class="fa fa-reply"></i> Returns Information</a></li>
-                                        <li><a href="#"><i class="fa fa-commenting-o"></i> Contact</a></li>
+                                    <li>
+                                        <% if(!user) {%>
+                                            <!--
+                                            <a class="login-toggle"  data-toggle="login-modal">
+                                                <span class="sr-only">login</span>
+                                                <i class="p-icon-user-solid"></i>
+                                            </a>
+                                            -->
+                                            <span style="cursor: pointer" id="open-login" >
+                                                <a>Sign In</a>
+                                            </span>
+
+                                               |
+
+                                            <span style="cursor: pointer" id="open-login" >
+                                                <a class="login-toggle" data-toggle="login-modal" >Join</a>
+                                            </span>
+
+                                          <% } else {%>
+                                            <span><%=user.Email%></span>
+                                          <% } 
+                                          %>
+                                    </li>
+                                        <li><a href="/myaccount"><i class="icon-user"></i> My Account</a></li>
+                                        <li><a href="/myaccount"><i class="fa fa-briefcase"></i> My Orders</a></li>
+                                        <li><a href="/myaccount"><i class="fa fa-reply"></i> Tracker</a></li>
+                                        <li><a href="/myaccount"><i class="fa fa-commenting-o"></i> Enjoy || Logout </a></li>
                                     </ul>
                                 </li>
                                 <li class="d-none d-lg-block">
                                     <a href="#" id="navigation-button"><i class="icon-bar-icon"></i></a>
                                 </li>
+                            </ul>
+                        </div>
+                        <div class="responsive-mobile-menu">
+                            <div class="menu toggle-btn d-block d-lg-none" data-toggle="collapse" data-target="#shop-menu" aria-expanded="false" role="button">
+                                <div class="icon-left"></div>
+                                <div class="icon-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end left-->
+                    <div class="col-lg-3 col-8 justify-content-end d-flex order-2 order-lg-3">
+                        <div class="nav-right-part">
+                            <ul>
+                               
+
                             </ul>
                         </div>
                         <div class="responsive-mobile-menu">
@@ -285,12 +435,29 @@
                                             <a class="btn btn-sm" id="minus-btn"><i class="fa fa-minus"></i></a>
                                             id="qty_input"
                                         </div>
-                                        -->
+                                        
                                         <div class="input-group">
                                             <button class="quantity-minus p-icon-minus-solid"></button>
                                              <input id="purchaseNumber" class="form-control" value="1" name="purchaseNumber" type="number" min="1" max="1000000">
                                             <button class="quantity-plus p-icon-plus-solid"></button>
-                                        </div>                                        
+                                        </div>
+                                        -->
+
+                                        <div class="input-group">
+                                            <!--
+                                            <div class="input-group-prepend align-self-center ">
+                                                <a class="btn btn-sm quantity-minus" ><i class="fa fa-minus"></i></a>
+                                            </div>
+                                            -->
+                                            <button class="quantity-minus p-icon-minus-solid"><i class="fa fa-minus"></i></button>
+                                            <input type="number" id="qty_input" class="form-control text-right form-control-sm" value="1" name="purchaseNumber" type="number" min="1" max="1000000" disabled="">
+                                           <!--
+                                            <div class="input-group-prepend align-self-center">
+                                                <a class="btn btn-sm quantity-plus" ><i class="fa fa-plus"></i></a>
+                                            </div>
+                                           -->
+                                            <button class="quantity-plus p-icon-plus-solid"><i class="fa fa-plus"></i></button>
+                                        </div>                                       
                                         
                                         <!--
                                             <input type="number"  name="purchaseNumber" class="form-control text-right form-control-sm" placeholder="Number of items" min="1">
@@ -300,7 +467,7 @@
                                         -->
                                     </div>
                                     <div class="add-to-cart">
-                                       <!-- <a href="#"><i class="icon-add-to-cat"></i> Add to cart</a> -->
+                                        <a href="/buymain/add-to-cart/<%= item._id %>"><i class="icon-add-to-cat"></i> Add to cart</a> 
                                     </div>
                                 </div>
                                 <div class="btn-wrapper" type="submit">
@@ -633,137 +800,177 @@
     </div>
     <!-- instagram end -->
 
-    <!-- footer area start -->
-    <footer class="footer-area footer-style-1 padding-top-70 margin-top-70">
-        <div class="footer-top padding-bottom-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">Our products</h4>
-                            <ul>
-                                <li><a href="#">Clothing</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Men</a></li>
-                                <li><a href="#">Shoes</a></li>
-                                <li><a href="#">Items</a></li>
-                                <li><a href="#">Electronics</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">OUR POLICY</h4>
-                            <ul>
-                                <li><a href="#">Affiliate</a></li>
-                                <li><a href="#">Updates</a></li>
-                                <li><a href="#">Shipping & Delivery</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="widget contact-widget">
-                            <h4 class="widget-title">GET IN TOUCH</h4>
-                            <ul class="contact_info_list">
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-home-foother"></i>
-                                    </div>
-                                    <div class="details">
-                                        <span>Davis Patrick<br>P.O. Box 147 2546 Sociosqu Rd. <br>Bethlehem Utah 02913</span>
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-email-subscribe"></i>
-                                    </div>
-                                    <div class="details">
-                                        support@example.com
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-call-footer"></i>
-                                    </div>
-                                    <div class="details">
-                                        <a href="tel:+496170961709">(939) 353-1107, (302) 259-2375</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">FOLLOW US</h4>
-                            <ul>
-                                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
-                                <li><a href="#"><i class="icon-skype"></i> Twitter</a></li>
-                                <li><a href="#"><i class="icon-instagram"></i> Instagram</a></li>
-                                <li><a href="#"><i class="icon-pinterest"></i> Pinterest</a></li>
-                            </ul>
-                        </div>
+   
+  <!-- footer area start -->
+  <footer class="footer-area footer-style-1 padding-top-70 margin-top-70">
+    <div class="footer-top padding-bottom-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget widget_nav_menu">
+                        <h4 class="widget-title">Our products</h4>
+                        <ul>
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">Items</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p>© Stoon 2020. Powered with <i class="fa fa-heart"></i> by <a href="http://zwin.io/" target="_blanc">Zwin</a>.</p>
-                    </div>
-                    <div class="col-md-6">
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget widget_nav_menu">
+                        <h4 class="widget-title">OUR POLICY</h4>
                         <ul>
-                            <li><a href="#"><img src="../assetstwo/img/payment/1.png" alt=""></a></li>
-                            <li><a href="#"><img src="../assetstwo/img/payment/2.png" alt=""></a></li>
-                            <li><a href="#"><img src="../assetstwo/img/payment/3.png" alt=""></a></li>
-                            <li><a href="#"><img src="../assetstwo/img/payment/4.png" alt=""></a></li>
-                            <li><a href="#"><img src="../assetstwo/img/payment/5.png" alt=""></a></li>
-                            <li><a href="#"><img src="../assetstwo/img/payment/6.png" alt=""></a></li>
+                            <li><a href="#">Affiliate</a></li>
+                            <li><a href="#">Updates</a></li>
+                            <li><a href="#">Shipping & Delivery</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="widget contact-widget">
+                        <h4 class="widget-title">GET IN TOUCH</h4>
+                        <ul class="contact_info_list">
+                            <li class="single-info-item">
+                                <div class="icon">
+                                    <i class="icon-home-foother"></i>
+                                </div>
+                                <div class="details">
+                                    <span>Davis Patrick<br>P.O. Box 147 2546 Sociosqu Rd. <br>Bethlehem Utah 02913</span>
+                                </div>
+                            </li>
+                            <li class="single-info-item">
+                                <div class="icon">
+                                    <i class="icon-email-subscribe"></i>
+                                </div>
+                                <div class="details">
+                                    support@example.com
+                                </div>
+                            </li>
+                            <li class="single-info-item">
+                                <div class="icon">
+                                    <i class="icon-call-footer"></i>
+                                </div>
+                                <div class="details">
+                                    <a href="tel:+496170961709">(939) 353-1107, (302) 259-2375</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="widget widget_nav_menu">
+                        <h4 class="widget-title">FOLLOW US</h4>
+                        <ul>
+                            <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
+                            <li><a href="#"><i class="icon-skype"></i> Twitter</a></li>
+                            <li><a href="#"><i class="icon-instagram"></i> Instagram</a></li>
+                            <li><a href="#"><i class="icon-pinterest"></i> Pinterest</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- footer area end -->
-
-    <!-- back to top area start -->
-    <div class="back-to-top">
-        <span class="back-top"><i class="fa fa-angle-up"></i></span>
     </div>
-    <!-- back to top area end -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p>© Stoon 2020. Powered with <i class="fa fa-heart"></i> by <a href="http://zwin.io/" target="_blanc">Zwin</a>.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li><a href="#"><img src="../assetstwo/img/payment/1.png" alt=""></a></li>
+                        <li><a href="#"><img src="../assetstwo/img/payment/2.png" alt=""></a></li>
+                        <li><a href="#"><img src="../assetstwo/img/payment/3.png" alt=""></a></li>
+                        <li><a href="#"><img src="../assetstwo/img/payment/4.png" alt=""></a></li>
+                        <li><a href="#"><img src="../assetstwo/img/payment/5.png" alt=""></a></li>
+                        <li><a href="#"><img src="../assetstwo/img/payment/6.png" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer area end -->
 
-    <!-- all plugins here -->
-    <script src="../assetstwo/js/vendor.js"></script>
-    <!-- main js  -->
-    <script src="../assetstwo/js/main.js"></script>
-    <script>
-        $('.quantity-plus').click(function(e){
-          e.preventDefault();
-            console.log($('#purchaseNumber').val());
-    
-            $('#purchaseNumber').val( function(i, oldval) {
-                return ++oldval;
-            });
-    
+<!-- back to top area start -->
+<div class="back-to-top">
+    <span class="back-top"><i class="fa fa-angle-up"></i></span>
+</div>
+<!-- back to top area end -->
+
+<!-- Plugins JS File -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+<script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+<!-- all plugins here -->
+<script src="../assetstwo/js/vendor.js"></script>
+<!-- main js  -->
+<script src="../assetstwo/js/main.js"></script>
+<script>
+            // Compare dropdown is offcanvas type
+            $( '.login-dropdown' ).on( 'click', '.login-toggle', function ( e ) {
+                e.preventDefault();
+                $( '.login-dropdown' ).addClass( 'opened' );
+                //Panda.$body.addClass( 'offcanvas-active' );
+            } )
+            $( '.login-dropdown' ).on( 'click', '.off-canvas .btn-close', function ( e ) {
+                $( '.login-dropdown' ).removeClass( 'opened' );
+                //Panda.$body.removeClass( 'offcanvas-active' );
+                e.preventDefault();
+            } )
+            $( '.login-dropdown' ).on( 'click', '.off-canvas .canvas-overlay', function ( e ) {
+                $( '.login-dropdown' ).removeClass( 'opened' );
+                //Panda.$body.removeClass( 'offcanvas-active' );
+                e.preventDefault();
+            })
+
+
+            $('.btn-close').on("click",  (function(t) {
+                $(".login-dropdown").removeClass("opened");
+                t.preventDefault()
+            }))
+
+            
+            $('#btn-click').on("click",  (function(t) {
+                console.log("hi there");
+                $("#mainMan").addClass("hideo");
+            }))                
+            
+
+        // tab nav link
+        $('.nav-link').on( 'click', function ( e ) {
+            var $this = $( this );
+            e.preventDefault();
+            //console.log($this, "outside");
+
+            if ( !$this.hasClass( "active" ) ) {
+                var $panel = $( $this.attr( 'href' ) );
+                $panel.siblings().removeClass( 'in active' );
+                $panel.addClass( 'active in' );
+
+                // owl-carousel init
+                //Panda.slider( $panel.find( '.owl-carousel' ) );
+
+
+                $this.parent().parent().find( '.active' ).removeClass( 'active' );
+                $this.addClass( 'active' );
+            }
+        })
+        
+        $("#login-toggle").toggle();
+        $("#toggleLoginButton").click(function() {
+            $("#login-toggle").toggle();
         });
-    
-        $('.quantity-minus').click(function(e){
-          e.preventDefault();
-            console.log($('#purchaseNumber').val());
-    
-            $('#purchaseNumber').val( function(i, oldval) {
-                if(oldval <= 1) {
-                    return oldval;
-                }
-                return --oldval;
-            });
-    
-         });
-    </script>
+        
+</script>
 </body>
 
-<!-- Mirrored from zwin.io/html/stooon/single-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:59:45 GMT -->
+<!-- Mirrored from zwin.io/html/stooon/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:43:27 GMT -->
 </html>

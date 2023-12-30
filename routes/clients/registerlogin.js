@@ -6,8 +6,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const nodemailer = require("nodemailer");
-var jwt = require('jsonwebtoken');
-
+var jwt = require("jsonwebtoken");
 
 /*
 router.get("/", function(req, res){
@@ -15,34 +14,29 @@ router.get("/", function(req, res){
 });
 */
 
-
-
-
-
-router.post("/", async function(req, res){
-  console.log('called');
+router.post("/", async function (req, res) {
+  console.log("called");
   //check if email has been used
-    let checkEmail = await User.findOne({Email: req.body.email});
-  
+  let checkEmail = await User.findOne({ Email: req.body.email });
+
   //checking if fields are empty
-    if(req.body.email == "" || req.body.password == "" ){
+  if (req.body.email == "" || req.body.password == "") {
+    req.flash("primary", "Please insert the requested information");
+    // req.flash("register", "Registration failed");
 
-     req.flash('registration', 'Please insert the requested information');
-     req.flash('register', 'Registration failed');
-  
-     res.redirect("home");
-    }
-    //check if email exists
-    else if (checkEmail){
+    res.redirect("home");
+  }
+  //check if email exists
+  else if (checkEmail) {
     //console.log("Email check");
-      req.flash('registration', 'This email has already been registered');
-      req.flash('register', 'Registration failed');
-  
-      res.redirect("/home");
-    }
+    req.flash("primary", "This email has already been registered");
+    // req.flash("primary", "Registration failed");
 
-          //checks if the confirm password matches the first password
-    /*
+    res.redirect("/");
+  }
+
+  //checks if the confirm password matches the first password
+  /*
     else if(req.body.password != req.body.passwordtwo){
       //console.log("password check");
       req.session.message = {
@@ -55,86 +49,65 @@ router.post("/", async function(req, res){
     }
     */
 
-  
-    //checks if the confirm password matches the first password
-    else {
-  
+  //checks if the confirm password matches the first password
+  else {
     //putting data to the database
-    
+
     //hash password and save to the database
-  try{
-   const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  
-  
-   let user = new User({
-    username: req.body.username,
-    Email: req.body.email,
-    password: hashedPassword,
-    balance: 0,
-    CryptoAddress: {
-      BTC: "",
-      BNB: "",
-      Doge: ""
-    },
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-   });
-  
-    
-     user.save();
-     req.flash('registrationsuccessful', 'Registration successful, Login');
-     res.redirect(`/`);
-
-
-    } catch {
-    res.redirect("/");
-    }
-  
-  }
-
-  });
-
-
-
-
-
-  router.post("/login", passport.authenticate("local", {
-    failureFlash: true,
-    failureRedirect: "/"
-    }), (req, res, next) => {
-      if (req.body.remember) {
-        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
-      } else {
-        req.session.cookie.expires = false; // Cookie expires at end of session
-      }
-      res.redirect('/');
-    });
-  
-
-    router.post("/login/other", passport.authenticate("local", {
-      failureFlash: true,
-      failureRedirect: "/home"
-      }), (req, res, next) => {
-        if (req.body.remember) {
-          req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
-        } else {
-          req.session.cookie.expires = false; // Cookie expires at end of session
-        }
-        res.redirect('/dashboard');
+      let user = new User({
+        username: req.body.username,
+        Email: req.body.email,
+        password: hashedPassword,
+        balance: 0,
+        CryptoAddress: {
+          BTC: "",
+          BNB: "",
+          Doge: "",
+        },
       });
-  
 
+      user.save();
+      req.flash("success", "Registration successful, Login");
+      res.redirect(`/`);
+    } catch {
+      res.redirect("/");
+    }
+  }
+});
 
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/",
+  }),
+  (req, res, next) => {
+    if (req.body.remember) {
+      req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+    } else {
+      req.session.cookie.expires = false; // Cookie expires at end of session
+    }
+    res.redirect("/");
+  }
+);
 
-
-
-
-
-
-
-
-
-
-
-
+router.post(
+  "/login/other",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/",
+  }),
+  (req, res, next) => {
+    if (req.body.remember) {
+      req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+    } else {
+      req.session.cookie.expires = false; // Cookie expires at end of session
+    }
+    res.redirect("/dashboard");
+  }
+);
 
 module.exports = router;

@@ -9,7 +9,8 @@ const router = express.Router();
 
 
 router.get("/",  function(req, res){
-  res.render("home", { message: req.flash(), active:"home"});
+
+  res.render("home", {active:"home"});
 });
 
 
@@ -22,7 +23,8 @@ function checkAuthenticated(req, res, next){
     if(req.isAuthenticated()){
       return next()
     }
-  
+
+    req.flash('info', 'Log in to proceed');
     res.redirect("/")
   }
   

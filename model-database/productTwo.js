@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const path = require("path");
 
+
+/*
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  },
@@ -13,6 +15,7 @@ mongoose.connect(
             throw err;
         }
     });
+*/
 
 
 const productTwoSchema = mongoose.Schema({
@@ -24,6 +27,7 @@ const productTwoSchema = mongoose.Schema({
     price: {type: Number, required: true},
     numOfItem: {type: Number, required: true},
     sold: {type: Number, required: true},
+    size: {type: String},
     details: {type: String}
 });
 

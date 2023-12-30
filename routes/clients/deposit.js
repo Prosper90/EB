@@ -42,7 +42,7 @@ router.post("/", checkAuthenticated, async function(req, res){
    console.log(req.body);
 
 
-   const valueB = ( req.body.amount / 2 ) * 200;
+   //const valueB = ( req.body.amount / 2 ) * 200;
     //deposit into account
     const ids = `${req.user._id}-${valueB}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
     console.log(ids);
@@ -71,6 +71,7 @@ router.post("/", checkAuthenticated, async function(req, res){
     */
  
       const valueB =  req.body.amount / 0.01 ;
+      const basePath = `${req.protocol}://${req.get('host')}`;
       //http://localhost:3000/recievepayment
       //https://www.socialogs.org/recievepayment
       const response = await axios({
@@ -82,7 +83,7 @@ router.post("/", checkAuthenticated, async function(req, res){
         data: {
           "email": req.user.Email,
           "amount": valueB,
-          "callback_url": "https://socialogs.org/recievepayment",
+          "callback_url": `${basePath}/recievepayment`,
           "reference": ids
         },
       })
@@ -90,11 +91,10 @@ router.post("/", checkAuthenticated, async function(req, res){
 
     res.redirect(response.data.data.authorization_url);
 
-  } catch (err) {
-      console.log(err.code);
-      console.log(err);
+  } catch (error) {
+    req.flash('message', 'Network err');
+    res.redirect(`/checkout`);
    }
-
 
 
   /*
@@ -312,7 +312,7 @@ function checkAuthenticated(req, res, next){
     message: "Log in to proceed"
   }
   */
-  req.flash('message', 'Log in to proceed');
+  req.flash('info', 'Log in to proceed');
   res.redirect("/home")
 }
 

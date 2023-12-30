@@ -1,0 +1,131 @@
+<%- include ("header.ejs"); %>
+<div class="page-header">
+    <div class="row">
+    <div class="col">
+    <h3 class="page-title">Main products</h3>
+    </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                            </div>
+                            <div class="col-sm-12 col-md-6"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-hover table-center mb-0 datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 27.2031px;">Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Sub Category: activate to sort column ascending" style="width: 268.25px;">Info/Price</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 112.734px;">Sale</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 114px;">Date</th>
+                                            <th class="text-end sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 82.8125px;">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%let workData = productsTwo.filter((item, index) => { %>
+                                            <% return index === productsTwo.findIndex((obj) => { %>
+                                              <% return item.name === obj.name %>
+                                            <% }) %>
+                                         <% }); %>
+
+                                        <%productsTwo.forEach((data, index) => {%>
+
+                                         <tr role="row" class="odd">
+                                            <td class="sorting_1"><%=data.name%></td>
+                                            <td>
+                                                <div class="">
+                                                    <span>Type</span>
+                                                    <span><%=data.type%></span> 
+                                                </div>
+
+                                                <div class="">
+                                                    <span>price</span>
+                                                    <span> N<%=data.price%></span>
+                                                </div>
+
+                                                <div class="">
+                                                    <span>available</span>
+                                                    
+                                                        <% if(data.available) { %>
+                                                            <span class="text-success"> available </span>
+                                                        <% } else { %>
+                                                            <span class="text-success">  out of stock </span>
+                                                        <% } %>
+                                                    
+                                                </div>
+
+                                                <%// let counter = productsTwo.filter((info, index) => { %>
+                                                  <% //if(info.name === data.name) { %>
+                                                     <% //if(info.available) { %>
+                                                      <% //return info ;%>
+                                                     <% //} %>
+                                                   <% //} %>
+                                                <% //}) %>
+                                                <div class="">
+                                                    <span>remaining</span>
+                                                    <span> <%=data.numOfItem%> </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <% //let counterTwo = productsTwo.filter((info, index) => { %>
+                                                    <%//if(info.name === data.name) { %>
+                                                       <% //if(!info.available) { %>
+                                                        <% //return info ;%>
+                                                       <% //} %>
+                                                     <% //} %>
+                                                  <% //}) %>
+                                                <%//if(counterTwo == 0) {%>
+                                                    <!--<div class="text-warning"> 0 sold</div>-->
+                                                    <%//} else {%>
+                                                    <!--<div class="text-success">  Sold</div>-->
+                                                <%//}%>
+
+                                                <div class="text-success"> <%=data.sold%> Sold</div>
+                                            </td>
+                                            <td><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
+                                            <td class="text-end">
+                                                 <button type="button" class="btn btn-sm bg-success-light mr-2" data-bs-toggle="modal" data-bs-target="#exampleModaltwo<%=data._id%>">
+                                                   <i class="far fa-edit mr-1"></i>more
+                                                 </button>
+                                            </td>
+                                        </tr>
+                                      <%})%>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 10 entries</div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                        <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                        <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ("footer.ejs"); %>

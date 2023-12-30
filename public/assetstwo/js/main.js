@@ -108,12 +108,14 @@
         var bodyOvrelay = $('#body-overlay');
         var searchPopup = $('#search-popup');
         var sidebarMenu = $('#sidebar-menu');
+        var loginMenu = $('#login-menu');
 
         $(document).on('click', '#body-overlay', function (e) {
             e.preventDefault();
             bodyOvrelay.removeClass('active');
             searchPopup.removeClass('active');
             sidebarMenu.removeClass('active');
+            loginMenu.removeClass('active');
         });
         $(document).on('click', '#search', function (e) {
             e.preventDefault();
@@ -130,6 +132,17 @@
         $(document).on('click', '#navigation-button', function (e) {
             e.preventDefault();
             sidebarMenu.addClass('active');
+            bodyOvrelay.addClass('active');
+        });
+        //login menu
+        $(document).on('click', '.login-menu-close', function (e) {
+            e.preventDefault();
+            bodyOvrelay.removeClass('active');
+            loginMenu.removeClass('active');
+        });
+        $(document).on('click', '#open-login', function (e) {
+            e.preventDefault();
+            loginMenu.addClass('active');
             bodyOvrelay.addClass('active');
         });
     

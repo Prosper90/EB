@@ -44,7 +44,7 @@ router.post("/:id", checkAuthenticated, async function(req, res){
   console.log(check.length, "check check check");
   if(check.length < req.body.purchaseNumber) {
     console.log("In here and running");
-    req.flash('message', 'Not enough stock to order. Kindly order in lesser quantity');
+    req.flash('info', 'Not enough stock to order. Kindly order in lesser quantity');
     res.redirect(`/buypage/${req.params.id}`);
   } else {
 
@@ -107,10 +107,10 @@ router.post("/:id", checkAuthenticated, async function(req, res){
           user.markModified("Orders");
           user.save(function(saveerr, saveresult){
           if(saveerr){
-            req.flash('message', 'Purchase fail');
+            req.flash('error', 'Purchase fail');
             res.redirect(`/buypage/${req.params.id}`);
           } else {
-            req.flash('message', 'Purchase successful');
+            req.flash('success', 'Purchase successful');
             res.redirect(`/orderdetail/${findProduct[0].type}/${index}`);
     
           }
@@ -142,7 +142,7 @@ function checkAuthenticated(req, res, next){
     return next()
   }
 
-  req.flash('message', 'Log in to proceed');
+  req.flash('info', 'Log in to proceed');
   res.redirect("/shop")
 }
 

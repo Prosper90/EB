@@ -5,6 +5,11 @@
 
 
 
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 
 <script src="assets/js/popper.min.js"></script>
@@ -14,9 +19,12 @@
 
 <script src="assets/js/admin.js"></script>
 
+<!-- <input type="text" name="info${increment}" class="form-control"> -->
 
 <script>
     $(document).ready(function() {
+
+        new DataTable('#data_table');
 
         let increment = 1;
 
@@ -28,24 +36,34 @@
             $('#containCreated').append(`
              <div id="removediv${increment}">
                 <small>${increment}</small>
+                <div class="form-group mt-3" id="title${increment}" style="margin: 4px !important">
+                    <label>Title</label>
+                    <input type="number" id="comment-name" name="info${increment}" required="" />
+                </div>
+
+                <div class="form-group mt-3" id="title${increment}" style="margin: 4px !important">
+                    <label>Price</label>
+                    <input type="number" id="comment-name" name="price${increment}"  required="" />
+                </div>
+
                 <div class="form-group mt-3" id="infoid${increment}" style="margin: 4px !important">
                     <label> username/password (must be comma(,) seperated) --sample(username,password) </label>
-                    <input type="text" name="info${increment}" class="form-control">
+                    <input type="number" id="comment-name" name="info${increment}"  required="" />
                 </div>
 
                 <div class="form-group" id="detailsid${increment}" style="margin: 4px !important">
                     <label>Extra Details --sample (1123443|sample|auth) (!should not contain username or password)</label>
-                    <input type="text" name="details${increment}" class="form-control">
+                    <input type="number" id="comment-name" name="details${increment}" placeholder="Your Name" required="" />
                 </div>
 
                 <div class="form-group" id="formatid${increment}" style="margin: 4px !important">
                     <label>Format for files (how passwords and auths are arranged) --sample (email|password|auths) </label>
-                    <input type="text" name="format${increment}" class="form-control">
+                    <input type="number" id="comment-name" name="format${increment}" placeholder="Your Name" required="" />
                 </div>
 
                 <div class="form-group" id="descriptionid${increment}" style="margin: 4px !important">
                     <label>description for products (how to use and devices to use it for)</label>
-                    <input type="text" name="description${increment}" class="form-control">
+                    <input type="number" id="comment-name" name="description${increment}" placeholder="Your Name" required="" />
                 </div>
 
              </div>

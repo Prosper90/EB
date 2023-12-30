@@ -1,302 +1,4 @@
-<!DOCTYPE html>
-<html lang="zxx">
-
-<!-- Mirrored from zwin.io/html/stooon/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:38:34 GMT -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Socialogs</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png">
-    <!-- Vendor Stylesheet -->
-    <link rel="stylesheet" href="assetstwo/css/vendor.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="assetstwo/css/style.css">
-    <!-- responsive Stylesheet -->
-    <link rel="stylesheet" href="assetstwo/css/responsive.css">
-
-    <!--Another styles-->
-
-    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
-
-    <!-- Plugin CSS File -->
-    <link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/magnific-popup/magnific-popup.min.css">
-    <!-- Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="css/demo1.min.css">
-    <!-- Main CSS File -->
-    <link rel="stylesheet" type="text/css" href="css/style.min.css">
-
-</head>
-<body class="home" style="position: relative;">
-
-    <!-- preloader area start -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-inner">
-            <div class="spinner">
-                <div class="dot1"></div>
-                <div class="dot2"></div>
-            </div>
-        </div>
-    </div>
-    <!-- preloader area end -->
-
-    <!--Notification-->
-    <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-        
-        <% if(message.message  == "Log in to proceed") { %>
-          <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-          style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-          id="mainMan">
-              <h5 class="alert-title text-center"><%= message.message %></h5>
-              <button type="button" class="btn btn-link btn-close" id="btn-click">
-                  <i class="p-icon-close"></i>
-              </button>
-          </div>
-        <% } else { %>
-           <h5><%= message.message %></h5>
-        <% } %>
-           
-    </div>
-
-    <!-- search Popup -->
-    <div class="body-overlay" id="body-overlay"></div>
-    <div class="search-popup" id="search-popup">
-        <form action="http://zwin.io/html/stooon/index.html" class="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search.....">
-            </div>
-            <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-    <!-- search Popup end -->
-
-    <!--sidebar menu start-->
-    <div class="sidebar-menu" id="sidebar-menu">
-        <button class="sidebar-menu-close">X</button>
-        <div class="sidebar-inner">
-            <div class="sidebar-logo">
-                <div class="h2" style="color: #000; font-weight: bold; font-size: 20px;">Socialogs</div>
-            </div>
-            <div class="sidemenu-text">
-                <p>Brand contact, in our opinion, is crucial to communication. Successful communication is based on real innovations and a satisfying consumer experience.</p>
-            </div>
-            <div class="sidebar-contact">
-                <h4>Contact Us</h4>
-                <ul>
-                    <li><i class="fa fa-map-marker"></i>Lavaca Street, Suite 2000</li>
-                    <li><i class="fa fa-envelope"></i>email@evha.com</li>
-                    <li><i class="fa fa-phone"></i>(+880) 172570051</li>
-                </ul>
-            </div>
-            <div class="sidebar-subscribe">
-                <input type="text" placeholder="Email">
-                <button><i class="fa fa-long-arrow-right"></i></button>
-            </div>
-            <div class="social-link">
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--sidebar menu end-->
-
-    <!-- navbar start -->
-    <div class="stoon-navbar">
-        <div class="header-top d-none d-sm-block">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-8">
-                        <div class="contact">
-                            <a href="tel:+496170961709"><i class="icon-call-header"></i> (939) 353-1107</a>
-                            <a href="#"><i class="icon-email-subscribe"></i> support@example.com</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="shipping text-center">
-                            <p>FREE SHIPPING - <span>on all orders over $35*</span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-4">
-                        <div class="social">
-                            <ul class="nav-social justify-content-end">
-                                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-instagram"></i></a></li>
-                                <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                                <li><a href="#"><i class="icon-youtube"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <nav class="navbar navbar-area navbar-expand-lg nav-style-01">
-            <div class="container-fluid nav-container">
-                <div class="row">
-                    <div class="col-lg-3 col-4 order-1 align-self-center">
-                        <div class="logo">
-                            <a href="/"><img src="images/logo.png" style="width: 74%; height: auto;" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 order-3 order-lg-2">
-                        <!--
-                        <div class="collapse navbar-collapse" id="shop-menu">
-                            
-                            <ul class="navbar-nav menu-open">
-                              
-                            </ul>
-                            
-                        </div>
-                      -->
-                    </div>
-                    <div class="col-lg-3 col-8 justify-content-end d-flex order-2 order-lg-3">
-                        <div class="nav-right-part">
-                            <ul>
-                               
-                                <div class="has-dropdown" style=" overflow: hidden; text-overflow: ellipsis; width: 148px;">
-                                    <% if(user) {%>
-                                       <span> Welcome </span> <span> <%=user.Email%> </span>
-                                     <% } %>
-                                    </div>
-
-                                <li>
-                                    <div class="dropdown login-dropdown off-canvas">
-                                        <a class="login-toggle"  data-toggle="login-modal">
-
-                                            <% if(!user) {%>
-                                              <div class="" style="background-color:#000; color: #FFFFFF; padding: 15px; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-weight: 500; font-size: 15px; width: 100px; height: 40px; cursor: pointer;">
-                                                <div class="">Sign in</div>
-                                              </div>
-                                            <% } %>
-
-                                        </a>
-                                        <!-- End Login Toggle -->
-                                        <div class="canvas-overlay"></div>
-                                        <a href="#" class="btn-close"></a>
-                                        <div class="dropdown-box scrollable">
-                                            <div class="login-popup">
-                                                <div class="form-box">
-                                                    <div class="tab tab-nav-underline tab-nav-boxed">
-                                                        <ul class="nav nav-tabs nav-fill mb-4">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link lh-1 ls-normal active" href="#signin">Login</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link lh-1 ls-normal" href="#register">Register</a>
-                                                            </li>
-                                                        </ul>
-                                                        <div class="tab-content">
-                                                            <div class="tab-pane active in" id="signin">
-                                    
-                                                                <% if (message.error) { %>
-                                                                    <div class="d-flex justify-content-center text-dark">
-                                                                           <%= message.error %>
-                                                                     </div>
-                                                                  <% } %>
-                                    
-                                                                <form method="post" action="/registerlogin/login" >
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="singin-email" name="Email" placeholder="Username or Email Address" required="">
-                                                                        <input type="password" id="singin-password" name="password" placeholder="Password" required="">
-                                                                    </div>
-                                                                    <div class="form-footer">
-                                                                        <div class="form-checkbox">
-                                                                            <input type="checkbox" id="signin-remember" name="signin-remember">
-                                                                            <label for="signin-remember">Remember
-                                                                                me</label>
-                                                                        </div>
-                                                                        <a href="#" class="lost-link">Lost your password?</a>
-                                                                    </div>
-                                                                    <button class="btn btn-dark btn-block" type="submit">Login</button>
-                                                                </form>
-                                                                <div class="form-choice text-center">
-                                                                    <label>or Login With</label>
-                                                                    <div class="social-links social-link-active ">
-                                                                        <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
-                                                                        <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
-                                                                        <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="tab-pane" id="register">
-                                    
-                                    
-                                                                <%if(message.registration  == "Please insert the requested information") { %>
-                                                                    <div class="alert alert-warning" >
-                                                                        <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
-                                                                            <i class="p-icon-close"></i>
-                                                                        </button>
-                                                                    <div class="text-white"><%= message.registration %></div>
-                                                                    </div>
-                                                                    <% } else if(message.registration  == "This email has already been registered") { %>
-                                                                        <div class="alert alert-warning" >
-                                                                            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
-                                                                                <i class="p-icon-close"></i>
-                                                                            </button>
-                                                                        <div class="text-white"><%= message.registration %></div>
-                                                                        </div>
-                                                                    <% } %>
-                                    
-                                                                <form method="post" action="/registerlogin">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="register-user" name="username" placeholder="Username" required="">
-                                                                        <input type="email" id="register-email" name="email" placeholder="Your Email Address" required="">
-                                                                        <input type="password" id="register-password" name="password" placeholder="Password" required="">
-                                                                    </div>
-                                                                    <div class="form-footer mb-5">
-                                                                        <div class="form-checkbox">
-                                                                            <input type="checkbox" id="register-agree" name="register-agree" required="">
-                                                                            <label for="register-agree">I
-                                                                                agree to the
-                                                                                privacy policy</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <button class="btn btn-dark btn-block" type="submit">Register</button>
-                                                                </form>
-                                                                <div class="form-choice text-center">
-                                                                    <label class="ls-m">or Register With</label>
-                                                                    <div class="social-links social-link-active ">
-                                                                        <a href="#" title="Facebook" class="social-link social-facebook fab fa-facebook-f"></a>
-                                                                        <a href="#" title="Twitter" class="social-link social-twitter fab fa-twitter"></a>
-                                                                        <a href="#" title="Linkedin" class="social-link social-linkedin fab fa-linkedin-in"></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button title="Close (Esc)" type="button" class="mfp-close"><span>×</span></button>
-                                            </div>
-                                        </div>
-                                        <!-- End Dropdown Box -->
-                                    </div>                                   
-                                </li>
-
-
-                                <li class="d-none d-lg-block" style="padding-top: 17px;">
-                                    <a href="#" id="navigation-button"><i class="icon-bar-icon"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="responsive-mobile-menu">
-                            <div class="menu toggle-btn d-block d-lg-none" data-toggle="collapse" data-target="#shop-menu" aria-expanded="false" role="button">
-                                <div class="icon-left"></div>
-                                <div class="icon-right"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <!-- navbar end -->
+<%- include ("headermain.ejs"); %>
 
     <!-- banner start -->
     <div class="banner-style-01">                
@@ -760,8 +462,8 @@
                                             <div class="thumb">
                                                 <img src="<%= data.imgUrl %>" alt="">
                                                 <ul class="cart-action-02">
-                                                    <li><a href="#"><i class="icon-heart"></i></a></li>
-                                                    <li><a href="#"><i class="icon-quick-view"></i></a></li>
+                                                    <li><a href="/buymain/add-to-cart/<%= data._id %>"><i class="icon-add-to-cat"></i></a></li>
+                                                    <!--<li><a href="#"><i class="icon-quick-view"></i></a></li>-->
                                                 </ul>
                                             </div>
                                             <div class="content text-left">
@@ -774,7 +476,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="content-price d-flex flex-column align-self-center">
-                                                        <span class="old-price">N<%= data.price %></span>
+                                                        <span><small>price</small></span>
+                                                        <span class="new-price">N<%= data.price %></span>
                                                        <!-- <span class="new-price">N<%= /*(13/100) * data.price */%></span>-->
                                                     </div>
                                                 </div>
@@ -822,8 +525,8 @@
                                             <div class="thumb">
                                                 <img src="<%= data.imgUrl %>" alt="">
                                                 <ul class="cart-action-02">
-                                                    <li><a href="#"><i class="icon-heart"></i></a></li>
-                                                    <li><a href="#"><i class="icon-quick-view"></i></a></li>
+                                                    <li><a href="/buymain/add-to-cart/<%= data._id %>"><i class="icon-add-to-cat"></i></a></li>
+                                                    <!--<li><a href="#"><i class="icon-quick-view"></i></a></li>-->
                                                 </ul>
                                             </div>
                                             <div class="content text-left">
@@ -831,7 +534,8 @@
                                                 <div class="d-flex position-relative">
                                                     <div class="content-cart"><a href="#"><i class="icon-add-to-cat"></i></a></div>
                                                     <div class="content-price d-flex flex-column align-self-center">
-                                                        <span class="old-price">N<%= data.price %></span>
+                                                        <span><small>price</small></span>
+                                                        <span class="new-price">N<%= data.price %></span>
                                                         <!-- <span class="new-price">N<%= /*(13/100) * data.price */%></span>-->
                                                     </div>
                                                 </div>
@@ -874,8 +578,8 @@
                                                 <img src="<%= data.imgUrl %>" alt="">
                                                 <span class="sale">SALE! 13%</span>
                                                 <ul class="cart-action-02">
-                                                    <li><a href="#"><i class="icon-heart"></i></a></li>
-                                                    <li><a href="#"><i class="icon-quick-view"></i></a></li>
+                                                    <li><a href="/buymain/add-to-cart/<%= data._id %>"><i class="icon-add-to-cat"></i></a></li>
+                                                   <!-- <li><a href="#"><i class="icon-quick-view"></i></a></li> -->
                                                 </ul>
                                             </div>
                                             <div class="content text-left">
@@ -884,7 +588,8 @@
                                                 <div class="d-flex position-relative">
                                                     <div class="content-cart"><a href="#"><i class="icon-add-to-cat"></i></a></div>
                                                     <div class="content-price d-flex flex-column align-self-center">
-                                                        <span class="old-price">N<%= data.price %></span>
+                                                        <span><small>price</small></span>
+                                                        <span class="new-price">N<%= data.price %></span>
                                                         <!-- <span class="new-price">N<%= /*(13/100) * data.price */%></span>-->
                                                     </div>
                                                 </div>
@@ -1209,173 +914,4 @@
     </div> 
     <!-- instagram end -->
 
-    <!-- footer area start -->
-    <footer class="footer-area footer-style-1 padding-top-70 margin-top-70">
-        <div class="footer-top padding-bottom-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">Our products</h4>
-                            <ul>
-                                <li><a href="#">Clothing</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Men</a></li>
-                                <li><a href="#">Shoes</a></li>
-                                <li><a href="#">Items</a></li>
-                                <li><a href="#">Electronics</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">OUR POLICY</h4>
-                            <ul>
-                                <li><a href="#">Affiliate</a></li>
-                                <li><a href="#">Updates</a></li>
-                                <li><a href="#">Shipping & Delivery</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="widget contact-widget">
-                            <h4 class="widget-title">GET IN TOUCH</h4>
-                            <ul class="contact_info_list">
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-home-foother"></i>
-                                    </div>
-                                    <div class="details">
-                                        <span>Davis Patrick<br>P.O. Box 147 2546 Sociosqu Rd. <br>Bethlehem Utah 02913</span>
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-email-subscribe"></i>
-                                    </div>
-                                    <div class="details">
-                                        support@example.com
-                                    </div>
-                                </li>
-                                <li class="single-info-item">
-                                    <div class="icon">
-                                        <i class="icon-call-footer"></i>
-                                    </div>
-                                    <div class="details">
-                                        <a href="tel:+496170961709">(939) 353-1107, (302) 259-2375</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="widget widget_nav_menu">
-                            <h4 class="widget-title">FOLLOW US</h4>
-                            <ul>
-                                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
-                                <li><a href="#"><i class="icon-skype"></i> Twitter</a></li>
-                                <li><a href="#"><i class="icon-instagram"></i> Instagram</a></li>
-                                <li><a href="#"><i class="icon-pinterest"></i> Pinterest</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <p>© Stoon 2020. Powered with <i class="fa fa-heart"></i> by <a href="http://zwin.io/" target="_blanc">Zwin</a>.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <ul>
-                            <li><a href="#"><img src="assetstwo/img/payment/1.png" alt=""></a></li>
-                            <li><a href="#"><img src="assetstwo/img/payment/2.png" alt=""></a></li>
-                            <li><a href="#"><img src="assetstwo/img/payment/3.png" alt=""></a></li>
-                            <li><a href="#"><img src="assetstwo/img/payment/4.png" alt=""></a></li>
-                            <li><a href="#"><img src="assetstwo/img/payment/5.png" alt=""></a></li>
-                            <li><a href="#"><img src="assetstwo/img/payment/6.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer area end -->
-
-    <!-- back to top area start -->
-    <div class="back-to-top">
-        <span class="back-top"><i class="fa fa-angle-up"></i></span>
-    </div>
-    <!-- back to top area end -->
-
-    <!-- Plugins JS File -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
-    <script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
-    <!-- Main JS File -->
-    <script src="js/main.js"></script>
-
-    <!-- all plugins here -->
-    <script src="assetstwo/js/vendor.js"></script>
-    <!-- main js  -->
-    <script src="assetstwo/js/main.js"></script>
-    <script>
-                // Compare dropdown is offcanvas type
-                $( '.login-dropdown' ).on( 'click', '.login-toggle', function ( e ) {
-                    e.preventDefault();
-                    $( '.login-dropdown' ).addClass( 'opened' );
-                    //Panda.$body.addClass( 'offcanvas-active' );
-                } )
-                $( '.login-dropdown' ).on( 'click', '.off-canvas .btn-close', function ( e ) {
-                    $( '.login-dropdown' ).removeClass( 'opened' );
-                    //Panda.$body.removeClass( 'offcanvas-active' );
-                    e.preventDefault();
-                } )
-                $( '.login-dropdown' ).on( 'click', '.off-canvas .canvas-overlay', function ( e ) {
-                    $( '.login-dropdown' ).removeClass( 'opened' );
-                    //Panda.$body.removeClass( 'offcanvas-active' );
-                    e.preventDefault();
-                })
-
-
-                $('.btn-close').on("click",  (function(t) {
-                    $(".login-dropdown").removeClass("opened");
-                    t.preventDefault()
-                }))
-
-                
-                $('#btn-click').on("click",  (function(t) {
-                    console.log("hi there");
-                    $("#mainMan").addClass("hideo");
-                }))                
-                
-
-            // tab nav link
-            $('.nav-link').on( 'click', function ( e ) {
-                var $this = $( this );
-                e.preventDefault();
-                //console.log($this, "outside");
-
-                if ( !$this.hasClass( "active" ) ) {
-                    var $panel = $( $this.attr( 'href' ) );
-                    $panel.siblings().removeClass( 'in active' );
-                    $panel.addClass( 'active in' );
-
-                    // owl-carousel init
-                    //Panda.slider( $panel.find( '.owl-carousel' ) );
-
-
-                    $this.parent().parent().find( '.active' ).removeClass( 'active' );
-                    $this.addClass( 'active' );
-                }
-            } )                
-    </script>
-</body>
-
-<!-- Mirrored from zwin.io/html/stooon/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:43:27 GMT -->
-</html>
+    <%- include ("footermain.ejs"); %>

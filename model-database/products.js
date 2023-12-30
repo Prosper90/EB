@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const path = require("path");
 
+/*
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false  },
@@ -13,22 +14,22 @@ mongoose.connect(
             throw err;
         }
     });
-
+*/
 
 const productSchema = mongoose.Schema({
-    dateandtime : {type: Date, default: Date.now},
-    name: {type: String, required: true},
-    type: {type: String, required: true},
-    password: {type: String, required: true},
-    available: {type: Boolean, required: true},
-    price: {type: Number, required: true},
-    details: {type: String},
-    format: {type: String},
-    description: {type: String},
+  dateandtime: { type: Date, default: Date.now },
+  name: { type: String, required: true },
+  type: { type: String, required: true },
+  title: { type: String, required: true },
+  password: { type: String, required: true },
+  available: { type: Boolean, required: true },
+  price: { type: Number, required: true },
+  numOfItem: { type: Number },
+  details: { type: String },
+  format: { type: String },
+  description: { type: String },
 });
 
-
-
 module.exports = {
-  Products: mongoose.model("Products", productSchema ),
-}
+  Products: mongoose.model("Products", productSchema),
+};

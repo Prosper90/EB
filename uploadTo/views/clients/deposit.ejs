@@ -1,0 +1,57 @@
+<%- include ("header.ejs"); %>
+
+<div class="tab-content col-lg-9 col-md-8">
+    <!--here-->
+    <div class="tab-pane-two active in" >
+        <form method="post" action="/deposit">
+        
+            <fieldset>
+                <legend>Deposit</legend>
+                <label>Amount to deposit (min is N1000)</label>
+                <input type="number" name="amount">
+
+                <label>depositor id</label>
+                <input type="text" value="<%=user._id%>" disabled>
+               
+                <!--
+                <div class="">
+                    <label>Choose Method</label>
+                    <select id="method" name="methodselect">
+                        <option value="Card" name="Card" >Card</option>
+                        <option value="TransferBank" name="Bankt" >Transfer Bank</option>
+                        <option value="TransferUssd" name="Ussdt" >Transfer USSD </option>
+                      </select>
+                </div>
+               -->
+
+                <div id="bankdiv" style="display: none;">
+                    <label>Choose Bank</label>
+                      <select id="bankselect" name="bankselect">
+                              <option value="426" name="Accessbank" >Access (Diamond) Bank</option>
+                              <option value="901" name="AccessbankTwo" >Access Bank</option>
+                              <option value="326" name="EcoBank" >EcoBank</option>
+                              <option value="329" name="First City Monument Bank (FCMB)" >First City Monument Bank (FCMB)</option>
+                              <option value="770" name="Fidelity Bank" >Fidelity Bank</option>
+                              <option value="894" name="First Bank" >First Bank</option>
+                              <option value="737" name="Guaranty Trust" >Guaranty Trust</option>
+                              <option value="7111" name="Keystone Bank" >Keystone Bank</option>
+                              <option  value="945" name="Wema Bank" >Wema Bank</option>
+                              <option  value="826" name="Wema Bank" >Union Bank</option>
+                              <option value="966" name="Zenith Bank" >Zenith Bank</option>
+
+                      </select>
+                </div>
+                
+            </fieldset>
+
+            <button type="submit" class="btn btn-primary">Deposit</button>
+        </form>
+
+
+    </div>
+        <!--here-->
+</div>
+</div>
+</div>
+
+<%- include ("footer.ejs"); %>

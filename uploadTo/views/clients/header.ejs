@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from d-themes.com/html/panda/account.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Nov 2022 04:21:19 GMT -->
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>Socialogs</title>
+
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Panda - Ultimate eCommerce Template">
+    <meta name="author" content="D-THEMES">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
+    <!-- Preload Font -->
+
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+        crossorigin="anonymous">
+
+    <script>
+        WebFontConfig = {
+            google: { families: [ 'Josefin Sans:300,400,500,600,700' ] }
+        };
+        ( function ( d ) {
+            var wf = d.createElement( 'script' ), s = d.scripts[ 0 ];
+            wf.src = 'js/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore( wf, s );
+        } )( document );
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
+
+    <!-- Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+</head>
+
+<body>
+
+
+
+
+
+ <%if(transferAccount) {%>
+
+    <div class="modal modalworks" id="myModaldashboard"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Deposit <%=transferAccount.transfer_amount%> to Account</h5>
+                <button type="button" id="buttonClose" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+
+                <div class="">
+                   <%=transferAccount.transfer_account%>
+                </div>
+                <div class="">
+                    <%=transferAccount.transfer_bank%>
+                 </div>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary"> Your account would be automatically funded</button>
+              </div>
+            </div>
+          </div>
+            
+
+    </div>
+
+ <%}%>
+
+
+
+    <!--Notification-->
+    <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+        <%- messages("messages", locals) %>
+    </div>
+
+
+
+    
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-left">
+                        <a href="tel:#" class="call">
+                            <i class="p-icon-phone-solid"></i>
+                            <span>+456 789 000</span>
+                        </a>
+                        <span class="divider"></span>
+                        <a href="contact.html" class="contact">
+                            <i class="p-icon-map"></i>
+                            <span>25 West 21th STREET, Miami FL, USA</span>
+                        </a>
+                    </div>
+                    <div class="header-right">
+                        <div class="dropdown switcher">
+                            <a href="#currency">USD</a>
+                            <ul class="dropdown-box">
+                                <li><a href="#USD">USD</a></li>
+                                <li><a href="#EUR">EUR</a></li>
+                            </ul>
+                        </div>
+                        <!-- End DropDown Menu -->
+                        <div class="dropdown switcher">
+                            <a href="#language"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                                    alt="flagus">ENG</a>
+                            <ul class="dropdown-box">
+                                <li>
+                                    <a href="#USD"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
+                                            alt="flagus">ENG</a>
+                                </li>
+                                <li>
+                                    <a href="#EUR"><img src="images/flagfr.jpg" width="14" height="10" class="mr-1"
+                                            alt="flagfr">FRH</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="divider"></span>
+                        <!-- End DropDown Menu -->
+                        <div class="social-links">
+                            <a href="#" class="social-link fab fa-facebook-f" title="Facebook"></a>
+                            <a href="#" class="social-link fab fa-twitter" title="Twitter"></a>
+                            <a href="#" class="social-link fab fa-pinterest" title="Pinterest"></a>
+                            <a href="#" class="social-link fab fa-linkedin-in" title="Linkedin"></a>
+                        </div>
+                        <!-- End of Social Links -->
+                    </div>
+                </div>
+            </div>
+            <!-- End HeaderTop -->
+        </header>
+        <!-- End Header -->
+        <main class="main account-page">
+            <div class="page-header-edit d-flex flex-column" style="background-color: #f9f8f4">
+
+                <h3 class="page-title m-5">My Account</h3>
+
+               <div class="row cols-lg-3 cols-xs-2 cols-1 w-100" >
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                               <a class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-wallet"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Balance</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>N<%=user.balance.toLocaleString()%></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border"><a href="/orders"
+                                class="no-tab-item">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-table"></i>
+                                    <div class="" style="font-size: 15px; padding-top: 15px">Total Orders</div>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p><%=user.Orders.length%></p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+
+
+                     <div class="ib-wrapper mb-4">
+                        <div class="icon-box text-center ib-border">
+                            <a href="/deposit" class="no-tab-item" style="cursor: pointer;">
+                                <span class="icon-box-icon">
+                                    <i class="p-icon-money"></i>
+                                </span>
+                                <div class="icon-box-content">
+                                    <p>Deposit</p>
+                                </div>
+                            </a>
+                        </div>
+                     </div>
+
+
+
+                </div>
+
+
+            </div>
+            <nav class="breadcrumb-nav has-border">
+                <div class="container">
+                    <ul class="breadcrumb">
+                        <li><a href="/home">Home</a></li>
+                        <li>My account</li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="page-content mt-4 mb-10 pb-6 ">
+                <div class="container">
+                    <div class="tab tab-vertical gutter-lg">
+                        <ul class="nav nav-tabs mb-8 col-lg-3 col-md-4 selected">
+                            <li class="nav-item pb-2">
+                                <a class="active" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item m-3 pb-2">
+                                    <a class="" href="/orders">Orders</a>
+                            </li>
+                            <li class="nav-item pb-2">
+                                <a class="" href="/deposithistory">Deposit history</a>
+                           </li>    
+                            <li class="nav-item pb-2">
+                                <a  href="/shop">Shop</a>
+                            </li>
+
+                            <li class="nav-item  pb-2">
+                                <a class="" href="/dashboard/logout">Logout</a>
+                            </li>
+                        </ul>

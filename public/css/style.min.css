@@ -15397,6 +15397,7 @@ ul.pagination {
     }
 }
 
+
 @media (max-width:479px) {
     .order .order-details {
         padding: 0 1.5rem
@@ -15495,4 +15496,18 @@ ul.pagination {
 
 .hideo {
     display: none !important;
+}
+
+#messages-notify { 
+    display: flex;
+    /* background: blue; */
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 9999999;
+    position: absolute;
+    top: 35px;
 }

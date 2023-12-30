@@ -62,7 +62,7 @@ function checkAuthenticated(req, res, next){
     message: "Log in to proceed"
   }
   */
-  req.flash('message', 'Log in to proceed');
+  req.flash('error', 'Log in to proceed');
   res.redirect("/home")
 }
 

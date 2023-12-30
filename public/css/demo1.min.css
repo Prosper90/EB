@@ -11129,9 +11129,11 @@ input.quantity {
 #messages-notify { 
     display: flex;
     /* background: blue; */
-    position: fixed;
-    top: 31px;
-    left: 0%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
     width: 100%;
     z-index: 9999999;
 }

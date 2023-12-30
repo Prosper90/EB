@@ -137,10 +137,13 @@
     $(document).ready(function() {
 
         let selectedValue = $('#ddlViewBy').val();
+        const basePath = `${location.protocol}//${location.host}`;
+        console.log(basePath, "checking basepath clientside");
     
         $("#ddlViewBy").click(function(){
             console.log($('#ddlViewBy').val());
             selectedValue = $('#ddlViewBy').val();
+            console.log(basePath, "checking basepath clientside");
         })
 
         //window.location.replace(url)
@@ -149,7 +152,7 @@
         $("#purchasefacebook").click(function(){
             console.log("called purchase");
             if(selectedValue != "") {
-                window.location.replace(`https://socialogs.org/buypage/${selectedValue}`);
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
             }
 
         })
@@ -158,7 +161,7 @@
         $("#purchasetwitter").click(function(){
             console.log("called purchase");
             if(selectedValue != "") {
-                window.location.replace(`https://socialogs.org/buypage/${selectedValue}`);
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
             }
 
         })
@@ -167,7 +170,7 @@
         $("#purchaseinstagram").click(function(){
             console.log("called purchase");
             if(selectedValue != "") {
-                window.location.replace(`https://socialogs.org/buypage/${selectedValue}`);
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
             }
 
         })
@@ -176,7 +179,7 @@
         $("#purchasegoogle").click(function(){
             console.log("called purchase");
             if(selectedValue != "") {
-                window.location.replace(`https://socialogs.org/buypage/${selectedValue}`);
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
             }
 
         })

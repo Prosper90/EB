@@ -17,8 +17,95 @@
 <link rel="stylesheet" href="assets/css/animate.min.css">
 
 <link rel="stylesheet" href="assets/css/admin.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+<link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.min.css">
+
+<!-- Plugin CSS File -->
+<link rel="stylesheet" type="text/css" href="vendor/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="vendor/magnific-popup/magnific-popup.min.css">
+<!-- Main CSS File -->
+<link rel="stylesheet" type="text/css" href="css/demo1.min.css">
+<!-- Main CSS File -->
+<link rel="stylesheet" type="text/css" href="css/style.min.css">
 </head>
 <body>
+
+<style>
+    .page-header {
+        height: 50px !important;
+    }
+
+    table {
+    display: table !important;
+    border-collapse: separate !important;
+    box-sizing: border-box !important;
+    text-indent: initial !important;
+    border-spacing: 2px !important;
+    border-color: gray !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+thead {
+    display: table-header-group !important;
+    vertical-align: middle !important;
+    border-color: inherit !important;
+}
+
+tr {
+    display: table-row !important;
+    vertical-align: inherit !important;
+    border-color: inherit !important;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+.order-table thead th:not(:last-child) {
+    width: calc(86.55% / 4) !important;
+}
+
+.order-table thead th {
+    padding: 0.7rem 1rem !important;
+    color: #333 !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    text-align: left !important;
+}
+
+.order-table tbody {
+    border-bottom: 1px solid #e0dede !important;
+}
+tbody {
+    display: table-row-group !important;
+    vertical-align: middle !important;
+    border-color: inherit !important;
+}
+
+tr {
+    display: table-row !important;
+    vertical-align: inherit !important;
+    border-color: inherit !important;
+}
+
+td {
+    display: table-cell !important;
+    vertical-align: inherit !important;
+}
+
+.order-table tbody td {
+    padding: 2.1rem 1rem !important;
+    font-size: 1.6rem !important;
+    border-top: 1px solid #e0dede !important;
+}
+</style>
 
 
  <!-- Edit More-->
@@ -171,7 +258,7 @@
     <% } %>
       >
    <a href="/admin">
-    <i class="fas fa-columns"></i>
+    <i class="p-icon-home"></i>
      <span>Dashboard</span>
     </a>
 </li>
@@ -181,7 +268,7 @@
   <% } %>
     >
 <a href="/addproducts">
-    <i class="fab fa-wpforms"></i>
+    <i class="p-icon-cart-solid"></i>
      <span>Add products</span>
     </a>
 </li>
@@ -191,32 +278,32 @@
   <% } %>
     >
 <a href="/products">
-    <i class="fab fa-buffer"></i> 
+    <i class="p-icon-pinterest-p"></i>
     <span>Products</span>
 </a>
 </li>
-<li
+<!-- <li
 <%if(active == "mainproducts") { %>
     class="active" 
   <% } %>
     >
 <a href="/mainproducts">
     <i class="fab fa-buffer"></i> 
-    <span>mainProducts</span>
+    <span>Other_Products</span>
 </a>
-</li>
+</li> -->
 <li
 <%if(active == "allorders") { %>
     class="active" 
   <% } %>
     >
 <a href="/allorders">
-    <i class="fas fa-bullhorn"></i> 
+    <i class="p-icon-order"></i> 
     <span>All orders</span>
 </a>
 </li>
 
-<li
+<!-- <li
 <%if(active == "mainorder") { %>
     class="active" 
   <% } %>
@@ -225,7 +312,7 @@
     <i class="fas fa-bullhorn"></i> 
     <span>Main orders</span>
 </a>
-</li>
+</li> -->
 
 <li>
     <a href="/admin/logout">

@@ -1,0 +1,11 @@
+<% Object.keys(messages).forEach(function (type) { %>
+    <div class="alert alert-<%= type %> d-flex justify-content-between" role="alert" id="messages-notify">
+        <% messages[type].forEach(function (message) { %>
+        <div ><%= message %></div>
+       <% }) %>
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" style="font-size: 25px;">&times;</span>
+      </button>
+    </div>
+<% }) %>

@@ -5,12 +5,12 @@ const path = require("path");
 
 
 
-
+/*
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
    { useNewUrlParser: true, useUnifiedTopology: true})
    .then(() => console.log('connected to DB!'))
     .catch(error => console.log(error));
-
+*/
 
 
 
@@ -45,7 +45,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/EB",
     paymentmethod: {type: String},
     status: {type: Number},
     buyid: {type: String},
-    size: {type: String}
+    size: {type: String},
+    quantity: {type: Number},
+    imgUrl: {type: String},
+    name: {type: String}
   });
 
 
@@ -86,6 +89,8 @@ const userSchema = mongoose.Schema({
  OrdersMain: [ordersSchemaMain],
  Deposit: [depositSchema],
  DepositHistory: [depositHistorySchema],
+ address: {type: String},
+ dateofbirth: {type: Date}
 });
 
 

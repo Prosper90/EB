@@ -1,0 +1,173 @@
+    <!-- footer area start -->
+    <footer class="footer-area footer-style-1 padding-top-70 margin-top-70">
+        <div class="footer-top padding-bottom-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget widget_nav_menu">
+                            <h4 class="widget-title">Our products</h4>
+                            <ul>
+                                <li><a href="#">Clothing</a></li>
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Items</a></li>
+                                <li><a href="#">Electronics</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="widget widget_nav_menu">
+                            <h4 class="widget-title">OUR POLICY</h4>
+                            <ul>
+                                <li><a href="#">Affiliate</a></li>
+                                <li><a href="#">Updates</a></li>
+                                <li><a href="#">Shipping & Delivery</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget contact-widget">
+                            <h4 class="widget-title">GET IN TOUCH</h4>
+                            <ul class="contact_info_list">
+                                <li class="single-info-item">
+                                    <div class="icon">
+                                        <i class="icon-home-foother"></i>
+                                    </div>
+                                    <div class="details">
+                                        <span>Davis Patrick<br>P.O. Box 147 2546 Sociosqu Rd. <br>Bethlehem Utah 02913</span>
+                                    </div>
+                                </li>
+                                <li class="single-info-item">
+                                    <div class="icon">
+                                        <i class="icon-email-subscribe"></i>
+                                    </div>
+                                    <div class="details">
+                                        support@example.com
+                                    </div>
+                                </li>
+                                <li class="single-info-item">
+                                    <div class="icon">
+                                        <i class="icon-call-footer"></i>
+                                    </div>
+                                    <div class="details">
+                                        <a href="tel:+496170961709">(939) 353-1107, (302) 259-2375</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="widget widget_nav_menu">
+                            <h4 class="widget-title">FOLLOW US</h4>
+                            <ul>
+                                <li><a href="#"><i class="icon-facebook"></i> Facebook</a></li>
+                                <li><a href="#"><i class="icon-skype"></i> Twitter</a></li>
+                                <li><a href="#"><i class="icon-instagram"></i> Instagram</a></li>
+                                <li><a href="#"><i class="icon-pinterest"></i> Pinterest</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 align-self-center">
+                        <p>© Stoon 2020. Powered with <i class="fa fa-heart"></i> by <a href="http://zwin.io/" target="_blanc">Zwin</a>.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li><a href="#"><img src="assetstwo/img/payment/1.png" alt=""></a></li>
+                            <li><a href="#"><img src="assetstwo/img/payment/2.png" alt=""></a></li>
+                            <li><a href="#"><img src="assetstwo/img/payment/3.png" alt=""></a></li>
+                            <li><a href="#"><img src="assetstwo/img/payment/4.png" alt=""></a></li>
+                            <li><a href="#"><img src="assetstwo/img/payment/5.png" alt=""></a></li>
+                            <li><a href="#"><img src="assetstwo/img/payment/6.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- back to top area start -->
+    <div class="back-to-top">
+        <span class="back-top"><i class="fa fa-angle-up"></i></span>
+    </div>
+    <!-- back to top area end -->
+
+    <!-- Plugins JS File -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+    <!-- all plugins here -->
+    <script src="assetstwo/js/vendor.js"></script>
+    <!-- main js  -->
+    <script src="assetstwo/js/main.js"></script>
+    <script>
+                // Compare dropdown is offcanvas type
+                $( '.login-dropdown' ).on( 'click', '.login-toggle', function ( e ) {
+                    e.preventDefault();
+                    $( '.login-dropdown' ).addClass( 'opened' );
+                    //Panda.$body.addClass( 'offcanvas-active' );
+                } )
+                $( '.login-dropdown' ).on( 'click', '.off-canvas .btn-close', function ( e ) {
+                    $( '.login-dropdown' ).removeClass( 'opened' );
+                    //Panda.$body.removeClass( 'offcanvas-active' );
+                    e.preventDefault();
+                } )
+                $( '.login-dropdown' ).on( 'click', '.off-canvas .canvas-overlay', function ( e ) {
+                    $( '.login-dropdown' ).removeClass( 'opened' );
+                    //Panda.$body.removeClass( 'offcanvas-active' );
+                    e.preventDefault();
+                })
+
+
+                $('.btn-close').on("click",  (function(t) {
+                    $(".login-dropdown").removeClass("opened");
+                    t.preventDefault()
+                }))
+
+                
+                $('#btn-click').on("click",  (function(t) {
+                    console.log("hi there");
+                    $("#mainMan").addClass("hideo");
+                }))                
+                
+
+            // tab nav link
+            $('.nav-link').on( 'click', function ( e ) {
+                var $this = $( this );
+                e.preventDefault();
+                //console.log($this, "outside");
+
+                if ( !$this.hasClass( "active" ) ) {
+                    var $panel = $( $this.attr( 'href' ) );
+                    $panel.siblings().removeClass( 'in active' );
+                    $panel.addClass( 'active in' );
+
+                    // owl-carousel init
+                    //Panda.slider( $panel.find( '.owl-carousel' ) );
+
+
+                    $this.parent().parent().find( '.active' ).removeClass( 'active' );
+                    $this.addClass( 'active' );
+                }
+            })
+            
+            $("#login-toggle").toggle();
+            $("#toggleLoginButton").click(function() {
+                $("#login-toggle").toggle();
+            });
+            
+    </script>
+</body>
+
+<!-- Mirrored from zwin.io/html/stooon/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Feb 2023 22:43:27 GMT -->
+</html>

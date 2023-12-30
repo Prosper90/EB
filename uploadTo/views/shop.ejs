@@ -1,0 +1,170 @@
+
+    <%- include ("header.ejs"); %>
+        <!-- End Header -->
+        <main class="main">
+            <div class="page-header cph-header pl-4 pr-4" style="background-color: #fff7ec">
+                <h1 class="page-title font-weight-light text-capitalize">Shop</h1>
+            </div>
+            <div class="container-fluid">
+                <nav class="breadcrumb-nav has-border">
+                    <ul class="breadcrumb">
+                        <li><a href="demo1.html">Home</a></li>
+                        <li>Shop</li>
+                    </ul>
+                </nav>
+
+                <div class="page-content mb-10 shop-page shop-horizontal">
+                    
+                    <nav class="toolbox toolbox-horizontal sticky-toolbox sticky-content fix-top">
+                
+                    </nav>
+                    <div class="select-items">
+                        <a href="#" class="filter-clean text-primary">Clean All</a>
+                    </div>
+                    <div class="row product-wrapper cols-lg-12   cols-md-4 cols-sm-3 cols-2">
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a >
+                                            <img src="images/products/facebook.png" alt="product" width="295" height="369" />
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a>
+                                            Facebook
+                                        </a>
+                                    </h5>
+                                      <div class="">
+                                        <label>Choose type</label>
+                                        <select id="ddlViewBy">
+                                            <%let resData = products.filter((item, index) => { %>
+                                               <% return index === products.findIndex((obj) => { %>
+                                                 <% return item.type === obj.type %>
+                                               <% }) %>
+                                            <% }); %>
+                                            <%resData.map((data, index) => {%>
+                                                <%if(data.name == 'facebook') {%>
+                                                  <option value="<%=data.type%>"><%=data.type%></option>
+                                                <%}%>
+                                            <%})%>
+                                          </select>
+                                        </div>
+                                        <a id="purchasefacebook" class="btn btn-dim btn-filter mt-3">Purchase</a>
+
+                                        
+                                </div>
+                            </div>
+                            <!-- End product -->
+                        </div>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/twitter">
+                                   
+                                            <img src="images/products/twitter.png" alt="product" width="295" height="369" />
+                                      
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a>
+                                            Twitter
+                                        </a>
+                                    </h5>
+                                    <div class="">
+                                        <label>Choose type</label>
+                                        <select id="ddlViewBy">
+                                            <%resData.map((data, index) => {%>
+                                                <%if(data.name == 'twitter') {%>
+                                                  <option value="<%=data.type%>"><%=data.type%></option>
+                                                <%}%>
+                                            <%})%>
+                                          </select>
+                                        </div>
+                                     <a id="purchasetwitter" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/instagram">
+                                            <img src="images/products/instagram.png" alt="product" width="295" height="369" />
+                                    
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a href="/buypage/instagram">
+                                            Instagram
+                                        </a>
+                                    </h5>
+                                    <div class="">
+                                        <label>Choose type</label>
+                                        <select id="ddlViewBy">
+                                            <%resData.map((data, index) => {%>
+                                                <%if(data.name == 'instagram') {%>
+                                                  <option value="<%=data.type%>"><%=data.type%></option>
+                                                <%}%>
+                                            <%})%>
+                                          </select>
+                                    </div>
+                                     <a id="purchaseinstagram" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
+
+                        <div class="product-wrap">
+                            <div class="product shadow-media text-center">
+                                <figure class="product-media">
+                                    <a href="/buypage/google">
+                             
+                                         <img src="images/products/google.png" alt="product" width="295" height="369" />
+     
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h5 class="product-name">
+                                        <a href="/buypage/google">
+                                            Others
+                                        </a>
+                                    </h5>
+                                    <div class="">
+                                        <label>Choose type</label>
+                                        <select id="ddlViewBy">
+                                            <%resData.map((data, index) => {%>
+                                                <%if(data.name == 'others') {%>
+                                                  <option value="<%=data.type%>"><%=data.type%></option>
+                                                <%}%>
+                                            <%})%>
+                                          </select>
+                                        </div>
+                                     <a id="purchasegoogle" class="btn btn-dim btn-filter mt-3">Purchase</a>
+                                </div>
+                            </div>
+                            <!-- End .product -->
+                        </div>
+
+     
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <!-- End .page-content-->
+        </main>
+        <!-- End Main -->
+<%- include ("footer.ejs"); %>

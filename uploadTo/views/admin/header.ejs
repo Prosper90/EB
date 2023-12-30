@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from truelysell-admin.dreamguystech.com/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Dec 2022 23:25:07 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>Admin | Template</title>
+
+<link rel="shortcut icon" href="assets/img/favicon.png">
+
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/animate.min.css">
+
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+
+ <!-- Edit More-->
+ <%products.forEach((data, index) => {%>
+
+    <div class="modal fade" id="exampleModal<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                    
+
+            <form method="post" action="/products/<%=data._id%>" class="w-100">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input class="form-control" name="name" type="text" value="<%=data.name%>">
+                </div>
+                <div class="form-group">
+                    <label>Product Type</label>
+                    <input class="form-control"  name="type" type="text" value="<%=data.type%>">
+                </div>
+                <div class="form-group">
+                    <label>Product Password</label>
+                    <input class="form-control" name="password" type="text" value="<%=data.password%>">
+                </div>
+                <div class="form-group">
+                    <label>Product Description</label>
+                    <input class="form-control" name="description" type="text" value="<%=data.description%>">
+                </div>
+                
+                
+                    <div class="mt-4 d-flex justify-content-center gap-4">
+                       <button class="" style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;" type="submit">Save Changes</button>
+
+                        <form  method="post" action="/products/remove/<%=data._id%>"  class="personal_validate d-flex flex-column align-items-center" novalidate="novalidate" >
+                          <button type="submit" class=""  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </button> 
+                        </form>
+                    </div>
+
+
+
+            </form>
+    
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+ <%})%>
+
+
+ <!-- Edit More Main products-->
+ <%productsTwo.forEach((data, index) => {%>
+
+    <div class="modal fade" id="exampleModaltwo<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                    
+
+            <form method="post" action="/mainproducts/<%=data._id%>/<%=data.name%>" class="w-100">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input class="form-control" name="name" type="text" value="<%=data.name%>">
+                </div>
+                <div class="form-group">
+                    <label>Product Type</label>
+                    <input class="form-control"  name="type" type="text" value="<%=data.type%>">
+                </div>
+                
+                
+                    <div class="mt-4 d-flex justify-content-center gap-4">
+                          <button type="submit" class=""  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </button> 
+                    </div>
+
+
+
+            </form>
+    
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+ <%})%>
+
+
+
+
+    <% if(message.message) { %>
+     <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+        <div class="alert alert-primary alert-simple alert-inline ms-auto d-flex justify-content-center mb-4 w-100" >
+            <h5 class="alert-title text-center"><%= message.message %></h5>
+            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
+                <i class="p-icon-close"></i>
+            </button>
+        </div>
+        </div>
+      <% } %>
+
+
+
+<div class="main-wrapper" style="font-family: Josefin Sans, sans-serif; font-size: 15px; color: #777; font-weight: 300;">
+
+<div class="header">
+<div class="header-left">
+<a href="index.html" class="logo logo-small">
+<img src="assets/img/logo-icon.png" alt="Logo" width="30" height="30">
+</a>
+</div>
+<a href="javascript:void(0);" id="toggle_btn">
+<i class="fas fa-align-left"></i>
+</a>
+<a class="mobile_btn" id="mobile_btn" href="javascript:void(0);">
+<i class="fas fa-align-left"></i>
+</a>
+
+
+<div class="nav user-menu">
+    <a class="dropdown-item" href="/logout">Logout</a>
+</div>
+
+</div>
+
+            
+<div class="sidebar" id="sidebar">
+<div class="sidebar-logo">
+<a href="/">
+<img src="assets/img/logo-icon.png" class="img-fluid" alt="">
+</a>
+</div>
+<div class="sidebar-inner slimscroll">
+<div id="sidebar-menu" class="sidebar-menu">
+<ul>
+<li <%if(active == "dashboard") { %>
+      class="active" 
+    <% } %>
+      >
+   <a href="/admin">
+    <i class="fas fa-columns"></i>
+     <span>Dashboard</span>
+    </a>
+</li>
+<li
+<%if(active == "addproducts") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/addproducts">
+    <i class="fab fa-wpforms"></i>
+     <span>Add products</span>
+    </a>
+</li>
+<li
+<%if(active == "products") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/products">
+    <i class="fab fa-buffer"></i> 
+    <span>Products</span>
+</a>
+</li>
+<li
+<%if(active == "mainproducts") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/mainproducts">
+    <i class="fab fa-buffer"></i> 
+    <span>mainProducts</span>
+</a>
+</li>
+<li
+<%if(active == "allorders") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/allorders">
+    <i class="fas fa-bullhorn"></i> 
+    <span>All orders</span>
+</a>
+</li>
+
+<li
+<%if(active == "mainorder") { %>
+    class="active" 
+  <% } %>
+    >
+<a href="/mainorder">
+    <i class="fas fa-bullhorn"></i> 
+    <span>Main orders</span>
+</a>
+</li>
+
+<li>
+    <a href="/admin/logout">
+        <i class="fas fa-cog"></i>
+        <span> Log out</span>
+    </a>
+</li>
+
+
+
+</ul>
+</div>
+</div>
+</div>
+<!--header end-->
+
+<!--main body -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+    
+    <div class="page-header">
+    <div class="row">
+    <div class="col-12">
+    <h3 class="page-title">Welcome Admin!</h3>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="dash-widget-header">
+    <span class="dash-widget-icon" style="background-color: #FFE1BF;">
+    <i class="far fa-user"></i>
+    </span>
+    <div class="dash-widget-info">
+    <h3><%=totalusers%></h3>
+    <h6 class="text-muted">Users</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="dash-widget-header">
+    <span class="dash-widget-icon" style="background-color: #FFE1BF;">
+    <i class="fas fa-user-shield"></i>
+    </span>
+    <div class="dash-widget-info">
+        <%let totalsales = 0;%>
+        <%users.map((data) => {%>
+           <% totalsales += data.Orders.length %>
+        <%})%>
+    <h3><%=totalsales%></h3>
+    <h6 class="text-muted">Total Sales</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="dash-widget-header">
+    <span class="dash-widget-icon" style="background-color: #FFE1BF;">
+    <i class="fas fa-qrcode"></i>
+    </span>
+    <div class="dash-widget-info">
+        <% let counterCheck = productsTwo.filter((info, index) => { %>
+            <%if(!info.available) { %>
+                <% return info ;%>
+             <% } %>
+          <% }) %>
+          <% let oldnumber = 0; %>
+          <% let Tsold = counterCheck.map((data) => { %>
+            <% data.price + oldnumber %>
+         <% }) %>
+    <div class="d-flex flex-column p4">
+      <h3><%= counterCheck.length %> sold</h3>
+      <small>N <%=oldnumber%> </small>
+    </div>
+    <h6 class="text-muted">Main Sales</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 col-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="dash-widget-header">
+    <span class="dash-widget-icon" style="background-color: #FFE1BF;">
+    <i class="far fa-credit-card"></i>
+    </span>
+    <div class="dash-widget-info">
+        <%let totalamount = 0;%>
+        <%users.map((data) => {%>
+            <%data.Orders.map((price) => {%>
+                <% totalamount += price.price %>
+            <%})%>
+        <%})%>
+    <h3>N<%=totalamount%></h3>
+    <h6 class="text-muted">Sales</h6>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>

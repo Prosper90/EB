@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get("/", checkAuthenticated, async function(req, res){
   //console.log(req.user);
-  res.render("clients/dashboard", { user: req.user, message: req.flash(), transferAccount: undefined});
+  res.render("clients/dashboard", { user: req.user, transferAccount: undefined});
 });
 
 
@@ -33,8 +33,8 @@ function checkAuthenticated(req, res, next){
     message: "Log in to proceed"
   }
   */
-  req.flash('message', 'Log in to proceed');
-  res.redirect("/home")
+  req.flash('primary', 'Log in to proceed');
+  res.redirect("/")
 }
 
 

@@ -7203,3 +7203,29 @@ ul.filter-main-nav > li:hover > a {
     width: 100%;
     z-index: 9999999;
 }
+
+.sidebar-menu-login.active {
+  width: 365px;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.sidebar-menu-login {
+  width: 300;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background-color: #fff;
+  -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  padding: 100px 30px 30px 30px;
+  overflow-y: auto;
+  -webkit-transition: all 0.7s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+  -o-transition: all 0.7s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+  transition: all 0.7s cubic-bezier(0.9, 0.03, 0, 0.96) 0.4s;
+  opacity: 0;
+  visibility: hidden;
+}

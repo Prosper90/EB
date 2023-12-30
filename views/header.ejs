@@ -101,66 +101,7 @@
                 </div>
             </div>
 
-            <!--Notification-->
-               
 
-             <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-                <% if(message.message  == "Log in to proceed") { %>
-                  <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                   style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                   id="mainMan">
-                      <h5 class="alert-title text-center"><%= message.message %></h5>
-                      <button type="button" class="btn btn-link btn-close" id="btn-click">
-                          <i class="p-icon-close"></i>
-                      </button>
-                  </div>
-
-                      <% } else if(message.message  == "Payment successful") { %>
-                  
-                      <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" 
-                      style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;"
-                      id="mainMan">
-                          <h5 class="alert-title text-center"><%= message.message %></h5>
-                          <button type="button" class="btn btn-link btn-close" id="btn-click">
-                              <i class="p-icon-close"></i>
-                          </button>
-                      </div>
-  
-                      <% } else if(message.message  == "Payment unsuccessful") { %>
-                  
-                      <div class="alert alert-danger alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                        style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                        id="mainMan">
-                          <h5 class="alert-title text-center"><%= message.message %></h5>
-                          <button type="button" class="btn btn-link btn-close" id="btn-click">
-                              <i class="p-icon-close"></i>
-                          </button>
-                      </div>
-  
-                      <% } else if(message.register  == "Registration failed") { %>
-                  
-                        <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                          style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                          id="mainMan">
-                            <h5 class="alert-title text-center"><%= message.register %></h5>
-                            <button type="button" class="btn btn-link btn-close" id="btn-click">
-                                <i class="p-icon-close"></i>
-                            </button>
-                        </div>
-    
-                        <% } else if(message.registrationsuccessful  == "Registration successful, Login") { %>
-                  
-                            <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                            style="border: 0.2px solid #4cff28c2; border-radius: 7px; z-index: 999999;"
-                            id="mainMan">
-                                <h5 class="alert-title text-center"><%= message.registrationsuccessful %></h5>
-                                <button type="button" class="btn btn-link btn-close" id="btn-click">
-                                    <i class="p-icon-close"></i>
-                                </button>
-                            </div>
-        
-                        <% } %>
-               </div>
              
 
 
@@ -174,10 +115,12 @@
             </div>
 -->
 
+
+
             <!--Notification-->
-
-
-
+            <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+                <%- messages("messages", locals) %>
+            </div>
 
             <!-- End HeaderTop -->
             <div class="header-middle has-center sticky-header fix-top sticky-content">
@@ -255,11 +198,6 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane active in" id="signin">
 
-                                                    <% if (message.error) { %>
-                                                        <div class="d-flex justify-content-center text-dark">
-                                                               <%= message.error %>
-                                                         </div>
-                                                      <% } %>
 
                                                     <form method="post" action="/registerlogin/login/other" >
                                                         <div class="form-group">
@@ -286,23 +224,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="register">
-
-
-                                                    <%if(message.registration  == "Please insert the requested information") { %>
-                                                        <div class="alert alert-warning" >
-                                                            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
-                                                                <i class="p-icon-close"></i>
-                                                            </button>
-                                                        <div class="text-white"><%= message.registration %></div>
-                                                        </div>
-                                                        <% } else if(message.registration  == "This email has already been registered") { %>
-                                                            <div class="alert alert-warning" >
-                                                                <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
-                                                                    <i class="p-icon-close"></i>
-                                                                </button>
-                                                            <div class="text-white"><%= message.registration %></div>
-                                                            </div>
-                                                        <% } %>
 
                                                     <form method="post" action="/registerlogin">
                                                         <div class="form-group">
