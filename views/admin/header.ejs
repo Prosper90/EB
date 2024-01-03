@@ -123,7 +123,7 @@ td {
             <div class="modal-body d-flex flex-column justify-content-center align-items-center">
                     
 
-            <form method="post" action="/products/<%=data._id%>" class="w-100">
+            <form method="post" action="/products/edit/<%=data._id%>" class="w-100">
                 <div class="form-group">
                     <label>Product Name</label>
                     <input class="form-control" name="name" type="text" value="<%=data.name%>">
@@ -143,54 +143,9 @@ td {
                 
                 
                     <div class="mt-4 d-flex justify-content-center gap-4">
-                       <button class="" style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;" type="submit">Save Changes</button>
+                       <button type="submit" class="" style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;" type="submit">Save Changes</button>
 
-                        <form  method="post" action="/products/remove/<%=data._id%>"  class="personal_validate d-flex flex-column align-items-center" novalidate="novalidate" >
-                          <button type="submit" class=""  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </button> 
-                        </form>
-                    </div>
-
-
-
-            </form>
-    
-            </div>
-            
-        </div>
-        </div>
-    </div>
-
- <%})%>
-
-
- <!-- Edit More Main products-->
- <%productsTwo.forEach((data, index) => {%>
-
-    <div class="modal fade" id="exampleModaltwo<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
-            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body d-flex flex-column justify-content-center align-items-center">
-                    
-
-            <form method="post" action="/mainproducts/<%=data._id%>/<%=data.name%>" class="w-100">
-                <div class="form-group">
-                    <label>Product Name</label>
-                    <input class="form-control" name="name" type="text" value="<%=data.name%>">
-                </div>
-                <div class="form-group">
-                    <label>Product Type</label>
-                    <input class="form-control"  name="type" type="text" value="<%=data.type%>">
-                </div>
-                
-                
-                    <div class="mt-4 d-flex justify-content-center gap-4">
-                          <button type="submit" class=""  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </button> 
+                          <a href="/products/remove/<%=data._id%>"  style="background-color: #FFE1BF; border: none; outline: none;  padding: 8px; border-radius: 5px;"> Remove </a> 
                     </div>
 
 
@@ -208,16 +163,10 @@ td {
 
 
 
-    <% if(message.message) { %>
-     <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-        <div class="alert alert-primary alert-simple alert-inline ms-auto d-flex justify-content-center mb-4 w-100" >
-            <h5 class="alert-title text-center"><%= message.message %></h5>
-            <button type="button" class="btn btn-link btn-close" data-bs-dismiss="alert" aria-label="close">
-                <i class="p-icon-close"></i>
-            </button>
-        </div>
-        </div>
-      <% } %>
+
+      <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+        <%- messages("messages", locals) %>
+    </div>
 
 
 
@@ -424,3 +373,10 @@ td {
     </div>
     </div>
     </div>
+
+
+
+                <!--Notification-->
+            <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+                  <%- include('../messages.ejs', { messages: messages, locals: locals }) %>
+            </div>

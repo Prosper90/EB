@@ -164,6 +164,7 @@
                     </div>
 
                     <div class="header-right">
+                        <%if(active == "shop") { %>
                         <div class="header-search hs-toggle">
                             <a class="search-toggle" href="#" title="Search">
                                 <i class="p-icon-search-solid"></i>
@@ -175,9 +176,10 @@
                                 </button>
                             </form>
                         </div>
+                        <%}%>
                         <div class="dropdown login-dropdown off-canvas">
-                            <a class="login-toggle"  data-toggle="login-modal">
-                                <span class="sr-only">login</span>
+                            <a class="login-toggle" style="display: flex; align-items: end; gap:5px; cursor: pointer;"  data-toggle="login-modal">
+                                <span class="">login</span>
                                 <i class="p-icon-user-solid"></i>
                             </a>
                             <!-- End Login Toggle -->
@@ -258,9 +260,9 @@
                             </div>
                             <!-- End Dropdown Box -->
                         </div>
-                        <a href="/" class="wishlist wishlist-toggle" title="Wishlist">
+                        <!-- <a href="/" class="wishlist wishlist-toggle" title="Wishlist">
                             <i class="p-icon-heart-solid"></i>
-                        </a>
+                        </a> -->
                     </div>
                     
                 </div>

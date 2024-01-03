@@ -39,6 +39,7 @@ const MongoStore = require("connect-mongo");
 const Cart = require("./model-database/cart");
 
 const initializePassport = require("./passport-config");
+const { ErrorHandler } = require("./middlewares/error.js");
 
 initializePassport(passport);
 
@@ -109,14 +110,10 @@ app.use("/mainorder", mainorder);
 app.use("/recievepayment", recievepayment);
 app.use("/webhook", webhook);
 
-
 //main one
-app.get("/",  function(req, res){
-
-  res.render("home", {active:"home"});
+app.get("/", function (req, res) {
+  res.render("home", { active: "home" });
 });
-
-
 
 // app.get("/", async function (req, res) {
 //   const sideProducts = await ProductTwo.find({}).clone();
@@ -182,6 +179,9 @@ app.get("/home",  checkAuthenticated, async function(req, res) {
 //   );
 //   res.render("homemain", { sideProducts: sideProducts, user: false });
 // }
+
+// Error handler middleware
+app.use(ErrorHandler);
 
 mongoose
   .connect(process.env.MONGODB_URI, {

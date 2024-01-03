@@ -20,35 +20,14 @@
               <div class="col-sm-12">
                 <table
                   id="data_table"
-                  class="table table-hover table-center mb-0 datatable dataTable no-footer"
+                  class="table table-hover table-center"
                   role="grid"
                   aria-describedby="DataTables_Table_0_info"
                 >
                   <thead>
                     <tr role="row">
-                      <th
-                        class="sorting_asc"
-                        tabindex="0"
-                        aria-controls="DataTables_Table_0"
-                        rowspan="1"
-                        colspan="1"
-                        aria-sort="ascending"
-                        aria-label="#: activate to sort column descending"
-                        style="width: 27.2031px"
-                      >
-                        Name
-                      </th>
-                      <th
-                        class="sorting"
-                        tabindex="0"
-                        aria-controls="DataTables_Table_0"
-                        rowspan="1"
-                        colspan="1"
-                        aria-label="Sub Category: activate to sort column ascending"
-                        style="width: 268.25px"
-                      >
-                        Info/Price
-                      </th>
+                      <th>Name</th>
+                      <th>Info/Price</th>
                       <th
                         class="sorting"
                         tabindex="0"
@@ -58,55 +37,28 @@
                         aria-label="Category: activate to sort column ascending"
                         style="width: 112.734px"
                       >
-                        Sale
+                        Sold
                       </th>
-                      <th
-                        class="sorting"
-                        tabindex="0"
-                        aria-controls="DataTables_Table_0"
-                        rowspan="1"
-                        colspan="1"
-                        aria-label="Date: activate to sort column ascending"
-                        style="width: 114px"
-                      >
-                        Date
-                      </th>
-                      <th
-                        class="text-end sorting"
-                        tabindex="0"
-                        aria-controls="DataTables_Table_0"
-                        rowspan="1"
-                        colspan="1"
-                        aria-label="Action: activate to sort column ascending"
-                        style="width: 82.8125px"
-                      >
-                        Edit
-                      </th>
+                      <th>Date</th>
+                      <th>Edit</th>
                     </tr>
                   </thead>
                   <tbody>
                     <%products.forEach((data, index) => {%>
 
                     <tr role="row" class="odd">
-                      <td class="sorting_1"><%=data.name%></td>
                       <td>
-                        <% if(data.type == "facebook") { %>
-                        <!-- <img src="images/products/facebook.png" class="rounded service-img mr-1" alt="product" width="800" height="1000" />-->
-                        Facebook <% } else if(data.type == "twitter") { %>
-                        <!--<img src="images/products/twitter.png" class="rounded service-img mr-1" alt="product" width="800" height="1000" />-->
-                        Twitter <% } else if(data.type == "instagram") { %>
-                        <!--<img src="images/products/instagram.png" class="rounded service-img mr-1" alt="product" width="800" height="1000" />-->
-                        Instagram <% } else { %>
-                        <!--img src="images/products/google.png" class="rounded service-img mr-1" alt="product" width="800" height="1000" />-->
-                        Google <% } %> N<%=data.price%>
+                        <% if(data.type == "facebook" || data.type ==
+                        "facebookDating" || item.type == "facebookOthers" ) { %>
+                        <a href="#" class="social-link fab fa-facebook-f"></a>
+                        <% } else if(data.type == "twitter") { %>
+                        <a href="#" class="social-link fab fa-twitter"></a>
+                        <% } else if(data.type == "instagram") { %>
+                        <a href="#" class="social-link fab fa-linkedin-in"></a>
+                        <% } else { %> Others <% } %>
                       </td>
-                      <td>
-                        <%if(data.available) {%>
-                        <div class="text-warning">Not sold</div>
-                        <%} else {%>
-                        <div class="text-success">Sold</div>
-                        <%}%>
-                      </td>
+                      <td>N<%=data.price%></td>
+                      <td><%=data.numOfItem%></td>
                       <td>
                         <%= data.dateandtime.toLocaleDateString(); %> <%=
                         data.dateandtime.toLocaleTimeString(); %>

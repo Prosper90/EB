@@ -18,12 +18,12 @@ mongoose.connect(
 
 const productSchema = mongoose.Schema({
   dateandtime: { type: Date, default: Date.now },
-  name: { type: String, required: true },
   type: { type: String, required: true },
   title: { type: String, required: true },
-  password: { type: String, required: true },
-  available: { type: Boolean, required: true },
-  price: { type: Number, required: true },
+  names: { type: String },
+  password: { type: String },
+  available: { type: Boolean, required: true, default: true },
+  price: { type: Number, required: true, default: 0 },
   numOfItem: { type: Number },
   details: { type: String },
   format: { type: String },

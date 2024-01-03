@@ -1,6 +1,24 @@
 <%- include ("header.ejs"); %>
 <!-- End Header -->
 <style>
+  .table-container {
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .table-container {
+      overflow-x: visible;
+    }
+  }
+
+  .order-table {
+    width: 100%;
+    min-width: 600px;
+  }
   .table_sell {
     background-color: #54524d;
     border-radius: 20px !important;
@@ -13,8 +31,17 @@
   }
 
   tbody td {
-    padding: 0px !important;
+    padding: 14px !important;
     font-weight: 500;
+  }
+
+  .first-cell-container {
+    display: flex;
+    gap: 5px;
+  }
+
+  .first-cell-container .img {
+    background-color: #ffa945;
   }
 </style>
 <main class="main">
@@ -53,15 +80,7 @@
       >
         FaceBook
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -73,23 +92,36 @@
             </tr>
           </thead>
           <tbody>
+            <%faceBook?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-facebook-f"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
+              <%} else {%>
+              <td class="order-action">
                 <a
-                  href="#orders-view"
+                  href="/buypage/<%=data._id%>"
                   class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >View</a
+                  >purchase</a
                 >
-              </td> -->
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -111,15 +143,7 @@
       >
         FaceBook Dating
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -131,23 +155,36 @@
             </tr>
           </thead>
           <tbody>
+            <%faceBookDating?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-facebook-f"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                      <a
-                        href="#orders-view"
-                        class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                        >View</a
-                      >
-                    </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -169,15 +206,7 @@
       >
         OTHER COUNTRIES FACEBOOK
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -189,23 +218,36 @@
             </tr>
           </thead>
           <tbody>
+            <%faceBookOthers?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-facebook-f"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -227,15 +269,7 @@
       >
         TWITTER
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -247,23 +281,36 @@
             </tr>
           </thead>
           <tbody>
+            <%twitter?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-twitter"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -285,15 +332,7 @@
       >
         REEDIT
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -305,23 +344,36 @@
             </tr>
           </thead>
           <tbody>
+            <%reddit?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-reddit-alien"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -343,15 +395,7 @@
       >
         MAILS
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -363,23 +407,36 @@
             </tr>
           </thead>
           <tbody>
+            <%mails?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link far fa-envelope"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -393,23 +450,15 @@
     </div>
     <!--end of MAILS-->
 
-    <!--🇺🇸 TIKTOK-->
+    <!--🇺🇸 Messaging-->
     <div class="">
       <div
         class="btn btn-dim btn-block mt-4"
         style="border-radius: 7px; text-align: start; padding-left: 5px"
       >
-        TIKTOK
+        MESSAGING
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -421,23 +470,36 @@
             </tr>
           </thead>
           <tbody>
+            <%messaging?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-whatsapp"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -451,23 +513,15 @@
     </div>
     <!--end of 🇺🇸 TEXTING-->
 
-    <!--MAILS-->
+    <!--INSTAGRAM-->
     <div class="">
       <div
         class="btn btn-dim btn-block mt-4"
         style="border-radius: 7px; text-align: start; padding-left: 5px"
       >
-        MAILS
+        INSTAGRAM
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -479,23 +533,36 @@
             </tr>
           </thead>
           <tbody>
+            <%instagram?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-linkedin-in"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -507,7 +574,7 @@
         View All
       </div>
     </div>
-    <!--end of 🇺🇸 MAIN-->
+    <!--end of 🇺🇸 INSTAGRAM-->
 
     <!--🇺🇸 TIKTOK-->
     <div class="">
@@ -517,15 +584,7 @@
       >
         TIKTOK
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -537,23 +596,36 @@
             </tr>
           </thead>
           <tbody>
+            <%tiktok?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-tumblr"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -575,15 +647,7 @@
       >
         LINKEDIN
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -595,23 +659,36 @@
             </tr>
           </thead>
           <tbody>
+            <%linkedin?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-linkedin-in"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
@@ -625,64 +702,6 @@
     </div>
     <!--end of LINKEDIN-->
 
-    <!--🇺🇸 TIKTOK-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        TIKTOK
-      </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
-              </td>
-              <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
-              <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </div>
-    </div>
-    <!--end of 🇺🇸 TEXTING-->
-
     <!--🇺🇸 VPN-->
     <div class="">
       <div
@@ -691,15 +710,7 @@
       >
         VPN
       </div>
-      <div
-        class=""
-        style="
-          background-color: #f8f8f8;
-          border-radius: 7px;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
+      <div class="table-container">
         <table class="order-table">
           <thead>
             <tr class="table_sell">
@@ -711,23 +722,36 @@
             </tr>
           </thead>
           <tbody>
+            <%vpn?.map((data, idx) => {%>
             <tr>
               <td class="order-number" style="white-space: nowrap">
-                Standard USA 🇺🇸 (100-1000 friends) | with marketplace , some
-                might have dating & groups
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-xing"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
               </td>
               <td></td>
-              <td class="order-date"><span>NGN4,350.00</span></td>
-              <td class="order-status"><span>0 pcs.</span></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
               <td class="order-total"><span>Out of stock</span></td>
-              <!-- <td class="order-action">
-                            <a
-                              href="#orders-view"
-                              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                              >View</a
-                            >
-                          </td> -->
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>
