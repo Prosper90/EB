@@ -11,19 +11,19 @@ const Flutterwave = require('flutterwave-node-v3');
 
 router.get("/", checkAuthenticated, async function(req, res){
   //console.log(req.user);
-  console.log(req.params);
+  // console.log(req.params);
 
-  const banks = await axios.get( `https://api.flutterwave.com/v3/banks/NG`,
-    {
-      headers: {
-        'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`
-      }
+  // const banks = await axios.get( `https://api.flutterwave.com/v3/banks/NG`,
+  //   {
+  //     headers: {
+  //       'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`
+  //     }
 
-    }
-  );
+  //   }
+  // );
   const transferAccount = req.session.transferAccount;
   //console.log(banks.data);
-  res.render("clients/deposit", { user: req.user, banks: banks.data.data, transferAccount: transferAccount, message: req.flash()});
+  res.render("clients/deposit", { user: req.user, transferAccount: transferAccount, message: req.flash()});
 });
 
 
