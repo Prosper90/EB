@@ -157,7 +157,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">Watch us!</a>
+                                    <a href="#">Blog!</a>
                                 </li>
                             </ul>
                         </nav>
@@ -178,10 +178,14 @@
                         </div>
                         <%}%>
                         <div class="dropdown login-dropdown off-canvas">
-                            <a class="login-toggle" style="display: flex; align-items: end; gap:5px; cursor: pointer;"  data-toggle="login-modal">
-                                <span class="">login</span>
-                                <i class="p-icon-user-solid"></i>
-                            </a>
+                            <% if(!user || Object.keys(user).length === 0) {%>
+                                <a class="login-toggle" style="display: flex; align-items: end; gap:5px; cursor: pointer;"  data-toggle="login-modal">
+                                    <span class="">login</span>
+                                    <i class="p-icon-user-solid"></i>
+                                </a>
+                             <% } else { %>
+                                <div class=""><%= user.username %></div>
+                            <% } %>
                             <!-- End Login Toggle -->
                             <div class="canvas-overlay"></div>
                             <a href="#" class="btn-close"></a>

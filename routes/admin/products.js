@@ -20,7 +20,6 @@ router.get("/", checkAuthenticated, async function (req, res) {
     user: req.user,
     products: products,
     active: "products",
-    message: req.flash(),
   });
 });
 

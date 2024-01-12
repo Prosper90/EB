@@ -14,45 +14,46 @@
                 </tr>
             </thead>
             <tbody style="overflow-y: scroll; overflow-x: hidden;">
-                <%item.map((data, index) => {%>
                  <div style="border-bottom-color: green;">
 
                     <tr>
                         <td class="product-name">Type </td>
-                        <td class="product-price"><%=data.type%></td>
+                        <td class="product-price"><%=item?.type%></td>
                     </tr>
 
                     <tr>
-                        <td class="product-name"> username </td>
-                        <%  const valueId = data.password.split(','); %>
+                        <td class="product-name"> title </td>
                         <td class="d-flex justify-content-end">
                             <div class="product-price d-flex">
-                                <div class=""><%=valueId[0]%></div> 
+                                <div class=""><%=item?.title%></div> 
                             </div>
                         </td>
                     </tr>
-
+<!-- 
                     <tr>
                         <td class="product-name"> password </td>
                         <td class="d-flex justify-content-end">
                             <div class="product-price d-flex">
-                                <div class=""><%=valueId[1]%></div>
+                                <div class=""></div>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
+                        <%= console.log(item, "items"); %>
                      <td class="product-name"> Details </td>
                         <td class="d-flex justify-content-end align-items-centers">
                             <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                <div id='copyItems'+<%=index%>+' style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px; text-center">
-                                    <%= data.details %>
+                                <div 
+                                id="copyItems" 
+                                style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px; text-align: center;" >
+                                    <%= item?.details %>
                                 </div>
                                 <div class="">
                                 <button
                                 style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
                                  id="btcCopy"
-                                 onclick="copyText(`#copyItems${<%=index%>}`, '<%=data.details%>', '<%=valueId[0]%>', '<%=valueId[1]%>')"
+                                 onclick="copyText(`#copyItems`, '<%=item.details%>', '<%=item.names%>', '<%=item.password%>')"
                                  >copy</button>
                                 </div>
                             </div>
@@ -60,11 +61,11 @@
                     </tr>
 
                     <tr>
-                        <td class="product-name"> File Format </td>
+                        <td class="product-name"> usernames / emails </td>
                            <td class="d-flex justify-content-end align-items-centers">
                                <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
                                    <div style=" height: 40px; border: 1px solid black; border-radius: 5px; text-align: center; padding: 6px;">
-                                       <%= data.format%>
+                                       <%= item.names %>
                                    </div>
                                </div>
                            </td>
@@ -75,7 +76,7 @@
                            <td class="d-flex justify-content-end align-items-centers">
                                <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
                                    <div style="border-radius: 5px;">
-                                       <%= data.description%>
+                                       <%= item.description%>
                                    </div>
                                </div>
                            </td>
@@ -86,10 +87,9 @@
                         <td>
                             <h4 class="summary-subtitle">Amount:</h4>
                         </td>
-                        <td class="summary-value font-weight-normal">N<%=data.price%></td>
+                        <td class="summary-value font-weight-normal">N<%=item.price%></td>
                     </tr>
                   </div>
-                <%})%>
             </tbody>
         </table>
     </div>

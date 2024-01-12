@@ -1,0 +1,140 @@
+<%- include ("./buypagehf/header.ejs"); %>
+<!-- End Header -->
+<style>
+  .table-container {
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .table-container {
+      overflow-x: visible;
+    }
+  }
+
+  .order-table {
+    width: 100%;
+    min-width: 600px;
+  }
+  .table_sell {
+    background-color: #54524d;
+    border-radius: 20px !important;
+    color: #fff !important;
+  }
+
+  .table_sell th {
+    color: #fff !important;
+    font-size: 16px !important;
+  }
+
+  tbody td {
+    padding: 14px !important;
+    font-weight: 500;
+  }
+
+  .first-cell-container {
+    display: flex;
+    gap: 5px;
+  }
+
+  .first-cell-container .img {
+    background-color: #ffa945;
+  }
+</style>
+<main class="main">
+  <!-- <div
+    class="page-header cph-header pl-4 pr-4"
+    style="background-color: #fff7ec"
+  >
+    <h1 class="page-title font-weight-light text-capitalize">Shop</h1>
+  </div>
+  <div class="container-fluid">
+    <nav class="breadcrumb-nav has-border">
+      <ul class="breadcrumb">
+        <li><a href="demo1.html">Home</a></li>
+        <li>Shop</li>
+      </ul>
+    </nav>
+
+    <div class="page-content mb-10 shop-page shop-horizontal">
+      <nav
+        class="toolbox toolbox-horizontal sticky-toolbox sticky-content fix-top"
+      ></nav>
+      <div class="select-items">
+        <a href="#" class="filter-clean text-primary">Clean All</a>
+      </div>
+    </div>
+  </div> -->
+
+  <!--Market container-->
+  <div class="container d-flex flex-column" style="gap: 75px">
+    <!--Add the sales page here begining-->
+    <!--🇺🇸 VPN-->
+    <div class="">
+      <div
+        class="btn btn-dim btn-block mt-4"
+        style="border-radius: 7px; text-align: start; padding-left: 5px"
+      >
+        <%= products[0].type %>
+      </div>
+      <div class="table-container">
+        <table class="order-table">
+          <thead>
+            <tr class="table_sell">
+              <th>Title</th>
+              <th></th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%products?.map((data, idx) => {%>
+            <tr>
+              <td class="order-number" style="white-space: nowrap">
+                <div class="first-cell-container">
+                  <div class="img">
+                    <a href="#" class="social-link fab fa-xing"></a>
+                  </div>
+                  <div class=""><%= data.title %></div>
+                </div>
+              </td>
+              <td></td>
+              <td class="order-date">
+                <span>NGN<%= data.price.toLocaleString() %></span>
+              </td>
+              <td class="order-status">
+                <span> <%= data.numOfItem %> pcs.</span>
+              </td>
+              <% if(data.numOfItem === 0) {%>
+              <td class="order-total"><span>Out of stock</span></td>
+              <%} else {%>
+              <td class="order-action">
+                <a
+                  href="/buypage/<%=data._id%>"
+                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                  >purchase</a
+                >
+              </td>
+              <%}%>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+    <!--end of 🇺🇸 VPN-->
+
+    <!--Add the sales page here ending-->
+  </div>
+  <!--End of market container-->
+
+  <!-- End .page-content-->
+</main>
+<!-- End Main -->
+<%- include ("./buypagehf/footer.ejs"); %>

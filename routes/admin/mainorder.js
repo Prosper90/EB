@@ -16,7 +16,7 @@ router.get("/", checkAuthenticated, async function(req, res){
   let products = await Products.find().clone();
   let productsTwo = await ProductsTwo.find().clone();
   let totalusers = await User.find().count().clone();
- res.render("admin/mainorders", { users: users, productsTwo: productsTwo, totalusers: totalusers, user: req.user, products: products, active: "mainorder", message: req.flash()});
+ res.render("admin/mainorders", { users: users, productsTwo: productsTwo, totalusers: totalusers, user: req.user, products: products, active: "mainorder",});
 });
 
 

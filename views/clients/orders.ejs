@@ -1,5 +1,28 @@
 <%- include ("header.ejs"); %>
+<style>
 
+  #data_table_length {
+    width: 63px;
+    float: left;
+  }
+
+  #data_table_filter {
+    float: right;
+    width: 175px;
+  }
+
+  #data_table_filter input {
+    min-height: 0px;
+    border-radius: 9px;
+  }
+
+  #data_table_paginate {
+    float: right;
+    display: flex;
+    gap: 10px;
+    padding: 7px;
+  }
+</style>
 <div class="tab-content col-lg-9 col-md-8">
     <div class="tab-pane" id="dashboard">
         <p class="mb-0">
@@ -82,7 +105,8 @@
         </div>
     </div>
     <div class="tab-pane active in" id="orders">
-        <table class="order-table">
+
+        <table class="order-table" id="data_table">
             <thead>
                 <tr>
                     <th>Order</th>
@@ -106,7 +130,8 @@
                          <% } %>
                     </td>
                     <td class="order-total"><span>N<%=data.price%></span></td>
-                    <td class="order-action"><a href="/orderdetail/<%=data.type%>/<%=index%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
+  c: {type: mongoose.Schema.Types.ObjectId, ref: "Products"},
+                    <td class="order-action"><a href="/orderdetail/<%=data.buyid%>" class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm">View</a>
                     </td>
                 </tr>
 

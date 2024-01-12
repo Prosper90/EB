@@ -72,7 +72,7 @@
 </div>
 <!-- Sticky Footer -->
 <div class="sticky-footer sticky-content fix-bottom">
-<a href="/home" class="sticky-link">
+<a href="/" class="sticky-link">
     <i class="p-icon-home"></i>
     <span>Home</span>
 </a>
@@ -286,12 +286,17 @@
 </div>
 </div>
 <!-- Plugins JS File -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Main JS File -->
 <script src="js/main.min.js"></script>
 <script>
     $(document).ready(function() {
+
+       new DataTable('#data_table');
+
        $('#myModaldashboard').modal('toggle');
        
        $("#buttonClose").click(function(){

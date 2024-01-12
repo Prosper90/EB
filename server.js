@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const registerlogin = require("./routes/clients/registerlogin");
 const shop = require("./routes/clients/shop");
+const moreTable = require("./routes/clients/moreTables");
 const orders = require("./routes/clients/orders");
 const dashboard = require("./routes/clients/dashboard");
 const buypage = require("./routes/clients/buypage");
@@ -87,6 +88,7 @@ app.use(passport.session());
 app.use("/addToCart", addToCart);
 app.use("/registerlogin", registerlogin);
 app.use("/shop", shop);
+app.use("/moreTable", moreTable);
 app.use("/orders", orders);
 app.use("/buypage", buypage);
 app.use("/dashboard", dashboard);
@@ -112,7 +114,8 @@ app.use("/webhook", webhook);
 
 //main one
 app.get("/", function (req, res) {
-  res.render("home", { active: "home" });
+  
+  res.render("home", { active: "home", user: req.user});
 });
 
 // app.get("/", async function (req, res) {

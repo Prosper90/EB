@@ -34,7 +34,7 @@ router.get("/", checkAuthenticated, async function (req, res) {
   const faceBookOthers = await Products.find({ type: "facebookOthers" });
   const twitter = await Products.find({ type: "twitter" });
   const reddit = await Products.find({ type: "reddit" });
-  const mails = await Products.find({ type: "mail" });
+  const mails = await Products.find({ type: "google" });
   const messaging = await Products.find({ type: "messaging" });
   const instagram = await Products.find({ type: "instagram" });
   const tiktok = await Products.find({ type: "tiktok" });
@@ -58,8 +58,8 @@ router.get("/", checkAuthenticated, async function (req, res) {
     tiktok: tiktok,
     linkedin: linkedin,
     vpn: vpn,
-    message: req.flash(),
     active: "shop",
+    user: req.user
   });
 });
 

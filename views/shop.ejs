@@ -92,8 +92,10 @@
             </tr>
           </thead>
           <tbody>
+            <% let faceonetype; %>
             <%faceBook?.map((data, idx) => {%>
             <tr>
+              <% faceonetype = data.type %>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
                   <div class="img">
@@ -126,12 +128,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=faceonetype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of face book-->
 
@@ -155,7 +158,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let facetwotype %>
             <%faceBookDating?.map((data, idx) => {%>
+              <% facetwotype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -189,12 +194,13 @@
         </table>
       </div>
 
-      <div
+      <a  
+        href="/moretable/<%=facetwotype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of facebook dating-->
 
@@ -218,7 +224,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let otherface; %>
             <%faceBookOthers?.map((data, idx) => {%>
+              <% otherface = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -252,12 +260,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=otherface%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of OTHER COUNTRIES FACEBOOK-->
 
@@ -281,7 +290,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let twittertype; %>
             <%twitter?.map((data, idx) => {%>
+              <% twittertype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -315,12 +326,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=twittertype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of TWITTER-->
 
@@ -344,7 +356,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let reddittype; %>
             <%reddit?.map((data, idx) => {%>
+              <% reddittype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -378,12 +392,13 @@
         </table>
       </div>
 
-      <div
+      <a        
+        href="/moretable/<%=reddittype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of REEDIT-->
 
@@ -407,7 +422,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let mailtype; %>
             <%mails?.map((data, idx) => {%>
+              <% mailtype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -441,12 +458,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=mailtype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of MAILS-->
 
@@ -470,7 +488,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let messagingtype; %>
             <%messaging?.map((data, idx) => {%>
+              <% messagingtype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -504,12 +524,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=messagingtype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of 🇺🇸 TEXTING-->
 
@@ -533,7 +554,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let instagramtype; %>
             <%instagram?.map((data, idx) => {%>
+              <% instagramtype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -567,12 +590,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=instagramtype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of 🇺🇸 INSTAGRAM-->
 
@@ -596,7 +620,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let tiktoktype; %>
             <%tiktok?.map((data, idx) => {%>
+              <% tiktoktype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -630,12 +656,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=tiktoktype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of 🇺🇸 TEXTING-->
 
@@ -659,7 +686,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let linkedintype; %>
             <%linkedin?.map((data, idx) => {%>
+              <% linkedintype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -693,12 +722,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=linkedintype%>" 
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of LINKEDIN-->
 
@@ -722,7 +752,9 @@
             </tr>
           </thead>
           <tbody>
+            <% let vpntype; %>
             <%vpn?.map((data, idx) => {%>
+              <% vpntype = data.type %>
             <tr>
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
@@ -756,12 +788,13 @@
         </table>
       </div>
 
-      <div
+      <a
+        href="/moretable/<%=vpntype%>"
         class="btn btn-block btn-primary mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
-      </div>
+      </a>
     </div>
     <!--end of 🇺🇸 VPN-->
 

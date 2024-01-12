@@ -4,8 +4,6 @@ const Products = require("../../model-database/products").Products;
 const User = require("../../model-database/users").User;
 //const passport = require("passport");
 //const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
-const console = require("console");
 const router = express.Router();
 
 //checkAuthenticated,
@@ -13,102 +11,95 @@ router.get("/:id", async function (req, res) {
   console.log("check check check main");
   const getItem = await Products.findOne({ _id: req.params.id }).clone();
   console.log(getItem, "agian check");
-  res.render("clients/buypage", { message: req.flash(), item: getItem });
+  res.render("buypage", { item: getItem, active: "shop", user: req.user});
 });
 
 //mainOnes
 //buying items
-router.post("/:id", checkAuthenticated, async function (req, res) {
-  //check for available market
-  const checking = await Products.find({ type: req.params.id }).clone();
-
-  const check = checking.filter((data) => {
-    return data.available == true;
-  });
-
-  console.log(check.length, "check check check");
-  if (check.length < req.body.purchaseNumber) {
-    console.log("In here and running");
+router.post("/:id", checkAuthenticated, async function (req, res, next) {
+  try {
+    console.log("hi hi there", req.params.id);
+    //check for available market
+  const buyingProduct = await Products.findOne({ _id: req.params.id });
+  // console.log(buyingProduct, "buying product");
+  const user = await User.findById({ _id: req.user._id });
+  const totalPrice = buyingProduct.price * req.body.purchaseNumber;
+  if(!buyingProduct) {
     req.flash(
-      "info",
-      "Not enough stock to order. Kindly order in lesser quantity"
+      "danger",
+      "No such product"
     );
-    res.redirect(`/buypage/${req.params.id}`);
-  } else {
-    //find the item
-    const findProduct = await Products.find(
-      { type: req.params.id },
-      function (err, product) {
-        if (err) {
-          //handle
-        } else {
-          return product;
-        }
-      }
-    ).clone();
-    //console.log(findProduct, "Testing");
-
-    const totalPrice = findProduct[0].price * req.body.purchaseNumber;
-    console.log(totalPrice);
-    let buyi = [];
-    let index;
-    //Remove the product from product list
-    await Products.find({ type: req.params.id }, async function (err, product) {
-      if (err) {
-        //handle
-      } else {
-        //console.log(product, "working");
-        product.map(async (data, index) => {
-          if (index < req.body.purchaseNumber) {
-            buyi.push(String(data._id));
-            await Products.updateOne(
-              { _id: String(data._id) },
-              { $set: { available: false } }
-            ).clone();
-          }
-        });
-      }
-    }).clone();
-    console.log(buyi, "One");
-
-    //create an order amd update balance
-    await User.findById({ _id: req.user._id }, function (err, user) {
-      if (err) {
-        //handle it
-      } else {
-        console.log(buyi, "buyids two");
-        user.balance -= totalPrice;
-        user.Orders.push({
-          price: totalPrice,
-          paymentmethod: "card",
-          status: 1,
-          type: findProduct[0].type,
-        });
-        if (user.Orders.length !== 0) {
-          index = user.Orders.length - 1;
-        } else {
-          index = user.Orders.length;
-        }
-
-        buyi.map((data) => {
-          user.Orders[index].buyid.push(data);
-        });
-
-        user.markModified("Orders");
-        user.save(function (saveerr, saveresult) {
-          if (saveerr) {
-            req.flash("error", "Purchase fail");
-            res.redirect(`/buypage/${req.params.id}`);
-          } else {
-            req.flash("success", "Purchase successful");
-            res.redirect(`/orderdetail/${findProduct[0].type}/${index}`);
-          }
-        });
-      }
-    }).clone();
+    return res.redirect(`/buypage/${req.params.id}`);
   }
 
-  //end of main if
+  if(!buyingProduct.available) {
+    req.flash(
+      "danger",
+      "Product is unavailable"
+    );
+   return res.redirect(`/buypage/${req.params.id}`);
+  }
+
+  if(req.body.purchaseNumber > buyingProduct.numOfitem) {
+    req.flash(
+      "danger",
+      "Not enough stock to order. Kindly order in lesser quantity"
+    );
+    return res.redirect(`/buypage/${req.params.id}`);
+  }
+
+  if(user.balance < parseFloat(totalPrice)) {
+    req.flash(
+      "danger",
+      "Insufficient funds"
+    );
+    return res.redirect(`/buypage/${req.params.id}`);
+  }
+
+    //Remove the product from product list
+    const updateAfterSell = await Products.findOneAndUpdate(
+      { _id: req.params.id },
+      { 
+        $set: {  
+          available : buyingProduct.numOfItem < 1 ? false : true
+        },
+        $inc: {numOfItem: -parseFloat(req.body.purchaseNumber)}
+       }
+      );
+      if (!updateAfterSell) {
+        //handle
+        req.flash(
+          "danger",
+          "Something went wrong"
+        );
+        return res.redirect(`/buypage/${req.params.id}`);
+      } 
+
+     const order_created = {
+      price: totalPrice,
+      paymentmethod: "card",
+      status: 1,
+      buyid: buyingProduct._id,
+      type: buyingProduct.type,
+     }
+      
+      await User.findOneAndUpdate(
+      {_id: req.user._id},
+      {
+        $set: {balance: user.balance - parseFloat(totalPrice)},
+        $push: {Orders: order_created}
+       }
+       )
+
+
+       req.flash("success", "Purchase successful");
+       return res.redirect(`/orderdetail/${buyingProduct._id}`);
+
+  
+  } catch (error) {
+    next(error);
+  }
+  
 });
 
 function checkAuthenticated(req, res, next) {

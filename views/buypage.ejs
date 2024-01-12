@@ -1,5 +1,26 @@
-<%- include ("../buypagehf/header.ejs"); %>
+<%- include ("./buypagehf/header.ejs"); %>
+<style>
+  .btn-cart-edited {
+    flex: 1;
+    min-width: 13rem;
+    padding-top: 3px;
+    cursor: pointer;
+    background-color: #54524d;
+    color: #fff;
+    font-size: 0.8125em;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 5rem;
+  }
+  .btn-cart-edited:hover:not(:disabled) {
+    background-color: #ff8c04;
+}
 
+.btn-cart-edited i {
+    font-size: 1.125em;
+    margin-right: 0.8rem;
+}
+</style>
 <main class="main single-product">
   <nav class="breadcrumb-nav"></nav>
   <div class="page-content">
@@ -59,40 +80,28 @@
             </p>
             <p class="product-short-desc"><%=item.type%></p>
 
-            <div class="">N<%=item.price%></div>
+            <div class="">N<%=item.price.toLocaleString()%></div>
             <div class="product-form pt-1">
               <form
                 class="product-form product-qty pt-1"
                 method="post"
-                action="/buypage/<%=item.type%>"
+                action="/buypage/<%=item._id%>"
               >
-                <div class="product-form-group">
-                  <div class="input-group">
-                    <button class="quantity-minus p-icon-minus-solid"></button>
-                    <input
-                      id="purchaseNumber"
-                      class="form-control"
-                      value="1"
-                      name="purchaseNumber"
-                      type="number"
-                      min="1"
-                      max="1000000"
-                    />
-                    <button class="quantity-plus p-icon-plus-solid"></button>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn-product btn-cart-two ls-normal font-weight-semi-bold"
-                  >
-                    <i class="p-icon-cart-solid"></i>Buy
-                  </button>
-                </div>
+                <div class="product-form product-qty pt-1">
+                    <div class="product-form-group">
+                        <div class="input-group">
+                            <button type="button" class="quantity-minus p-icon-minus-solid"></button>
+                            <input class="quantity form-control" type="number" min="1" max="1000000" name="purchaseNumber" id="purchaseNumber">
+                            <button type="button" class="quantity-plus p-icon-plus-solid"></button>
+                        </div>
+                        <button type="submit" class="btn-product btn-cart-edited ls-normal font-weight-semi-bold" ><i class="p-icon-cart-solid"></i>BUY</button>
+                    </div>
+                </div>                
               </form>
             </div>
             <div class="product-action pt-5 pb-3">
               <a href="#" class="btn-product btn-compare mr-5"
-                ><i class="p-icon-compare-solid"></i>Details</a
-              >
+                ><i class="p-icon-compare-solid"></i>Details</a>
               <a href="#" class="btn-product btn-wishlist"> ****** ******</a>
             </div>
             <hr class="product-divider" />
@@ -104,4 +113,4 @@
 </main>
 <!-- End Main -->
 
-<%- include ("../buypagehf/footer.ejs"); %>
+<%- include ("./buypagehf/footer.ejs"); %>

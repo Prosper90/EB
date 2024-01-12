@@ -36,41 +36,16 @@ router.get("/", checkAuthenticated, async function(req, res){
 router.post("/", checkAuthenticated, async function(req, res){
 
    if(req.body.amount < 1000) {
-    console.log("Amount too small");
-    return;
+    req.flash("primary", "Amount too small");
+     return res.redirect("/deposit");
    }
-   console.log(req.body);
 
-
-   //const valueB = ( req.body.amount / 2 ) * 200;
-    //deposit into account
-    const ids = `${req.user._id}-${valueB}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
-    console.log(ids);
 
  try{
-    
-    /*
-    const response = await axios({
-      method: "POST",
-      url: "https://sandbox-api-d.squadco.com/transaction/initiate",
-      headers: {
-        Authorization:`Bearer ${process.env.SQUAD_SECRET_KEY}`
-      },
-      data: {
-        email: req.user.Email,
-        amount: parseFloat(req.body.amount),
-        initiate_type: "inline",
-        currency: "NGN",
-        transaction_ref: ids,
-        customer_name: req.user.username,
-        callback_url: "https://www.socialogs.org/recievepayment",
-      },
-    })
-    //console.log(response.data);
-    res.redirect(response.data.data.checkout_url);
-    */
  
-      const valueB =  req.body.amount / 0.01 ;
+      const valueB =  req.body.amount * 100 ;
+      const ids = `${req.user._id}-${valueB}-${Math.floor(( Math.random()  * 1000000000 ) )}`;
+      console.log(ids);
       const basePath = `${req.protocol}://${req.get('host')}`;
       //http://localhost:3000/recievepayment
       //https://www.socialogs.org/recievepayment
@@ -92,102 +67,10 @@ router.post("/", checkAuthenticated, async function(req, res){
     res.redirect(response.data.data.authorization_url);
 
   } catch (error) {
-    req.flash('message', 'Network err');
-    res.redirect(`/checkout`);
+    console.log(error);
+    req.flash('primary', 'Network err');
+    res.redirect(`/shop`);
    }
-
-
-  /*
-    if(req.body.methodselect == "Card") {
-      //call flutterwave
-
-          try {
-            //flutter wave
-            
-            const response = await got.post("https://api.flutterwave.com/v3/payments", {
-                headers: {
-                    Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`
-                },
-                json: {
-                    tx_ref: ids,
-                    amount: req.body.amount,
-                    currency: "NGN",
-                    redirect_url: "https://www.socialogs.org/recievepayment",
-                    customer: {
-                        email: req.user.Email,
-                    },
-        
-                }
-            }).json();
-        
-            console.log(response);
-            res.redirect(response.data.link);
-            
-        
-
-          console.log(typeof(req.body.amount));
-
-          const response = await axios({
-            method: "POST",
-            url: "https://sandbox-api-d.squadco.com/transaction/initiate",
-            headers: {
-              Authorization:`Bearer ${process.env.SQUAD_SECRET_KEY}`
-            },
-            data: {
-              email: req.user.Email,
-              amount: parseFloat(req.body.amount),
-              initiate_type: "inline",
-              currency: "NGN",
-              transaction_ref: ids,
-              customer_name: req.user.username,
-              callback_url: "https://www.socialogs.org/recievepayment",
-            },
-          })
-          //console.log(response.data);
-          res.redirect(response.data.data.checkout_url);
-        } catch (err) {
-            console.log(err.code);
-            console.log(err);
-       }
-
-    } else if(req.body.methodselect == "TransferBank") {
-
-      
-      const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
-        const details = {
-            tx_ref: ids,
-            amount: req.body.amount,
-            email: req.user.Email,
-            currency: "NGN",
-        };
-        const response = await flw.Charge.bank_transfer(details);
-        console.log(response);
-        req.session.transferAccount =  response.meta.authorization;
-    
-        console.log("Bank");
-        res.redirect("/deposit");
-
-    } else {
-      
-      const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
-      const payload = {
-          account_bank: req.body.bankselect,
-          amount: req.body.amount,
-          currency: 'NGN',
-          email: req.user.Email,
-          tx_ref: ids,
-          fullname: req.user.username,
-      };
-      const response = await flw.Charge.ussd(payload);
-
-        req.session.transferAccount =  response.meta.authorization;
-
-          res.redirect("/deposit");
-    }
-    */
-  
-  
-    //end of main if
 });
   
   

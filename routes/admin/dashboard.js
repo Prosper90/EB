@@ -16,7 +16,9 @@ router.get("/", checkAuthenticated, async function(req, res){
    let products = await Products.find().clone();
    let productsTwo = await ProductsTwo.find().clone();
    let totalusers = await User.find().count().clone();
-  res.render("admin/dashboard", { users: users, totalusers: totalusers, user: req.user, products: products, active: "dashboard", message: req.flash(), productsTwo: productsTwo});
+  //  req.flash("primary", "Log in to proceed");
+  req.flash("success", "Added products successfully");
+  res.render("admin/dashboard", { users: users, totalusers: totalusers, user: req.user, products: products, active: "dashboard", productsTwo: productsTwo});
 });
 
 

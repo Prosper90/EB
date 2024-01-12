@@ -8,19 +8,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Panda - Ultimate eCommerce Template</title>
+    <title>socialogs</title>
 
     <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Panda - Ultimate eCommerce Template">
+    <meta name="description" content="socialogs">
     <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/icons/favicon.png">
     <!-- Preload Font -->
 
-    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="../vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
-    <link rel="preload" href="vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
+    <link rel="preload" href="../vendor/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
 
     <script>
@@ -49,8 +49,7 @@
 
 </head>
 
-<body class="home">
-
+<body class="home" style="position: relative;">
     <div class="page-wrapper">
         <header class="header">
             <div class="header-top">
@@ -61,7 +60,7 @@
                             <span>+456 789 000</span>
                         </a>
                         <span class="divider"></span>
-                        <a href="#" class="contact">
+                        <a href="contact.html" class="contact">
                             <i class="p-icon-map"></i>
                             <span>25 West 21th STREET, Miami FL, USA</span>
                         </a>
@@ -76,15 +75,15 @@
                         </div>
                         <!-- End DropDown Menu -->
                         <div class="dropdown switcher">
-                            <a href="#language"><img src="../images/flagus.jpg" width="14" height="10" class="mr-1"
+                            <a href="#language"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
                                     alt="flagus">ENG</a>
                             <ul class="dropdown-box">
                                 <li>
-                                    <a href="#USD"><img src="../images/flagus.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#USD"><img src="images/flagus.jpg" width="14" height="10" class="mr-1"
                                             alt="flagus">ENG</a>
                                 </li>
                                 <li>
-                                    <a href="#EUR"><img src="../images/flagfr.jpg" width="14" height="10" class="mr-1"
+                                    <a href="#EUR"><img src="images/flagfr.jpg" width="14" height="10" class="mr-1"
                                             alt="flagfr">FRH</a>
                                 </li>
                             </ul>
@@ -103,55 +102,6 @@
             </div>
 
 
-            <%- messages("messages", locals) %>
-            <!--Notification
-
-             
-             <div class="d-flex justify-content-center align-items-center" id="messages-notify">
-                <% if(message.message  == "Purchase fail") { %>
-                  <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                   style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                   id="mainMan">
-                      <h5 class="alert-title text-center"><%= message.message %></h5>
-                      <button type="button" class="btn btn-link btn-close" id="btn-click">
-                          <i class="p-icon-close"></i>
-                      </button>
-                  </div>
-            
-                      <% } else if (message.message  == "Log in to proceed") { %>
-
-                        <div class="alert alert-primary alert-simple alert-inline mx-auto d-flex justify-content-center mb-4 w-100" 
-                            style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                            id="mainMan">
-                            <h5 class="alert-title text-center"><%= message.message %></h5>
-                            <button type="button" class="btn btn-link btn-close" id="btn-click">
-                                <i class="p-icon-close"></i>
-                            </button>
-                        </div>
-
-                    <% }  else if(message.message  == "Not enough stock to order. Kindly order in lesser quantity") { %>
-                  
-                      <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" 
-                      style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                      id="mainMan">
-                          <h5 class="alert-title text-center"><%= message.message %></h5>
-                          <button type="button" class="btn btn-link btn-close" id="btn-click">
-                              <i class="p-icon-close"></i>
-                          </button>
-                      </div>
-            
-                    <% } else if(message.message  == "Purchase fail") { %>
-                        <div class="alert alert-success alert-simple alert-inline mx-auto d-flex justify-content-center mb-4" 
-                            style="border: 0.2px solid #ff9c28; border-radius: 7px; z-index: 999999;"
-                            id="mainMan">
-                                <h5 class="alert-title text-center"><%= message.message %></h5>
-                                <button type="button" class="btn btn-link btn-close" id="btn-click">
-                                    <i class="p-icon-close"></i>
-                                </button>
-                        </div>
-                    <% } %>
-               </div>
-            -->
              
 
 
@@ -165,10 +115,12 @@
             </div>
 -->
 
+
+
             <!--Notification-->
-
-
-
+            <div class="d-flex justify-content-center align-items-center" id="messages-notify">
+                <%- messages("messages.ejs", locals) %>
+            </div>
 
             <!-- End HeaderTop -->
             <div class="header-middle has-center sticky-header fix-top sticky-content">
@@ -185,10 +137,18 @@
                     <div class="header-center">
                         <nav class="main-nav">
                             <ul class="menu">
-                                <li class="active">
+                                <li 
+                                  <%if(active == "home") { %>
+                                    class="active" 
+                                  <% } %>
+                                >
                                     <a href="/">Home</a>
                                 </li>
-                                <li>
+                                <li
+                                <%if(active == "shop") { %>
+                                    class="active" 
+                                  <% } %>
+                                >
                                     <a href="/shop">Shop</a>
                                 </li>
                                 <li>
@@ -202,7 +162,9 @@
                             </ul>
                         </nav>
                     </div>
+
                     <div class="header-right">
+                        <%if(active == "shop") { %>
                         <div class="header-search hs-toggle">
                             <a class="search-toggle" href="#" title="Search">
                                 <i class="p-icon-search-solid"></i>
@@ -214,11 +176,16 @@
                                 </button>
                             </form>
                         </div>
+                        <%}%>
                         <div class="dropdown login-dropdown off-canvas">
-                            <a class="login-toggle"  data-toggle="login-modal">
-                                <span class="sr-only">login</span>
-                                <i class="p-icon-user-solid"></i>
-                            </a>
+                            <% if(!user) {%>
+                                <a class="login-toggle" style="display: flex; align-items: end; gap:5px; cursor: pointer;"  data-toggle="login-modal">
+                                    <span class="">login</span>
+                                    <i class="p-icon-user-solid"></i>
+                                </a>
+                             <% } else { %>
+                                <div class=""><%= user.username %></div>
+                            <% } %>
                             <!-- End Login Toggle -->
                             <div class="canvas-overlay"></div>
                             <a href="#" class="btn-close"></a>
@@ -237,13 +204,8 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane active in" id="signin">
 
-                                                    <% if (message.error) { %>
-                                                        <div class="d-flex justify-content-center text-dark">
-                                                               <%= message.error %>
-                                                         </div>
-                                                      <% } %>
 
-                                                    <form method="post" action="/registerlogin/login" >
+                                                    <form method="post" action="/registerlogin/login/other" >
                                                         <div class="form-group">
                                                             <input type="text" id="singin-email" name="Email" placeholder="Username or Email Address" required="">
                                                             <input type="password" id="singin-password" name="password" placeholder="Password" required="">
@@ -268,14 +230,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="register">
-
-                                                    <% if(locals.message) { %>
-                                                        <div class="alert alert-<%=message.type%>" >
-                                                        <button type="button" class="close bg-primary" data-dismiss="alert">&times;</button>
-                                                        <strong><%=message.intro%></strong>
-                                                        <%= message.message %>
-                                                        </div>
-                                                      <%}%>
 
                                                     <form method="post" action="/registerlogin">
                                                         <div class="form-group">
@@ -310,10 +264,11 @@
                             </div>
                             <!-- End Dropdown Box -->
                         </div>
-                        <a href="#" class="wishlist wishlist-toggle" title="Wishlist">
+                        <!-- <a href="/" class="wishlist wishlist-toggle" title="Wishlist">
                             <i class="p-icon-heart-solid"></i>
-                        </a>
+                        </a> -->
                     </div>
+                    
                 </div>
             </div>
         </header>

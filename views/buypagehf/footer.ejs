@@ -32,7 +32,7 @@
                 </ul>
             </div>
             <div class="footer-center">
-                <a href="/" class="logo-footer">
+                <a href="demo1.html" class="logo-footer">
                     <img src="../images/logo.png" alt="logo-footer" width="171" height="41">
                 </a>
                 <div class="social-links">
@@ -44,16 +44,7 @@
                 <!-- End of Social Links -->
             </div>
             <div class="footer-right">
-                <div class="widget-newsletter">
-                    <h4 class="widget-title">Subscribe Newsletter</h4>
-                    <p>Subscribe to the Panda eCommerce Newsletter<br> updates from your favourite products.
-                    </p>
-                    <form action="#" class="form-simple">
-                        <input type="email" name="email" id="email" placeholder="Email address here..."
-                            required="">
-                        <button class="btn btn-link" type="submit">sign up</button>
-                    </form>
-                </div>
+
             </div>
         </div>
         <!-- End FooterMiddle -->
@@ -82,18 +73,20 @@
     <i class="p-icon-user-solid"></i>
     <span>Account</span>
 </a>
-<div class="header-search hs-toggle dir-up">
-    <a href="#" class="search-toggle sticky-link">
-        <i class="p-icon-search-solid"></i>
-        <span>Search</span>
-    </a>
+<a href="/dashboard" class="search-toggle sticky-link">
+    <i class="p-icon-settings"></i>
+    <span>Dashboard</span>
+</a>
+<!-- header-search hs-toggle dir-up  (its a class)-->
+<!-- <div class="">
+
     <form action="#" class="form-simple">
         <input type="text" name="search" autocomplete="off" placeholder="Search your keyword..." required />
         <button class="btn btn-search" type="submit">
             <i class="p-icon-search-solid"></i>
         </button>
     </form>
-</div>
+</div> -->
 </div>
 <!-- Scroll Top -->
 <a id="scroll-top" class="scroll-top" href="#top" title="Top" role="button"> <i class="p-icon-arrow-up"></i>
@@ -128,7 +121,7 @@
         <li>
             <a href="/dashboard">Dashboard</a>
         </li>
-        <li><a href="#">Watch us!</a></li>
+        <li><a href="#">Blog!</a></li>
     </ul>
     <!-- End MobileMenu -->
 </div>
@@ -142,35 +135,63 @@
 <script src="../vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
 <!-- Main JS File -->
 <script src="../js/main.js"></script>
-
 <script>
-    $('.quantity-plus').click(function(e){
-      e.preventDefault();
-        console.log($('#purchaseNumber').val());
+    $(document).ready(function() {
 
-        $('#purchaseNumber').val( function(i, oldval) {
-            return ++oldval;
-        });
+        let selectedValue = $('#ddlViewBy').val();
+        const basePath = `${location.protocol}//${location.host}`;
+        console.log(basePath, "checking basepath clientside");
+    
+        $("#ddlViewBy").click(function(){
+            console.log($('#ddlViewBy').val());
+            selectedValue = $('#ddlViewBy').val();
+            console.log(basePath, "checking basepath clientside");
+        })
 
-    });
+        //window.location.replace(url)
 
-    $('.quantity-minus').click(function(e){
-      e.preventDefault();
-        console.log($('#purchaseNumber').val());
 
-        $('#purchaseNumber').val( function(i, oldval) {
-            if(oldval <= 1) {
-                return oldval;
+        $("#purchasefacebook").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
             }
-            return --oldval;
-        });
-        
+
+        })
+
+
+        $("#purchasetwitter").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
+            }
+
+        })
+
+
+        $("#purchaseinstagram").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
+            }
+
+        })
+
+
+        $("#purchasegoogle").click(function(){
+            console.log("called purchase");
+            if(selectedValue != "") {
+                window.location.replace(`${basePath}/buypage/${selectedValue}`);
+            }
+
+        })
+
 
         $('#btn-click').on("click",  (function(t) {
             $("#mainMan").addClass("hideo");
         })) 
-
-     });
+     
+    });
 </script>
 </body>
 
