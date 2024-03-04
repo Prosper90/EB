@@ -2,6 +2,8 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const registerlogin = require("./routes/clients/registerlogin");
+const register = require("./routes/clients/register");
+const login = require("./routes/clients/login");
 const shop = require("./routes/clients/shop");
 const moreTable = require("./routes/clients/moreTables");
 const orders = require("./routes/clients/orders");
@@ -17,6 +19,7 @@ const home = require("./routes/clients/home");
 const addToCart = require("./routes/clients/addToCart");
 const myaccount = require("./routes/clients/myaccount");
 const checkout = require("./routes/clients/checkout");
+const blog = require("./routes/clients/blog");
 
 const adminlogin = require("./routes/admin/adminlogin");
 const admin = require("./routes/admin/dashboard");
@@ -36,8 +39,6 @@ const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const methodOveride = require("method-override");
-const MongoStore = require("connect-mongo");
-const Cart = require("./model-database/cart");
 
 const initializePassport = require("./passport-config");
 const { ErrorHandler } = require("./middlewares/error.js");
@@ -68,7 +69,6 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: { maxAge: 180 * 60 * 1000 },
   })
 );
@@ -87,6 +87,8 @@ app.use(passport.session());
 
 app.use("/addToCart", addToCart);
 app.use("/registerlogin", registerlogin);
+app.use("/register", register);
+app.use("/login", login);
 app.use("/shop", shop);
 app.use("/moreTable", moreTable);
 app.use("/orders", orders);
@@ -99,6 +101,8 @@ app.use("/buymain", buymain);
 // app.use("/home", home);
 app.use("/myaccount", myaccount);
 app.use("/checkout", checkout);
+app.use("/blog", blog);
+
 
 //admin section
 app.use("/adminlogin", adminlogin);
@@ -114,74 +118,11 @@ app.use("/webhook", webhook);
 
 //main one
 app.get("/", function (req, res) {
-  
+  console.log(req.user, "checking request.user");
   res.render("home", { active: "home", user: req.user});
 });
 
-// app.get("/", async function (req, res) {
-//   const sideProducts = await ProductTwo.find({}).clone();
-//   //const user = checkAuthenticated();fd gte
-//   //console.log(user, "Authenticating");
-//   var cart = new Cart(req.session.cart ? req.session.cart : { items: {} });
-//   var seletproduct = !req.session.cart ? null : cart.generateArray();
-//   console.log(req.session.cart, "checking if there is a cart");
-//   console.log(
-//     res.locals.messages,
-//     req.session.locals,
-//     "checking other details one"
-//   );
-//   res.render("homemain", {
-//     sideProducts: sideProducts,
-//     user: req.user,
-//     cartProducts: seletproduct,
-//     active: "home",
-//   });
-// });
 
-// app.post("/", async function (req, res) {
-//   await Admin.findById({ _id: "6331ef970fcb743e2f09df99" }, (err, data) => {
-//     if (err) console.log(err);
-
-//     data.Subscribers.push({
-//       email: req.body.email,
-//     });
-
-//     data.markModified("Subscribers");
-//     data.save(function (saveerr, saveresult) {
-//       if (saveerr) {
-//         req.flash("error", "Failed");
-//         res.redirect(`/`);
-//       } else {
-//         req.flash("success", "Suscribed Successfully");
-//         res.redirect(`/`);
-//       }
-//     });
-//   });
-// });
-
-/*
-app.get("/home",  checkAuthenticated, async function(req, res) {
-  console.log(req.session.messages, req.session.locals, "checking other details");
-  res.send("hello there")
-});
-*/
-
-// async function checkAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     //console.log("running")
-//     return next();
-//   }
-//   console.log("Something else");
-//   const sideProducts = await ProductTwo.find({}).clone();
-//   //const user = checkAuthenticated();
-//   //console.log(user, "Authenticating");
-//   console.log(
-//     req.session.messages,
-//     req.session.locals,
-//     "checking other details"
-//   );
-//   res.render("homemain", { sideProducts: sideProducts, user: false });
-// }
 
 // Error handler middleware
 app.use(ErrorHandler);

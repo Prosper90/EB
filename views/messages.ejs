@@ -1,20 +1,13 @@
 <% Object.keys(messages).forEach(function (type) { %>
 <div
-  class="alert alert-<%= type %> alert-simple alert-inline mx-auto d-flex justify-content-center mb-4"
+  class="alert alert-<%= type %> alert-dismissible fade show"
   role="alert"
   id="messages-notify"
 >
   <% messages[type].forEach(function (message) { %>
-  <h5 class="alert-title text-center"><%= message %></h5>
+    <%= message %>
   <% }) %>
 
-  <button
-    type="button"
-    class="btn btn-link btn-close"
-    data-bs-dismiss="alert"
-    aria-label="close"
-  >
-    <i class="p-icon-close"></i>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <% }) %>

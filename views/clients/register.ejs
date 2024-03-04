@@ -1,0 +1,84 @@
+<%- include ("../header.ejs"); %>
+<style>
+    .cover {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .page-header {
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0; 
+    right: 0;
+    z-index: 1023;
+    min-height: 55px;
+    padding: 13px 0px;
+    background: transparent;
+    border-radius: 8px;
+}
+
+.btc_mine {
+    display: block;
+    color: #fff;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+    padding: 19px;
+    border-radius: 6px;
+    background: #4A5FE1;
+    width: 100%;
+    outline: none;
+    border: none;
+}
+</style>
+
+<div class="cover">
+    <div class="pc-content">
+        <div class="page-header">
+
+            <form method="post" action="/register" class="login-page__content">
+                <h2 class="login-page__title">Register to get an account </h2>
+                <div class="login-page__input">
+                    <span>Your Email</span>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required="required">
+                </div>
+                <div class="login-page__password">
+                    <span>Your Password</span>
+                    <input id="password" type="password" name="password" placeholder="********" required="required">
+                    <i data-toggle="#password" class="fa-sharp fa-light fa-eye toggle-password"></i>
+                </div>
+                <div class="remember-password">
+                    <input type="checkbox" name="remember-password" id="remember-password">
+                    <p>Remember Me</p>
+                </div>
+                <button type="submit" class="login-page__btn mt-45 btc_mine">
+                    Register
+                </button>
+                <div class="alternative-login mt-30">
+                    <h5>OR</h5>
+                    <div class="alternative-login__btn mt-40">
+                        <div class="login__btn">
+                            <a href="#"><img src="assets/img/icon/google.svg" alt="icon"> Google</a>
+                            <a href="#"><img src="assets/img/icon/apple.svg" alt="icon"> Apple</a>
+                            <a href="#"><img src="assets/img/icon/facebook.svg" alt="icon"> Facebook</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sign-up mt-45">
+                    <p>Don’t have an account ? <a href="#">Sign Up for free</a></p>
+                </div>
+            </form>
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+    
+</div>
+
+<%- include ("../footer.ejs"); %>

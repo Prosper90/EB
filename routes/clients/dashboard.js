@@ -6,8 +6,13 @@ const router = express.Router();
 
 router.get("/", checkAuthenticated, async function (req, res) {
   //console.log(req.user);
+ const totalOrders = req.user?.Orders.length;
+ const totalDeposit = req.user?.Deposit.length;
+
   res.render("clients/dashboard", {
     user: req.user,
+    totalOrders: totalOrders,
+    totalDeposit: totalDeposit,
     transferAccount: undefined,
   });
 });
@@ -25,7 +30,7 @@ function checkAuthenticated(req, res, next) {
     message: "Log in to proceed"
   }
   */
-  req.flash("primary", "Log in to proceed");
+  req.flash("warning", "Log in to proceed");
   res.redirect("/");
 }
 

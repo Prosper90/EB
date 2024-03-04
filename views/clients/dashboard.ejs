@@ -1,95 +1,451 @@
-<%- include ("header.ejs"); %>
+<%- include ("../header.ejs"); %>
+<style>
+    .cover {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
 
-<div class="tab-content col-lg-9 col-md-8">
-    <div class="tab-pane active" id="dashboard">
-        <p class="mb-0">
-            Hello <span class="font-weight-bold text-secondary"><%=user.username%></span> 
-        </p>
-        <p class="">
-            From your account dashboard you can view your
-            <a href="#orders" class="link-to-tab text-primary">recent orders</a>, get your <a
-                href="#address" class="link-to-tab text-primary"> bought accounts
-                passwords</a>.
-        </p>
-        <div class="row cols-lg-3 cols-xs-2 cols-1 nav" >
+    .page-header {
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0; 
+    right: 0;
+    z-index: 1023;
+    min-height: 55px;
+    padding: 13px 0px;
+    background: transparent;
+    border-radius: 8px;
+}
+</style>
 
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="/orders"
-                        class="no-tab-item">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-orders"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>ORDERS</p>
+<div class="cover">
+    <div class="pc-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Users</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Account Profile</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h2 class="mb-0">Account Profile</h2>
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <!--
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="#downloads">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-download"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>DOWNLOADS</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            -->
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="#comingsoon">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-map"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>ADDRESSES</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="/deposit">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-money"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>DEPOSIT</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="/shop"
-                        class="no-tab-item">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-heart-solid"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>Shop</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="ib-wrapper mb-4">
-                <div class="icon-box text-center ib-border"><a href="/dashboard/logout"
-                        class="no-tab-item">
-                        <span class="icon-box-icon">
-                            <i class="p-icon-logout"></i>
-                        </span>
-                        <div class="icon-box-content">
-                            <p>LOGOUT</p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ sample-page ] start -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body py-0">
+                        <ul class="nav nav-tabs profile-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="profile-tab-1" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="true"> <i class="ti ti-user me-2"></i>Profile </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab-2" data-bs-toggle="tab" href="#profile-2" role="tab" aria-selected="false" tabindex="-1"> <i class="ti ti-file-text me-2"></i>Orders</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab-3" data-bs-toggle="tab" href="#profile-3" role="tab" aria-selected="false" tabindex="-1"> <i class="ti ti-id me-2"></i>Deposit history</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab-4" data-bs-toggle="tab" href="#profile-4" role="tab" aria-selected="false" tabindex="-1"> <i class="ti ti-lock me-2"></i>Change Password </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab-5" data-bs-toggle="tab" href="#profile-5" role="tab" aria-selected="false" tabindex="-1"> <i class="ti ti-users me-2"></i>Deposit</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab-6" data-bs-toggle="tab" href="#profile-6" role="tab" aria-selected="false" tabindex="-1"> <i class="ti ti-settings me-2"></i>Tickets</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="profile-1" role="tabpanel" aria-labelledby="profile-tab-1">
+                        <div class="row">
+                            <div class="col-lg-4 col-xxl-3">
+                                <div class="card">
+                                    <div class="card-body position-relative">
+                                       
+                                        <div class="text-center mt-3">
+                                            <% const firstLetter = user?.username.slice(0, 1).toUpperCase();%>
+                                            <div class="chat-avtar d-inline-flex mx-auto">
+                                                <div class="rounded-circle img-fluid wid-70 profile-pic">
+                                                    <%= firstLetter %>
+                                                </div>
+                                            </div>
+                                            <h5 class="mb-0"><%=user.username%></h5>
+                                            <p class="text-muted text-sm"><%=user.Email%></p>
+                                            <hr class="my-3 border border-secondary-subtle" />
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <h5 class="">N<%= user?.balance?.toLocaleString() %></h5>
+                                                    <small class="text-muted">Balance</small>
+                                                </div>
+                                            </div>
+                                            <hr class="my-3 border border-secondary-subtle" />
+                                            <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
+                                                <i class="ti ti-mail me-2"></i>
+                                                <small class="mb-0"><%=user.Email%></small>
+                                            </div>
+                                            <div class="d-inline-flex align-items-center justify-content-start w-100 mb-3">
+                                                <i class="ti ti-phone me-2"></i>
+                                                <p class="mb-0">---</p>
+                                            </div>
 
-<%- include ("footer.ejs"); %>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            <div class="col-lg-8 col-xxl-9">
+                                <!-- <div class="card">
+                                    <div class="card-header">
+                                        <h5>About me</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-0">
+                                            Hello, I’m Anshan Handgun Creative Graphic Designer &amp; User Experience Designer based in Website, I create digital Products a more Beautiful and usable place. Morbid accusant ipsum. Nam nec tellus
+                                            at.
+                                        </p>
+                                    </div>
+                                </div> -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Personal Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item px-0 pt-0">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Total Deposit</p>
+                                                        <p class="mb-0"> <%=totalDeposit%> </p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Total Orders</p>
+                                                        <p class="mb-0"> <%=totalOrders%> </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item px-0">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Tickets Open</p>
+                                                        <p class="mb-0">0</p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Tickets Closed</p>
+                                                        <p class="mb-0">0</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- <li class="list-group-item px-0">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Email</p>
+                                                        <p class="mb-0">anshan.dh81@gmail.com</p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="mb-1 text-muted">Zip Code</p>
+                                                        <p class="mb-0">956 754</p>
+                                                    </div>
+                                                </div>
+                                            </li> -->
+                                            <li class="list-group-item px-0 pb-0">
+                                                <p class="mb-1 text-muted">Disputes</p>
+                                                <p class="mb-0">Any issue contact admin</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-2">
+                        <div class="card">
+                            <div class="card-header">
+                              <h5>Orders</h5>
+                            </div>
+                            <div class="card-body">
+                                <!--table starts-->
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="pc-dt-simple">
+                                      <thead>
+                                        <tr>
+                                          <th class="text-end">#</th>
+                                          <th>Order</th>
+                                          <th class="text-end">Price</th>
+                                          <th>Status</th>
+                                          <th class="text-center">Actions</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <%let orderReverseOders = user.Orders.reverse(); %>
+                                        <%orderReverseOders.map((data, index) => {%>
+                                        <tr>
+                                          <td class="text-end"><%=index%></td>
+                                          <td>
+                                            <div class="row">
+                                              <div class="col-auto pe-0">
+                                                <% if(data.type == "facebook" || data.type == "facebookDating" || data.type == "facebookOthers" ) { %>
+                                                    <a href="#" class="social-link fab fa-facebook-f"></a>
+                                                    <% } else if(data.type == "twitter") { %>
+                                                    <a href="#" class="social-link fab fa-twitter"></a>
+                                                    <% } else if(data.item == "instagram") { %>
+                                                    <a href="#" class="social-link fab fa-linkedin-in"></a>
+                                                    <% } else { %> Others <% } %>
+                                              </div>
+                                              <div class="col">
+                                                <h6 class="mb-1"><%=data._id%></h6>
+                                                <p class="text-muted f-12 mb-0"><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></p>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          <td class="text-end">N<%=data.price%></td>
+                                          <td>
+                                            <%if(data.status === 1) {%>
+                                              <span class="badge bg-light-success  f-12">fufilled</span>
+                                            <%} else {%>
+                                              <td><span class="badge bg-light-danger  f-12">Pending</span> </td>
+                                           <% } %>
+                                          </td>
+                                          <td class="text-center">
+                                            <ul class="list-inline me-auto mb-0">
+                                              <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
+                                                <a href="/orderdetail/<%=data.buyid%>" class="avtar avtar-xs btn-link-secondary btn-pc-default" >
+                                                  <i class="ti ti-eye f-18"></i>
+                                                </a>
+                                              </li>
+
+                                              <!-- <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Delete">
+                                                <a href="#" class="avtar avtar-xs btn-link-danger btn-pc-default">
+                                                  <i class="ti ti-trash f-18"></i>
+                                                </a>
+                                              </li> -->
+                                            </ul>
+                                          </td>
+                                        </tr>
+                                        <%})%>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                <!--table ends-->
+                            </div>
+                          </div>
+        
+                    </div>
+                    <div class="tab-pane" id="profile-3" role="tabpanel" aria-labelledby="profile-tab-3">
+                        <div class="card">
+                            <div class="card-header">
+                              <h5>Deposits</h5>
+                            </div>
+                            <div class="card-body">
+                                <!--Table starts-->
+                                    <div class="table-responsive">                            
+                                        <table class="table table-hover" id="pc-dt-deposit">
+                                            <thead>
+                                                <tr>
+                                                    <th data-sortable="true" style="width: 24.817518248175183%;"><a href="#" class="datatable-sorter">ID</a></th>
+                                                    <th data-sortable="true" style="width: 27.299270072992698%;"><a href="#" class="datatable-sorter">Date</a></th>
+                                                    <th data-sortable="true" style="width: 28.613138686131386%;"><a href="#" class="datatable-sorter">Status</a></th>
+                                                    <th data-sortable="true" style="width: 19.27007299270073%;"><a href="#" class="datatable-sorter">Amount</a></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%let orderReverse = user.Deposit.reverse(); %>
+                                                <%orderReverse.map((data) => {%>
+                                                <tr data-index="0" class="text-danger">
+                                                    <td><%=data._id%></td>
+                                                    <td><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
+                                                    <td>
+                                                        <%if(data.status === 1) {%>
+                                                        <span class="badge bg-light-success  f-12">fufilled</span>
+                                                        <%} else {%>
+                                                        <td><span class="badge bg-light-danger  f-12">Pending</span> </td>
+                                                        <% } %>
+                                                    </td>
+                                                    <td><span class="currency text-body">N<%=data.amount%></span></td>
+                                                </tr>              
+                                                <%})%>                                                        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <!--Table ends-->
+                            </div>
+                          </div>
+                    </div>
+                    <div class="tab-pane" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Change Password</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Old Password</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h5>New password must contain:</h5>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><i class="ti ti-circle-check text-success f-16 me-2"></i> At least 8 characters</li>
+                                            <li class="list-group-item"><i class="ti ti-circle-check text-success f-16 me-2"></i> At least 1 lower letter (a-z)</li>
+                                            <li class="list-group-item"><i class="ti ti-circle-check text-success f-16 me-2"></i> At least 1 uppercase letter(A-Z)</li>
+                                            <li class="list-group-item"><i class="ti ti-circle-check text-success f-16 me-2"></i> At least 1 number (0-9)</li>
+                                            <li class="list-group-item"><i class="ti ti-circle-check text-success f-16 me-2"></i> At least 1 special characters</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-end btn-page">
+                                <div class="btn btn-outline-secondary">Cancel</div>
+                                <div class="btn btn-primary">Update Profile</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane" id="profile-5" role="tabpanel" aria-labelledby="profile-tab-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Fund your account</h5>
+                            </div>
+                            <div class="card-body">
+                                <h4>24/7 <small>Deposit with Card, transfer or check. (min is N1000)</small></h4>
+                                <hr class="my-3" />
+                                <div class="row">
+                                    <form method="post" action="/deposit" class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Amount To Deposit</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="number" name="amount" class="form-control" />
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button class="btn btn-primary">Deposit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                    
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="profile-6" role="tabpanel" aria-labelledby="profile-tab-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Disputes and Tickets</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <!--table starts-->
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="pc-dt-simple">
+                                                <thead>
+                                                    <tr>
+                                                    <th class="text-end">#</th>
+                                                    <th>ID</th>
+                                                    <th class="text-end">Date</th>
+                                                    <th>Status</th>
+                                                    <th class="text-center">More</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%let Tickets = user.Orders.reverse(); %>
+                                                    <%Tickets.map((data, index) => {%>
+                                                    <tr>
+                                                    <td class="text-end"><%=index%></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-auto pe-0">
+                                                            <% if(data.type == "facebook" || data.type == "facebookDating" || data.type == "facebookOthers" ) { %>
+                                                                <a href="#" class="social-link fab fa-facebook-f"></a>
+                                                                <% } else if(data.type == "twitter") { %>
+                                                                <a href="#" class="social-link fab fa-twitter"></a>
+                                                                <% } else if(data.item == "instagram") { %>
+                                                                <a href="#" class="social-link fab fa-linkedin-in"></a>
+                                                                <% } else { %> Others <% } %>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h6 class="mb-1"><%=data._id%></h6>
+                                                        </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end"><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
+                                                    <td>
+                                                        <%if(data.status === 1) {%>
+                                                        <span class="badge bg-light-success  f-12">fufilled</span>
+                                                        <%} else {%>
+                                                        <td><span class="badge bg-light-danger  f-12">Pending</span> </td>
+                                                    <% } %>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <ul class="list-inline me-auto mb-0">
+                                                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
+                                                            <a href="/orderdetail/<%=data.buyid%>" class="avtar avtar-xs btn-link-secondary btn-pc-default" >
+                                                            <i class="ti ti-eye f-18"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <!-- <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Delete">
+                                                            <a href="#" class="avtar avtar-xs btn-link-danger btn-pc-default">
+                                                            <i class="ti ti-trash f-18"></i>
+                                                            </a>
+                                                        </li> -->
+                                                        </ul>
+                                                    </td>
+                                                    </tr>
+                                                    <%})%>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                            <!--table ends-->
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+
+                        </div>
+                        <!--end of tab 6-->
+                    </div>
+                </div>
+            </div>
+            <!-- [ sample-page ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+    
+</div>
+
+<%- include ("../footer.ejs"); %>

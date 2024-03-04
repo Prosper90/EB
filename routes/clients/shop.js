@@ -76,7 +76,7 @@ function checkAuthenticated(req, res, next) {
     message: "Log in to proceed"
   }
   */
-  req.flash("primary", "Log in to proceed");
+  req.flash("warning", "Log in to proceed");
   res.redirect("/");
 }
 

@@ -1,4 +1,4 @@
-<%- include ("./buypagehf/header.ejs"); %>
+<%- include ("header.ejs"); %>
 <!-- End Header -->
 <style>
   .table-container {
@@ -19,6 +19,28 @@
     width: 100%;
     min-width: 600px;
   }
+
+  .order-table tbody {
+    border-bottom: 1px solid #e0dede;
+}
+
+
+.order-table tbody td {
+    padding: 2.1rem 1rem;
+    border-top: 1px solid #e0dede;
+}
+
+.order-table thead th {
+    padding: 0.7rem 1rem;
+    color: #333;
+    font-weight: 300;
+    text-align: left;
+}
+
+tbody td {
+    padding: 14px !important;
+    font-weight: 500;
+}
   .table_sell {
     background-color: #54524d;
     border-radius: 20px !important;
@@ -43,31 +65,17 @@
   .first-cell-container .img {
     background-color: #ffa945;
   }
-</style>
-<main class="main">
-  <!-- <div
-    class="page-header cph-header pl-4 pr-4"
-    style="background-color: #fff7ec"
-  >
-    <h1 class="page-title font-weight-light text-capitalize">Shop</h1>
-  </div>
-  <div class="container-fluid">
-    <nav class="breadcrumb-nav has-border">
-      <ul class="breadcrumb">
-        <li><a href="demo1.html">Home</a></li>
-        <li>Shop</li>
-      </ul>
-    </nav>
 
-    <div class="page-content mb-10 shop-page shop-horizontal">
-      <nav
-        class="toolbox toolbox-horizontal sticky-toolbox sticky-content fix-top"
-      ></nav>
-      <div class="select-items">
-        <a href="#" class="filter-clean text-primary">Clean All</a>
-      </div>
-    </div>
-  </div> -->
+  .btn-dim {
+    color: #fff;
+    border-color: #54524d;
+    background-color: #54524d;
+}
+</style>
+
+
+<div class="hero-one" data-background="assets/img/hero/hero-bg-1.png" style="height: 100%;" >
+
 
   <!--Market container-->
   <div class="container d-flex flex-column" style="gap: 75px">
@@ -137,4 +145,4 @@
   <!-- End .page-content-->
 </main>
 <!-- End Main -->
-<%- include ("./buypagehf/footer.ejs"); %>
+<%- include ("footer.ejs"); %>

@@ -1,11 +1,28 @@
 <%- include ("header.ejs"); %>
-<div class="page-header">
-  <div class="row">
-    <div class="col">
-      <h3 class="page-title_edited">All products</h3>
+<div class="pc-container">
+  <div class="pc-content">
+
+
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item">
+                <a href="javascript: void(0)">Orders</a>
+              </li>
+              <li class="breadcrumb-item" aria-current="page">All Orders</li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h2 class="mb-0">ALL Orders</h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -19,7 +36,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <table
-                  id="data_table"
+                  id="pc-dt-simple"
                   class="table table-hover table-center"
                   role="grid"
                   aria-describedby="DataTables_Table_0_info"
@@ -48,14 +65,15 @@
 
                     <tr role="row" class="odd">
                       <td>
-                        <% if(data.type == "facebook" || data.type ==
-                        "facebookDating" || data.type == "facebookOthers" ) { %>
+                        <% if(data.type == "facebook" || data.type == "facebookDating" || data.type == "facebookOthers" ) { %>
                         <a href="#" class="social-link fab fa-facebook-f"></a>
                         <% } else if(data.type == "twitter") { %>
                         <a href="#" class="social-link fab fa-twitter"></a>
                         <% } else if(data.type == "instagram") { %>
                         <a href="#" class="social-link fab fa-linkedin-in"></a>
-                        <% } else { %> Others <% } %>
+                        <% } else { %> 
+                          Others
+                        <% } %>
                       </td>
                       <td>N<%=data.price%></td>
                       <td><%=data.numOfItem%></td>
@@ -84,6 +102,9 @@
       </div>
     </div>
   </div>
+</div>
+
+</div>
 </div>
 
 <%- include ("footer.ejs"); %>

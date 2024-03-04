@@ -1,77 +1,194 @@
 
 <!--footer-->
-</div>
+<footer class="pc-footer">
+    <div class="footer-wrapper container-fluid">
+      <div class="row">
+        <div class="col my-1">
+          <p class="m-0"
+            >Able Pro &#9829; crafted by Team <a href="https://themeforest.net/user/phoenixcoded" target="_blank">Phoenixcoded</a></p
+          >
+        </div>
+        <div class="col-auto my-1">
+          <ul class="list-inline footer-link mb-0">
+            <li class="list-inline-item"><a href="../index-2.html">Home</a></li>
+            <li class="list-inline-item"><a href="https://phoenixcoded.gitbook.io/able-pro/" target="_blank">Documentation</a></li>
+            <li class="list-inline-item"><a href="https://phoenixcoded.authordesk.app/" target="_blank">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Edit products-->
+ <%products.forEach((data, index) => {%>
+
+  <div class="modal fade" id="exampleModal<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                  
+
+          <form method="post" action="/products/edit/<%=data._id%>" class="w-100">
+              <div class="form-group">
+                  <label>Product Name</label>
+                  <input class="form-control" name="name" type="text" value="<%=data.name%>">
+              </div>
+              <div class="form-group">
+                  <label>Product Type</label>
+                  <input class="form-control"  name="type" type="text" value="<%=data.type%>">
+              </div>
+              <div class="form-group">
+                  <label>Product Password</label>
+                  <input class="form-control" name="password" type="text" value="<%=data.password%>">
+              </div>
+              <div class="form-group">
+                  <label>Product Description</label>
+                  <input class="form-control" name="description" type="text" value="<%=data.description%>">
+              </div>
+              
+              
+                  <div class="mt-4 d-flex justify-content-center gap-4">
+                     <button type="submit" class="btn btn-primary me-0" type="submit">Save Changes</button>
+
+                        <a href="/products/remove/<%=data._id%>"  class="btn btn-secondary"> Remove </a> 
+                  </div>
 
 
 
+          </form>
+  
+          </div>
+          
+      </div>
+      </div>
+  </div>
 
+<%})%>
+  <!--Edit products end-->
 
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <!-- [ Main Content ] end -->
+  <script src="/assetsdashboard/code.jquery.com/jquery-3.6.1.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-
-<script src="assets/js/jquery-3.6.0.min.js"></script>
-
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<script src="assets/js/admin.js"></script>
+  <!-- Required Js -->
+  <script src="/assetsdashboard/js/plugins/popper.min.js"></script>
+  <script src="/assetsdashboard/js/plugins/simplebar.min.js"></script>
+  <script src="/assetsdashboard/js/plugins/bootstrap.min.js"></script>
+  <script src="/assetsdashboard/js/fonts/custom-font.js"></script>
+  <script src="/assetsdashboard/js/pcoded.js"></script>
+  <script src="/assetsdashboard/js/plugins/feather.min.js"></script>
+  <!-- [Page Specific JS] start -->
+  <script src="/assetsdashboard/js/plugins/wow.min.js"></script>
+  <script src="/assetsdashboard/cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
+  <script src="/assetsdashboard/cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="/assetsdashboard/js/plugins/Jarallax.js"></script>
+  
+<!-- [Page Specific JS] start -->
+<script src="/assetsdashboard/js/plugins/simple-datatables.js"></script>
+<script>
+    const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
+        sortable: false,
+        perPage: 5
+    });
+    </script>
+<!-- [Page Specific JS] end -->
 
 <!-- <input type="text" name="info${increment}" class="form-control"> -->
 
 <script>
     $(document).ready(function() {
 
-        new DataTable('#data_table');
-
-        let increment = 1;
-
-        $("#totals").val(increment - 1); //.text(increment - 1);
+        let increment = 1; 
+   
+        let totals = increment - 1;
+        // $("#totals").val(increment - 1); //.text(increment - 1);
 
     
         $("#createInputs").click(function(){
             console.log("Called add function");
             $('#containCreated').append(`
-             <div id="removediv${increment}">
-                <small>${increment}</small>
-                <div class="form-group mt-3" id="titleid${increment}" style="margin: 4px !important">
-                    <label>Title</label>
-                    <input type="text" id="comment-name" name="title${increment}" required="" style="width: 100%;" />
+            <div class="card" id="cardRemove${increment}">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5>Product number</h5>
+                  <button id="removal${increment}" class="btn btn-secondary cl">Clear</button>
                 </div>
 
-                <div class="form-group mt-3" id="priceid${increment}" style="margin: 4px !important">
-                    <label>Price</label>
-                    <input type="number" id="comment-name" name="price${increment}"  required="" />
+                <div id="removediv${increment}">
+
+                  <!-- newone -->
+                  <div class="card-body" id="removediv${increment}">
+                    <small>${increment}</small>
+
+                    <form>
+                        <div class="row">
+
+                          <div class="col-lg-6" id="titleid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Title:</label>
+                              <input type="text" name="title${increment}" class="form-control" placeholder="Enter Title name">
+                              <small class="form-text text-muted">Please the title of the email</small>
+                            </div>
+                          </div>
+                          <div class="col-lg-6" id="priceid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Price:</label>
+                              <input type="number" class="form-control" name="price${increment}" placeholder="Enter Price">
+                              <small class="form-text text-muted">Please add the amount its to be sold for</small>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6" id="names${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Usernames & Emails:</label>
+                              <input type="text" class="form-control" name="names${increment}" placeholder="Enter Auth info">
+                              <small class="form-text text-muted">Please add the products emails, usernames or number</small>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6" id="detailsid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Extra details:</label>
+                              <input type="text" class="form-control" name="details${increment}" placeholder="Enter Extra Auth Info">
+                              <small class="form-text text-muted">Please add extra info on the product</small>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6" id="passwordsid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Extra details:</label>
+                              <input type="text" class="form-control" name="passwords${increment}" placeholder="Enter Passwords">
+                              <small class="form-text text-muted">Please add the neccessary passwords</small>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6" id="descriptionid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Extra details:</label>
+                              <input type="text" class="form-control" name="description${increment}" placeholder="Enter Description">
+                              <small class="form-text text-muted">Please add description of use and usage</small>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6" id="itemsnoid${increment}">
+                            <div class="form-group">
+                              <label class="form-label">Extra details:</label>
+                              <input type="number" class="form-control" name="itemsno${increment}" placeholder="Enter Products number in stock">
+                              <small class="form-text text-muted">Please add the available number in stock</small>
+                            </div>
+                          </div>
+
+                          
+
+                        </div>
+                    </form>
+                  </div>
+
                 </div>
 
-                <div class="form-group mt-3" id="names${increment}" style="margin: 4px !important">
-                    <label>username and emails</label>
-                    <input type="text" id="comment-name" name="names${increment}"  required="" />
-                </div>
-
-                <div class="form-group" id="detailsid${increment}" style="margin: 4px !important">
-                    <label>Extra Details</label>
-                    <input type="text" id="comment-name" name="details${increment}"  required="" />
-                </div>
-
-                <div class="form-group" id="passwordsid${increment}" style="margin: 4px !important">
-                    <label>password if any</label>
-                    <input type="text" id="comment-name" name="passwords${increment}"  required="" />
-                </div>
-
-                <div class="form-group" id="descriptionid${increment}" style="margin: 4px !important">
-                    <label>description for products (how to use and devices to use it for)</label>
-                    <input type="text" id="comment-name" name="description${increment}" required="" />
-                </div>
-
-                <div class="form-group" id="itemsnoid${increment}" style="margin: 4px !important">
-                    <label>total number of items</label>
-                    <input type="number" id="comment-name" name="itemsno${increment}" required="" />
-                </div>
-
-             </div> 
+              </div> 
             `);
             const add =  parseInt(increment);
             console.log(add, "work");
@@ -80,40 +197,66 @@
            $("#totals").val(increment - 1)   //.text(increment - 1);
         })
 
-      
-        //remove
-    $("#removal").click(function(event){
-        event.preventDefault();
-        console.log("clicked clicked");
-        let id = $('#removenumber').val();
+      // Delegated event handler for dynamically added elements
+    $('#containCreated').on('click', '.cl', function(event) {
+       event.preventDefault();
+        // Get the ID of the parent div
+        const elementId = $(this).attr('id');
+        console.log(`Clear button clicked for element with ID: ${elementId}`);
+        // Your clear logic here
+
+        const numberId = parseInt(elementId.match(/\d+/)[0]);
+        console.log(numberId); // Output: 1
+        let id = numberId;
         if(id === undefined) {
-        const newId = $("#totals").val();
+        const newId = totals;
         console.log(newId, "intentionally");
-        $(`#titleid${newId}`).remove();
-        $(`#priceid${newId}`).remove();
-        $(`#names${newId}`).remove();
-        $(`#detailsid${newId}`).remove();
-        $(`#passwordsid${newId}`).remove();
-        $(`#descriptionid${newId}`).remove();
-        $(`#removediv${newId}`).remove()
+        $(`#cardRemove${newId}`).remove();
         } else {
         console.log(id, "id selected");
         console.log("Called remove");
-        $(`#titleid${id}`).remove();
-        $(`#priceid${id}`).remove();
-        $(`#names${id}`).remove();
-        $(`#detailsid${id}`).remove();
-        $(`#passwordsid${id}`).remove();
-        $(`#descriptionid${id}`).remove();
-        $(`#removediv${id}`).remove()
+        $(`#cardRemove${id}`).remove();
         }
         console.log(increment, "check increment");
         let reset = increment - 1;
         increment = reset;
-            $("#totals").val(reset - 1)  //.text(reset - 1);
-            $('#removenumber').val("");
-    })
+            // $("#totals").val(reset - 1)  //.text(reset - 1);
+        totals = increment - 1;
+            // $('#removenumber').val("");
+    });
 
+    //remove
+    // $(`#removal`).click(function(event){
+    //     event.preventDefault();
+    //     console.log("clicked clicked");
+    //     let id = $('#removenumber').val();
+    //     if(id === undefined) {
+    //     const newId = $("#totals").val();
+    //     console.log(newId, "intentionally");
+    //     $(`#titleid${newId}`).remove();
+    //     $(`#priceid${newId}`).remove();
+    //     $(`#names${newId}`).remove();
+    //     $(`#detailsid${newId}`).remove();
+    //     $(`#passwordsid${newId}`).remove();
+    //     $(`#descriptionid${newId}`).remove();
+    //     $(`#removediv${newId}`).remove()
+    //     } else {
+    //     console.log(id, "id selected");
+    //     console.log("Called remove");
+    //     $(`#titleid${id}`).remove();
+    //     $(`#priceid${id}`).remove();
+    //     $(`#names${id}`).remove();
+    //     $(`#detailsid${id}`).remove();
+    //     $(`#passwordsid${id}`).remove();
+    //     $(`#descriptionid${id}`).remove();
+    //     $(`#removediv${id}`).remove()
+    //     }
+    //     console.log(increment, "check increment");
+    //     let reset = increment - 1;
+    //     increment = reset;
+    //         $("#totals").val(reset - 1)  //.text(reset - 1);
+    //         $('#removenumber').val("");
+    // })
 
 
      

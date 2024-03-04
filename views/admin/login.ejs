@@ -1,72 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- [Head] start -->
 
-<!-- Mirrored from truelysell-admin.dreamguystech.com/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Dec 2022 23:26:18 GMT -->
+
+<!-- Mirrored from ableproadmin.com/pages/login-v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jan 2024 10:34:41 GMT -->
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Truelysell | Template</title>
+  <title>Login | Able Pro Dashboard Template</title>
+  <!-- [Meta] -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Able Pro is trending dashboard template made using Bootstrap 5 design framework. Able Pro is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies.">
+  <meta name="keywords" content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard">
+  <meta name="author" content="Phoenixcoded">
 
-<link rel="shortcut icon" href="assets/img/favicon.png">
+  <!-- [Favicon] icon -->
+  <link rel="icon" href="/assetsdashboard/images/favicon.svg" type="image/x-icon"> <!-- [Font] Family -->
+<link rel="stylesheet" href="/assetsdashboard/fonts/inter/inter.css" id="main-font-link" />
+<!-- [Tabler Icons] https://tablericons.com -->
+<link rel="stylesheet" href="/assetsdashboard/fonts/tabler-icons.min.css" >
+<!-- [Feather Icons] https://feathericons.com -->
+<link rel="stylesheet" href="/assetsdashboard/fonts/feather.css" >
+<!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+<link rel="stylesheet" href="/assetsdashboard/fonts/fontawesome.css" >
+<!-- [Material Icons] https://fonts.google.com/icons -->
+<link rel="stylesheet" href="/assetsdashboard/fonts/material.css" >
+<!-- [Template CSS Files] -->
+<link rel="stylesheet" href="/assetsdashboard/css/style.css" id="main-style-link" >
+<link rel="stylesheet" href="/assetsdashboard/css/style-preset.css" >
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-14K1GBX9FG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
 
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+  gtag('config', 'G-14K1GBX9FG');
+</script>
+<!-- WiserNotify -->
+<script>
+  !(function () {
+    if (window.t4hto4) console.log('WiserNotify pixel installed multiple time in this page');
+    else {
+      window.t4hto4 = !0;
+      var t = document,
+        e = window,
+        n = function () {
+          var e = t.createElement('script');
+          (e.type = 'text/javascript'),
+            (e.async = !0),
+            (e.src = '../../pt.wisernotify.com/pixel6d4c.js?ti=1jclj6jkfc4hhry'),
+            document.body.appendChild(e);
+        };
+      'complete' === t.readyState ? n() : window.attachEvent ? e.attachEvent('onload', n) : e.addEventListener('load', n, !1);
+    }
+  })();
+</script>
+<!-- Microsoft clarity -->
+<script type="text/javascript">
+  (function (c, l, a, r, i, t, y) {
+    c[a] =
+      c[a] ||
+      function () {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
+    t = l.createElement(r);
+    t.async = 1;
+    t.src = 'https://www.clarity.ms/tag/' + i;
+    y = l.getElementsByTagName(r)[0];
+    y.parentNode.insertBefore(t, y);
+  })(window, document, 'clarity', 'script', 'gkn6wuhrtb');
+</script>
 
-<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="assets/css/admin.css">
 </head>
-<body>
-<div class="main-wrapper">
-<div class="login-page">
-<div class="login-body container">
-<div class="loginbox">
-<div class="login-right-wrap">
-<div class="account-header">
-<div class="account-logo text-center mb-4">
-<a href="index.html">
-<img src="assets/img/logo-icon.png" alt="" class="img-fluid">
-</a>
-</div>
-</div>
-<div class="login-header">
-<h3>Login <span>Admin</span></h3>
-<p class="text-muted">Access to your dashboard</p>
+<!-- [Head] end -->
+<!-- [Body] Start -->
 
-<% if (message.error) { %>
-    <div class="d-flex justify-content-center text-dark">
-           <%= message.error %>
-     </div>
-           <% } %>
-</div>
-<form method="post" action="/adminlogin/adminmanage" >
-<div class="form-group">
-<label class="control-label">Email</label>
-<input class="form-control" type="text" name="Email" placeholder="Enter your username">
-</div>
-<div class="form-group mb-4">
-<label class="control-label">Password</label>
-<input class="form-control" type="password" name="password" placeholder="Enter your password">
-</div>
-<div class="text-center">
-<button class="btn btn-block account-btn" style="background-color: #FFE1BF;" type="submit">Login</button>
-</div>
-</form>
+<body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme_contrast="" data-pc-theme="light">
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg">
+    <div class="loader-track">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
 
+  <div class="auth-main">
+    <div class="auth-wrapper v2">
+      <div class="auth-sidecontent">
+        <img src="/assetsdashboard/images/authentication/img-auth-sideimg.jpg" alt="images"
+          class="img-fluid img-auth-side">
+      </div>
+      <div class="auth-form">
+        <div class="card my-5">
+          <form class="card-body" method="post" action="/adminlogin/adminmanage">
+            <div class="text-center">
+              <a href="#"><img src="/assetsdashboard/images/logo-dark.svg" alt="img"></a>
+            </div>
+            <div class="saprator my-3">
+              <span>OR</span>
+            </div>
+            <h4 class="text-center f-w-500 mb-3">Login with your email</h4>
+            <% if (message.error) { %>
+                  <div class="d-flex justify-content-center text-dark">
+                         <%= message.error %>
+                   </div>
+                         <% } %>
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" id="floatingInput" name="Email" placeholder="Email Address">
+            </div>
+            <div class="form-group mb-3">
+              <input type="password" class="form-control" id="floatingInput1" name="password" placeholder="Password">
+            </div>
+            <div class="d-flex mt-1 justify-content-between align-items-center">
+              <div class="form-check">
+                <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="">
+                <label class="form-check-label text-muted" for="customCheckc1">Remember me?</label>
+              </div>
+              <h6 class="text-secondary f-w-400 mb-0">Forgot Password?</h6>
+            </div>
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-4">
+              <h6 class="f-w-500 mb-0">Don't have an Account?</h6>
+              <a href="#" class="link-primary">Create Account</a>
+            </div>
+      </form>
+          
 
-</div>
-</div>
-</div>
-</div>
-</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+  <!-- Required Js -->
+  <script src="/assetsdashboard/js/plugins/popper.min.js"></script>
+  <script src="/assetsdashboard/js/plugins/simplebar.min.js"></script>
+  <script src="/assetsdashboard/js/plugins/bootstrap.min.js"></script>
+  <script src="/assetsdashboard/js/fonts/custom-font.js"></script>
+  <script src="/assetsdashboard/js/pcoded.js"></script>
+  <script src="/assetsdashboard/js/plugins/feather.min.js"></script>
 
-<script src="assets/js/jquery-3.6.0.min.js"></script>
+  
+  
+  
+  
+  <script>layout_change('light');</script>
+  
+  
+  
+  
+  <script>layout_theme_contrast_change('false');</script>
+  
+  
+  
+  <script>change_box_container('false');</script>
+  
+  
+  <script>layout_caption_change('true');</script>
+  
+  
+  
+  
+  <script>layout_rtl_change('false');</script>
+  
+  
+  <script>preset_change("preset-1");</script>
 
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="assets/js/admin.js"></script>
 </body>
+<!-- [Body] end -->
 
-<!-- Mirrored from truelysell-admin.dreamguystech.com/template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Dec 2022 23:26:18 GMT -->
+
+<!-- Mirrored from ableproadmin.com/pages/login-v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jan 2024 10:34:43 GMT -->
 </html>

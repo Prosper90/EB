@@ -19,6 +19,28 @@
     width: 100%;
     min-width: 600px;
   }
+
+  .order-table tbody {
+    border-bottom: 1px solid #e0dede;
+}
+
+
+.order-table tbody td {
+    padding: 2.1rem 1rem;
+    border-top: 1px solid #e0dede;
+}
+
+.order-table thead th {
+    padding: 0.7rem 1rem;
+    color: #333;
+    font-weight: 300;
+    text-align: left;
+}
+
+tbody td {
+    padding: 14px !important;
+    font-weight: 500;
+}
   .table_sell {
     background-color: #54524d;
     border-radius: 20px !important;
@@ -43,102 +65,86 @@
   .first-cell-container .img {
     background-color: #ffa945;
   }
+
+  .btn-dim {
+    color: #fff;
+    border-color: #54524d;
+    background-color: #54524d;
+}
 </style>
-<main class="main">
-  <!-- <div
-    class="page-header cph-header pl-4 pr-4"
-    style="background-color: #fff7ec"
-  >
-    <h1 class="page-title font-weight-light text-capitalize">Shop</h1>
-  </div>
-  <div class="container-fluid">
-    <nav class="breadcrumb-nav has-border">
-      <ul class="breadcrumb">
-        <li><a href="demo1.html">Home</a></li>
-        <li>Shop</li>
-      </ul>
-    </nav>
 
-    <div class="page-content mb-10 shop-page shop-horizontal">
-      <nav
-        class="toolbox toolbox-horizontal sticky-toolbox sticky-content fix-top"
-      ></nav>
-      <div class="select-items">
-        <a href="#" class="filter-clean text-primary">Clean All</a>
-      </div>
-    </div>
-  </div> -->
+<div class="hero-one" data-background="assets/img/hero/hero-bg-1.png" style="height: 100%;" >
 
-  <!--Market container-->
-  <div class="container d-flex flex-column" style="gap: 75px">
-    <!--Add the sales page here begining-->
-    <!--facebook shop-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        FaceBook
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let faceonetype; %>
-            <%faceBook?.map((data, idx) => {%>
-            <tr>
-              <% faceonetype = data.type %>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-facebook-f"></a>
+
+  <div class="p-4 d-flex flex-column gap-5">
+
+      <!--facebook shop-->
+      <div class="">
+        <div
+          class="btn btn-dim btn-block mt-4"
+          style="border-radius: 7px; text-align: start; padding-left: 5px"
+        >
+          FaceBook
+        </div>
+        <div class="table-container">
+          <table class="order-table">
+            <thead>
+              <tr class="table_sell">
+                <th>Title</th>
+                <th></th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let faceonetype; %>
+              <%faceBook?.map((data, idx) => {%>
+              <tr>
+                <% faceonetype = data.type %>
+                <td class="order-number" style="white-space: nowrap">
+                  <div class="first-cell-container">
+                    <div class="img">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </div>
+                    <div class=""><%= data.title %></div>
                   </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
+                </td>
+                <td></td>
+                <td class="order-date">
+                  <span>NGN<%= data.price.toLocaleString() %></span>
+                </td>
+                <td class="order-status">
+                  <span> <%= data.numOfItem %> pcs.</span>
+                </td>
+                <% if(data.numOfItem === 0) {%>
+                <td class="order-total"><span>Out of stock</span></td>
+                <%} else {%>
+                <td class="order-action">
+                  <a
+                    href="/buypage/<%=data._id%>"
+                    class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+                    >purchase</a
+                  >
+                </td>
+                <%}%>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+
+        <a
+          href="/moretable/<%=faceonetype%>"
+          class="btn btn-block btn-primary mt-6 w-100 mt-2"
+          style="border-radius: 7px; text-align: center"
+        >
+          View All
+        </a>
       </div>
+      <!--end of face book-->
 
-      <a
-        href="/moretable/<%=faceonetype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of face book-->
-
-    <!--facebook dating-->
+      <!--facebook dating-->
     <div class="">
       <div
         class="btn btn-dim btn-block mt-4"
@@ -165,7 +171,7 @@
               <td class="order-number" style="white-space: nowrap">
                 <div class="first-cell-container">
                   <div class="img">
-                    <a href="#" class="social-link fab fa-facebook-f"></a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                   </div>
                   <div class=""><%= data.title %></div>
                 </div>
@@ -196,13 +202,14 @@
 
       <a  
         href="/moretable/<%=facetwotype%>"
-        class="btn btn-block btn-primary mt-6"
+        class="btn btn-block btn-primary w-100 mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
       </a>
     </div>
     <!--end of facebook dating-->
+
 
     <!--OTHER COUNTRIES FACEBOOK-->
     <div class="">
@@ -262,7 +269,7 @@
 
       <a
         href="/moretable/<%=otherface%>"
-        class="btn btn-block btn-primary mt-6"
+        class="btn btn-block btn-primary w-100 mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
@@ -328,7 +335,7 @@
 
       <a
         href="/moretable/<%=twittertype%>"
-        class="btn btn-block btn-primary mt-6"
+        class="btn btn-block btn-primary w-100 mt-6"
         style="border-radius: 7px; text-align: center"
       >
         View All
@@ -336,473 +343,474 @@
     </div>
     <!--end of TWITTER-->
 
-    <!--REEDIT-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        REEDIT
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let reddittype; %>
-            <%reddit?.map((data, idx) => {%>
-              <% reddittype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-reddit-alien"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
 
-      <a        
-        href="/moretable/<%=reddittype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of REEDIT-->
-
-    <!--MAILS-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        MAILS
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let mailtype; %>
-            <%mails?.map((data, idx) => {%>
-              <% mailtype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link far fa-envelope"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=mailtype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of MAILS-->
-
-    <!--🇺🇸 Messaging-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        MESSAGING
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let messagingtype; %>
-            <%messaging?.map((data, idx) => {%>
-              <% messagingtype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-whatsapp"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=messagingtype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of 🇺🇸 TEXTING-->
-
-    <!--INSTAGRAM-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        INSTAGRAM
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let instagramtype; %>
-            <%instagram?.map((data, idx) => {%>
-              <% instagramtype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-linkedin-in"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=instagramtype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of 🇺🇸 INSTAGRAM-->
-
-    <!--🇺🇸 TIKTOK-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        TIKTOK
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let tiktoktype; %>
-            <%tiktok?.map((data, idx) => {%>
-              <% tiktoktype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-tumblr"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=tiktoktype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of 🇺🇸 TEXTING-->
-
-    <!--LINKEDIN-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        LINKEDIN
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let linkedintype; %>
-            <%linkedin?.map((data, idx) => {%>
-              <% linkedintype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-linkedin-in"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=linkedintype%>" 
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of LINKEDIN-->
-
-    <!--🇺🇸 VPN-->
-    <div class="">
-      <div
-        class="btn btn-dim btn-block mt-4"
-        style="border-radius: 7px; text-align: start; padding-left: 5px"
-      >
-        VPN
-      </div>
-      <div class="table-container">
-        <table class="order-table">
-          <thead>
-            <tr class="table_sell">
-              <th>Title</th>
-              <th></th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% let vpntype; %>
-            <%vpn?.map((data, idx) => {%>
-              <% vpntype = data.type %>
-            <tr>
-              <td class="order-number" style="white-space: nowrap">
-                <div class="first-cell-container">
-                  <div class="img">
-                    <a href="#" class="social-link fab fa-xing"></a>
-                  </div>
-                  <div class=""><%= data.title %></div>
-                </div>
-              </td>
-              <td></td>
-              <td class="order-date">
-                <span>NGN<%= data.price.toLocaleString() %></span>
-              </td>
-              <td class="order-status">
-                <span> <%= data.numOfItem %> pcs.</span>
-              </td>
-              <% if(data.numOfItem === 0) {%>
-              <td class="order-total"><span>Out of stock</span></td>
-              <%} else {%>
-              <td class="order-action">
-                <a
-                  href="/buypage/<%=data._id%>"
-                  class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
-                  >purchase</a
-                >
-              </td>
-              <%}%>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-
-      <a
-        href="/moretable/<%=vpntype%>"
-        class="btn btn-block btn-primary mt-6"
-        style="border-radius: 7px; text-align: center"
-      >
-        View All
-      </a>
-    </div>
-    <!--end of 🇺🇸 VPN-->
-
-    <!--Add the sales page here ending-->
+<!--REEDIT-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    REEDIT
   </div>
-  <!--End of market container-->
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let reddittype; %>
+        <%reddit?.map((data, idx) => {%>
+          <% reddittype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <i class="fab fa-reddit"></i>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a        
+    href="/moretable/<%=reddittype%>"
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of REEDIT-->
+
+<!--MAILS-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    MAILS
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let mailtype; %>
+        <%mails?.map((data, idx) => {%>
+          <% mailtype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link far fa-envelope"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=mailtype%>"
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of MAILS-->
+
+<!--🇺🇸 Messaging-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    MESSAGING
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let messagingtype; %>
+        <%messaging?.map((data, idx) => {%>
+          <% messagingtype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link fab fa-whatsapp"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=messagingtype%>"
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of 🇺🇸 TEXTING-->
+
+<!--INSTAGRAM-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    INSTAGRAM
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let instagramtype; %>
+        <%instagram?.map((data, idx) => {%>
+          <% instagramtype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link fab fa-linkedin-in"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=instagramtype%>"
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of 🇺🇸 INSTAGRAM-->
+
+<!--🇺🇸 TIKTOK-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    TIKTOK
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let tiktoktype; %>
+        <%tiktok?.map((data, idx) => {%>
+          <% tiktoktype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link fab fa-tumblr"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=tiktoktype%>"
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of 🇺🇸 TEXTING-->
+
+<!--LINKEDIN-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    LINKEDIN
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let linkedintype; %>
+        <%linkedin?.map((data, idx) => {%>
+          <% linkedintype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link fab fa-linkedin-in"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=linkedintype%>" 
+    class="btn btn-block btn-primary mt-6 w-100 mt-2"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of LINKEDIN-->
+
+<!--🇺🇸 VPN-->
+<div class="">
+  <div
+    class="btn btn-dim btn-block mt-4"
+    style="border-radius: 7px; text-align: start; padding-left: 5px"
+  >
+    VPN
+  </div>
+  <div class="table-container">
+    <table class="order-table">
+      <thead>
+        <tr class="table_sell">
+          <th>Title</th>
+          <th></th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let vpntype; %>
+        <%vpn?.map((data, idx) => {%>
+          <% vpntype = data.type %>
+        <tr>
+          <td class="order-number" style="white-space: nowrap">
+            <div class="first-cell-container">
+              <div class="img">
+                <a href="#" class="social-link fab fa-xing"></a>
+              </div>
+              <div class=""><%= data.title %></div>
+            </div>
+          </td>
+          <td></td>
+          <td class="order-date">
+            <span>NGN<%= data.price.toLocaleString() %></span>
+          </td>
+          <td class="order-status">
+            <span> <%= data.numOfItem %> pcs.</span>
+          </td>
+          <% if(data.numOfItem === 0) {%>
+          <td class="order-total"><span>Out of stock</span></td>
+          <%} else {%>
+          <td class="order-action">
+            <a
+              href="/buypage/<%=data._id%>"
+              class="btn btn-secondary btn-outline btn-block btn-rounded btn-sm"
+              >purchase</a
+            >
+          </td>
+          <%}%>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <a
+    href="/moretable/<%=vpntype%>"
+    class="btn btn-block btn-primary w-100 mt-6"
+    style="border-radius: 7px; text-align: center"
+  >
+    View All
+  </a>
+</div>
+<!--end of 🇺🇸 VPN-->
+
+  </div>
+
+
+</div>
 
   <!-- End .page-content-->
-</main>
 <!-- End Main -->
 <%- include ("footer.ejs"); %>

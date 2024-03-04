@@ -1,0 +1,124 @@
+<%- include ("header.ejs"); %>
+<!-- End Header -->
+<style>
+  .table-container {
+    background-color: #f8f8f8;
+    border-radius: 7px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .table-container {
+      overflow-x: visible;
+    }
+  }
+
+  .order-table {
+    width: 100%;
+    min-width: 600px;
+  }
+
+  .order-table tbody {
+    border-bottom: 1px solid #e0dede;
+}
+
+
+.order-table tbody td {
+    padding: 2.1rem 1rem;
+    border-top: 1px solid #e0dede;
+}
+
+.order-table thead th {
+    padding: 0.7rem 1rem;
+    color: #333;
+    font-weight: 300;
+    text-align: left;
+}
+
+tbody td {
+    padding: 14px !important;
+    font-weight: 500;
+}
+  .table_sell {
+    background-color: #54524d;
+    border-radius: 20px !important;
+    color: #fff !important;
+  }
+
+  .table_sell th {
+    color: #fff !important;
+    font-size: 16px !important;
+  }
+
+  tbody td {
+    padding: 14px !important;
+    font-weight: 500;
+  }
+
+  .first-cell-container {
+    display: flex;
+    gap: 5px;
+  }
+
+  .first-cell-container .img {
+    background-color: #ffa945;
+  }
+
+  .btn-dim {
+    color: #fff;
+    border-color: #54524d;
+    background-color: #54524d;
+}
+</style>
+
+<div class="hero-one" data-background="/assetsdashboard/img/hero/hero-bg-1.png" style="height: 100%;" >
+
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card soon-card">
+              <div class="card-body">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-6">
+                    <img class="img-fluid" src="/assetsdashboard/images/pages/img-soon-2.svg" alt="img">
+                  </div>
+                  <div class="col-md-4">
+                    <h3 class="mt-4 text-center f-46"><b>Coming Soon</b></h3>
+                    <p class="mt-3 mb-4 text-center text-muted f-16">Something new is on it's way</p>
+                    <div class="row timer-block mt-4 justify-content-center" id="timer-block"><div class="col-auto"><span class="avtar  avtar-xl">1</span></div><div class="col-auto"><span class="avtar  avtar-xl">23</span></div><div class="col-auto"><span class="avtar  avtar-xl">15</span></div><div class="col-auto"><span class="avtar  avtar-xl">31</span></div></div>
+                    <div class="row d-flex my-4">
+                      <div class="col">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                      </div>
+                      <div class="col-auto">
+                        <div class="d-grid">
+                          <button class="btn btn-primary d-flex align-items-center"><i class="ti ti-bell-ringing me-2"></i>Notify Me</button>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="list-inline d-flex align-items-center justify-content-center mb-0">
+                      <li class="list-inline-item"><a href="#" class="btn btn-icon btn-link-secondary">
+                          <svg class="pc-icon">
+                            <use xlink:href="#custom-facebook"></use>
+                          </svg> </a></li>
+                      <li class="list-inline-item"><a href="#" class="btn btn-icon btn-link-secondary">
+                          <svg class="pc-icon">
+                            <use xlink:href="#custom-google"></use>
+                          </svg> </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</div>
+
+  <!-- End .page-content-->
+<!-- End Main -->
+<%- include ("footer.ejs"); %>

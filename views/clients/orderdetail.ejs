@@ -1,103 +1,67 @@
-<%- include ("../orderdetails/header.ejs"); %>
+<%- include ("../header.ejs"); %>
 
 
-<div class="tab-pane order active in" id="orders-view" style="width: 100% ;">
-    <h2 class="title text-left pb-1">Order Details</h2>
-    <div class="order-details">
-        <table class="order-details-table">
-            <thead>
-                <tr class="summary-subtotal">
-                    <td>
-                        <h3 class="summary-subtitle">Your Order</h3>
-                    </td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody style="overflow-y: scroll; overflow-x: hidden;">
-                 <div style="border-bottom-color: green;">
+<div class="hero-one" data-background="assets/img/hero/hero-bg-1.png" style="height: 100%; padding:20px;" >
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
 
-                    <tr>
-                        <td class="product-name">Type </td>
-                        <td class="product-price"><%=item?.type%></td>
-                    </tr>
+                <div class="collapse multi-collapse show" id="multiCollapseExample1">
 
-                    <tr>
-                        <td class="product-name"> title </td>
-                        <td class="d-flex justify-content-end">
-                            <div class="product-price d-flex">
-                                <div class=""><%=item?.title%></div> 
+                    <div class="card-body border-bottom">
+                        <div class="row align-items-center">
+                            <div class="col">
+                            <h5 class="mb-0">Product Information</h5>
                             </div>
-                        </td>
-                    </tr>
-<!-- 
-                    <tr>
-                        <td class="product-name"> password </td>
-                        <td class="d-flex justify-content-end">
-                            <div class="product-price d-flex">
-                                <div class=""></div>
-                            </div>
-                        </td>
-                    </tr> -->
+                            <!-- <div class="col-auto">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Add new Address</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    
 
-                    <tr>
-                        <%= console.log(item, "items"); %>
-                     <td class="product-name"> Details </td>
-                        <td class="d-flex justify-content-end align-items-centers">
-                            <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                <div 
-                                id="copyItems" 
-                                style="width: 147px; height: 68px; overflow: auto; border: 1px solid black; border-radius: 5px; text-align: center;" >
-                                    <%= item?.details %>
-                                </div>
-                                <div class="">
-                                <button
-                                style="background: #ff9c28; border-radius: 5px;font-size: 12px;"
-                                 id="btcCopy"
-                                 onclick="copyText(`#copyItems`, '<%=item.details%>', '<%=item.names%>', '<%=item.password%>')"
-                                 >copy</button>
+                    <div class="card-body">
+                        
+                        <div class="address-check-block">
+
+                            <div class="address-check border rounded p-3">
+                                <div class="form-check">
+                                  <input type="radio" name="radio1" class="form-check-input input-primary" id="address-check-2">
+                                   <label class="form-check-label d-block" for="address-check-2">
+                                        <span class="h6 mb-0 d-block"> <%=item.title%> <small class="text-muted">(<%=item.type%>)</small></span>
+                                        <span class="text-muted address-details"> <%=item.names%> </span>
+                                        <span class="text-muted address-details"> <%=item.details%></span>
+                                        <span class="text-muted address-details"> <%=item.description%> </span>
+                                        <span class="text-muted address-details"> <%=item.password%> </span>
+
+                                        <span class="col-6">
+                                        <span class="text-muted mb-0"></span>
+                                        </span>
+                                        <span class="col-6 text-end">
+                                        <span class="d-flex align-items-center justify-content-end">
+                                            <button 
+                                              class="btn btn-sm btn-outline-primary"
+                                              style="z-index: 999999999;"
+                                              id="copier"
+                                              onclick="copyText(`<%=item.names%>`, `<%=item.details%>`, `<%=item.description%>`, `<%=item.password%>`)">
+                                              Copy Details
+                                            </button>
+                                        </span>
+                                    </span>
+                                    </label>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td class="product-name"> usernames / emails </td>
-                           <td class="d-flex justify-content-end align-items-centers">
-                               <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                   <div style=" height: 40px; border: 1px solid black; border-radius: 5px; text-align: center; padding: 6px;">
-                                       <%= item.names %>
-                                   </div>
-                               </div>
-                           </td>
-                       </tr>
 
-                       <tr>
-                        <td class="product-name"> Description </td>
-                           <td class="d-flex justify-content-end align-items-centers">
-                               <div class="product-price d-flex" style="width: 100%; display: flex; justify-content: end; gap: 21px;">
-                                   <div style="border-radius: 5px;">
-                                       <%= item.description%>
-                                   </div>
-                               </div>
-                           </td>
-                       </tr>
-                       
-                       
-                    <tr class="summary-subtotal">
-                        <td>
-                            <h4 class="summary-subtitle">Amount:</h4>
-                        </td>
-                        <td class="summary-value font-weight-normal">N<%=item.price%></td>
-                    </tr>
-                  </div>
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+
+                </div>
+
+
+     </div>
     </div>
+   </div>
+  </div>
 
-
-    <hr class="mt-0 mb-6">
-    <a href="/orders" class="btn btn-dark btn-sm back-order"><i class="p-icon-arrow-long-left ml-0 mr-1"></i>Back to list</a>
-</div>
-</div>
-
-<%- include ("../orderdetails/footer.ejs"); %>
+<%- include ("../footer.ejs"); %>

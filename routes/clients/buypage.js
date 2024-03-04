@@ -21,7 +21,7 @@ router.post("/:id", checkAuthenticated, async function (req, res, next) {
     console.log("hi hi there", req.params.id);
     //check for available market
   const buyingProduct = await Products.findOne({ _id: req.params.id });
-  // console.log(buyingProduct, "buying product");
+  console.log(buyingProduct, "buying product");
   const user = await User.findById({ _id: req.user._id });
   const totalPrice = buyingProduct.price * req.body.purchaseNumber;
   if(!buyingProduct) {
