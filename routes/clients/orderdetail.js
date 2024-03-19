@@ -32,7 +32,7 @@ function checkAuthenticated(req, res, next){
       return next()
     }
   
-    res.redirect("/home")
+    res.redirect("/")
   }
   
 

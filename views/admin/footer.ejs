@@ -70,6 +70,59 @@
 <%})%>
   <!--Edit products end-->
 
+
+    <!-- Resolve Tickets-->
+ <%users.forEach((dataTic, index) => {%>
+  <%dataTic.Tickets.forEach((data) => {%>
+  <div class="modal fade" id="exampleModalTick<%=data._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Ticket</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+                  
+
+          <form method="post" action="/admin/ticket/<%= dataTic._id %>/<%=data.ticket_id%>" class="w-100">
+              <div class="form-group">
+                  <label>ticket Id</label>
+                  <input class="form-control" name="name" type="text" value="<%=data.ticket_id%>">
+              </div>
+              <div class="form-group">
+                  <label>Ticket Issue</label>
+                  <input class="form-control"  name="type" type="text" value="<%=data.issue%>">
+              </div>
+              <div class="form-group">
+                  <label>Issue on Product</label>
+                  <% const findSpecificProduct = products.map((pdata) =>  pdata._id === data.product_id) %>
+                  <input class="form-control" name="text" type="text" value="<%=findSpecificProduct.title%>">
+              </div>
+              
+              <div class="form-group">
+                <label>Update Status: currently <%= data.status %></label>
+                <select id="fixedValue" name="admin_pick">
+                  <option value="value1">pending</option>
+                  <option value="value2">resolved</option>
+                  <option value="value3">failed</option>
+                </select>
+              </div>
+
+                  <div class="mt-4 d-flex justify-content-center gap-4">
+                     <button type="submit" class="btn btn-primary me-0" type="submit">Save Changes</button>
+                  </div>
+          </form>
+  
+          </div>
+          
+      </div>
+      </div>
+  </div>
+  <%})%>
+
+<%})%>
+  <!--Resolve tickets end-->
+
   <!-- [ Main Content ] end -->
   <script src="/assetsdashboard/code.jquery.com/jquery-3.6.1.min.js"></script>
 
@@ -81,6 +134,8 @@
   <script src="/assetsdashboard/js/pcoded.js"></script>
   <script src="/assetsdashboard/js/plugins/feather.min.js"></script>
   <!-- [Page Specific JS] start -->
+  <script src="/assetsdashboard/js/plugins/apexcharts.min.js"></script>
+  <script src="/assetsdashboard/js/pages/dashboard-default.js"></script>
   <script src="/assetsdashboard/js/plugins/wow.min.js"></script>
   <script src="/assetsdashboard/cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js"></script>
   <script src="/assetsdashboard/cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -93,7 +148,12 @@
         sortable: false,
         perPage: 5
     });
-    </script>
+
+    const dataTables = new simpleDatatables.DataTable('#pc-dt-simples', {
+        sortable: false,
+        perPage: 5
+    });
+</script>
 <!-- [Page Specific JS] end -->
 
 <!-- <input type="text" name="info${increment}" class="form-control"> -->

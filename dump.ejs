@@ -776,3 +776,15 @@
     </div>
 
 </div>
+
+
+<!--For ticket type-->
+<div class="col-auto pe-0">
+  <% if(data.type == "facebook" || data.type == "facebookDating" || data.type == "facebookOthers" ) { %>
+      <a href="#" class="social-link fab fa-facebook-f"></a>
+      <% } else if(data.type == "twitter") { %>
+      <a href="#" class="social-link fab fa-twitter"></a>
+      <% } else if(data.item == "instagram") { %>
+      <a href="#" class="social-link fab fa-linkedin-in"></a>
+      <% } else { %> Others <% } %>
+</div>

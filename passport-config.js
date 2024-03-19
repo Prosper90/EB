@@ -17,10 +17,12 @@ function initialize(passport) {
         if (req.params.admin == "adminmanage") {
           //check for admin
           try {
+            // console.log("Adminers", req.params.admin, Email, password);
+
             await Admin.findOne({ Email: Email }, function (err, user) {
               if (err) return done(err);
               //check if user exist
-              //console.log(user);
+              // console.log(user);
               if (!user) {
                 // console.log("user false");
                 return done(null, false, { message: "Wrong Email" });

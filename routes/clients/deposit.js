@@ -69,7 +69,7 @@ router.post("/", checkAuthenticated, async function(req, res){
   } catch (error) {
     console.log(error);
     req.flash('primary', 'Network err');
-    res.redirect(`/shop`);
+    res.redirect(`/dashboard`);
    }
 });
   

@@ -125,7 +125,7 @@
                                 </div> -->
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Personal Details</h5>
+                                        <h5>Account info</h5>
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
@@ -145,11 +145,11 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <p class="mb-1 text-muted">Tickets Open</p>
-                                                        <p class="mb-0">0</p>
+                                                        <p class="mb-0"><%= totalTicketOpen %></p>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <p class="mb-1 text-muted">Tickets Closed</p>
-                                                        <p class="mb-0">0</p>
+                                                        <p class="mb-0"><%= totalTicketClosed %></p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -381,29 +381,20 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <%let Tickets = user.Orders.reverse(); %>
+                                                    <%let Tickets = user.Tickets.reverse(); %>
                                                     <%Tickets.map((data, index) => {%>
                                                     <tr>
                                                     <td class="text-end"><%=index%></td>
                                                     <td>
                                                         <div class="row">
-                                                        <div class="col-auto pe-0">
-                                                            <% if(data.type == "facebook" || data.type == "facebookDating" || data.type == "facebookOthers" ) { %>
-                                                                <a href="#" class="social-link fab fa-facebook-f"></a>
-                                                                <% } else if(data.type == "twitter") { %>
-                                                                <a href="#" class="social-link fab fa-twitter"></a>
-                                                                <% } else if(data.item == "instagram") { %>
-                                                                <a href="#" class="social-link fab fa-linkedin-in"></a>
-                                                                <% } else { %> Others <% } %>
-                                                        </div>
-                                                        <div class="col">
-                                                            <h6 class="mb-1"><%=data._id%></h6>
-                                                        </div>
+                                                            <div class="col">
+                                                                <h6 class="mb-1"><%=data.ticket_id%></h6>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                     <td class="text-end"><%= data.dateandtime.toLocaleDateString(); %> <%= data.dateandtime.toLocaleTimeString(); %></td>
                                                     <td>
-                                                        <%if(data.status === 1) {%>
+                                                        <%if(data.status === "success") {%>
                                                         <span class="badge bg-light-success  f-12">fufilled</span>
                                                         <%} else {%>
                                                         <td><span class="badge bg-light-danger  f-12">Pending</span> </td>
@@ -411,17 +402,16 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="list-inline me-auto mb-0">
-                                                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
-                                                            <a href="/orderdetail/<%=data.buyid%>" class="avtar avtar-xs btn-link-secondary btn-pc-default" >
-                                                            <i class="ti ti-eye f-18"></i>
-                                                            </a>
-                                                        </li>
-
-                                                        <!-- <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Delete">
-                                                            <a href="#" class="avtar avtar-xs btn-link-danger btn-pc-default">
-                                                            <i class="ti ti-trash f-18"></i>
-                                                            </a>
-                                                        </li> -->
+                                                            <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
+                                                                <a href="#" class="avtar avtar-xs btn-link-secondary btn-pc-default" data-bs-toggle="modal" data-bs-target="#cust-modal<%= data._id %>">
+                                                                    <i class="ti ti-eye f-18"></i>
+                                                                </a>
+                                                            </li>
+                                                            <!-- <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Delete">
+                                                                <a href="#" class="avtar avtar-xs btn-link-danger btn-pc-default">
+                                                                <i class="ti ti-trash f-18"></i>
+                                                                </a>
+                                                            </li> -->
                                                         </ul>
                                                     </td>
                                                     </tr>

@@ -53,6 +53,31 @@
           color: white;
           font-weight: bold;
         }
+
+        .header-chilld{
+          flex-grow: 1;
+        }
+
+        .logo-dark img {
+          max-width: 150px; /* Adjust the value as needed */
+        }
+
+        @media screen and (max-width: 1199px) {
+            .header-1 .header__main-content-wrapper .header__main-right {
+                justify-content: flex-end;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .header-1 .header__main-content-wrapper {
+                gap: 20px;
+            }
+        }
+
+        body {
+            overscroll-behavior: none !important;
+        }
+
       </style>
 
     <!-- preloader start -->
@@ -74,16 +99,15 @@
         <div id="header-sticky" class="header-1" style="z-index: 9999;">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-xxl-12 col-xl-12 col-lg-12">
+                    <div class="col-12">
                         <div class="header__main-content-wrapper header-padding d-flex align-items-center justify-content-between p-relative">
-                            <div class="header__main-left">
-                                <div class="header__logo">
-                                    <a href="/" class="logo-dark"><img src="/assets/img/logo/logo.png" style="width: 50%; height: auto;" alt="logo-img"></a>
-                                </div>
-                            </div>
-                            <div class="main-menu d-none d-xl-block">
+                          <a href="/" class="logo-dark header-chilld">
+                             <img src="/assets/img/logo/logo.png" style="width: 50%; height: auto;" alt="logo-img">
+                          </a>
+
+                            <div class="main-menu d-none d-xl-block header-chilld">
                                 <nav id="mobile-menu">
-                                    <ul>
+                                    <ul style="margin-bottom: 0px;">
                                         <li>
                                             <a href="/">Home</a>
                                         </li>
@@ -101,8 +125,7 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="header__main-right">
-                                <% console.log(user, "outside") %>
+                            <div class="header__main-right header-chilld">
                                 <% if(!user || user === undefined || Object.keys(user).length === 0) {%>
                                 <div class="user-login d-xxl-block d-xxl-block d-lg-block d-md-block d-none">
                                     <i class="fa-regular fa-user"></i>
@@ -114,11 +137,11 @@
                                         <div class="row justify-content-center">
                                           <div class="col-md-6 w-100">
                                             <div class="text-center d-flex gap-1">
-                                                <% const firstLetter = user?.username.slice(0, 1).toUpperCase();%>
+                                                <% const firstLetter = user?.username?.slice(0, 1).toUpperCase();%>
                                               <div class="profile-pic"><%=firstLetter%></div>
                                               <div class="d-flex flex-column align-items-start mt-2">
                                                 <!-- <h3 class="mt-3">John Doe</h3> -->
-                                                <small>Email: john.doe@example.com</small>
+                                                <small>Email: <%= user?.Email %></small>
                                                 <small class="">
                                                     <!-- <span style="font-weight: bold; font-size: 12px;">N</span> -->
                                                     N <%= user?.balance?.toLocaleString() %>

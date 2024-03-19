@@ -303,121 +303,121 @@
   <script src="/assetsdashboard/js/plugins/Jarallax.js"></script>
   
 <!-- [Page Specific JS] start -->
-<!-- <script src="/assetsdashboard/js/plugins/simple-datatables.js"></script> -->
+<script src="/assetsdashboard/js/plugins/simple-datatables.js"></script>
 <script>
     const dataTable = new simpleDatatables.DataTable('#pc-dt-simple', {
         sortable: false,
         perPage: 5
     });
-</script>
+    </script>
 <!-- [Page Specific JS] end -->
 
 <!-- Main JS File -->
 <script src="js/main.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-    let myModaldashboard = document.getElementById('myModaldashboard');
-    let buttonClose = document.getElementById('buttonClose');
-    let totals = document.getElementById('totals');
-    let containCreated = document.getElementById('containCreated');
-    let removal = document.getElementById('removal');
-    let removenumber = document.getElementById('removenumber');
-    let createInputs = document.getElementById('createInputs');
+    $(document).ready(function() {
+
+       $('#myModaldashboard').modal('toggle');
+       
+       $("#buttonClose").click(function(){
+        console.log("Called click")
+        $('#myModaldashboard').addClass("hideo")
+       });
+
+        
+       console.log("Hello ooooo ooo");
+               let increment = 1;
+
+        $("#totals").val(increment - 1); //.text(increment - 1);
+
     
-    myModaldashboard.classList.add('show');
-    
-    buttonClose.addEventListener('click', function() {
-        console.log("Called click");
-        myModaldashboard.classList.add("hideo");
-    });
+        $("#createInputs").click(function(){
+            console.log("Called add function");
+            $('#containCreated').append(`
+             <div id="removediv${increment}">
+                <small>${increment}</small>
+                <div class="form-group mt-3" id="titleid${increment}" style="margin: 4px !important">
+                    <label>Title</label>
+                    <input type="text" id="comment-name" name="title${increment}" required="" style="width: 100%;" />
+                </div>
 
-    console.log("Hello ooooo ooo");
-    let increment = 1;
+                <div class="form-group mt-3" id="priceid${increment}" style="margin: 4px !important">
+                    <label>Price</label>
+                    <input type="number" id="comment-name" name="price${increment}"  required="" />
+                </div>
 
-    totals.value = increment - 1;
+                <div class="form-group mt-3" id="names${increment}" style="margin: 4px !important">
+                    <label>username and emails</label>
+                    <input type="text" id="comment-name" name="names${increment}"  required="" />
+                </div>
 
-    createInputs.addEventListener('click', function() {
-        console.log("Called add function");
-        containCreated.insertAdjacentHTML('beforeend', `
-            <div id="removediv${increment}">
-            <small>${increment}</small>
-            <div class="form-group mt-3" id="titleid${increment}" style="margin: 4px !important">
-                <label>Title</label>
-                <input type="text" id="comment-name" name="title${increment}" required="" style="width: 100%;" />
-            </div>
+                <div class="form-group" id="detailsid${increment}" style="margin: 4px !important">
+                    <label>Extra Details</label>
+                    <input type="text" id="comment-name" name="details${increment}"  required="" />
+                </div>
 
-            <div class="form-group mt-3" id="priceid${increment}" style="margin: 4px !important">
-                <label>Price</label>
-                <input type="number" id="comment-name" name="price${increment}"  required="" />
-            </div>
+                <div class="form-group" id="passwordsid${increment}" style="margin: 4px !important">
+                    <label>password if any</label>
+                    <input type="text" id="comment-name" name="passwords${increment}"  required="" />
+                </div>
 
-            <div class="form-group mt-3" id="names${increment}" style="margin: 4px !important">
-                <label>username and emails</label>
-                <input type="text" id="comment-name" name="names${increment}"  required="" />
-            </div>
+                <div class="form-group" id="descriptionid${increment}" style="margin: 4px !important">
+                    <label>description for products (how to use and devices to use it for)</label>
+                    <input type="text" id="comment-name" name="description${increment}" required="" />
+                </div>
 
-            <div class="form-group" id="detailsid${increment}" style="margin: 4px !important">
-                <label>Extra Details</label>
-                <input type="text" id="comment-name" name="details${increment}"  required="" />
-            </div>
+                <div class="form-group" id="itemsnoid${increment}" style="margin: 4px !important">
+                    <label>total number of items</label>
+                    <input type="number" id="comment-name" name="itemsno${increment}" required="" />
+                </div>
 
-            <div class="form-group" id="passwordsid${increment}" style="margin: 4px !important">
-                <label>password if any</label>
-                <input type="text" id="comment-name" name="passwords${increment}"  required="" />
-            </div>
+             </div> 
+            `);
+            const add =  parseInt(increment);
+            console.log(add, "work");
+             increment = add + 1;
+            console.log(increment, "inc");
+           $("#totals").val(increment - 1)   //.text(increment - 1);
+        })
 
-            <div class="form-group" id="descriptionid${increment}" style="margin: 4px !important">
-                <label>description for products (how to use and devices to use it for)</label>
-                <input type="text" id="comment-name" name="description${increment}" required="" />
-            </div>
-
-            <div class="form-group" id="itemsnoid${increment}" style="margin: 4px !important">
-                <label>total number of items</label>
-                <input type="number" id="comment-name" name="itemsno${increment}" required="" />
-            </div>
-
-            </div> 
-        `);
-        const add =  parseInt(increment);
-        console.log(add, "work");
-        increment = add + 1;
-        console.log(increment, "inc");
-        totals.value = increment - 1;
-    });
-
-    removal.addEventListener('click', function(event) {
+      
+        //remove
+    $("#removal").click(function(event){
         event.preventDefault();
         console.log("clicked clicked");
-        let id = removenumber.value;
-        if (id === undefined) {
-            const newId = totals.value;
-            console.log(newId, "intentionally");
-            document.getElementById(`titleid${newId}`).remove();
-            document.getElementById(`priceid${newId}`).remove();
-            document.getElementById(`names${newId}`).remove();
-            document.getElementById(`detailsid${newId}`).remove();
-            document.getElementById(`passwordsid${newId}`).remove();
-            document.getElementById(`descriptionid${newId}`).remove();
-            document.getElementById(`removediv${newId}`).remove();
+        let id = $('#removenumber').val();
+        if(id === undefined) {
+        const newId = $("#totals").val();
+        console.log(newId, "intentionally");
+        $(`#titleid${newId}`).remove();
+        $(`#priceid${newId}`).remove();
+        $(`#names${newId}`).remove();
+        $(`#detailsid${newId}`).remove();
+        $(`#passwordsid${newId}`).remove();
+        $(`#descriptionid${newId}`).remove();
+        $(`#removediv${newId}`).remove()
         } else {
-            console.log(id, "id selected");
-            console.log("Called remove");
-            document.getElementById(`titleid${id}`).remove();
-            document.getElementById(`priceid${id}`).remove();
-            document.getElementById(`names${id}`).remove();
-            document.getElementById(`detailsid${id}`).remove();
-            document.getElementById(`passwordsid${id}`).remove();
-            document.getElementById(`descriptionid${id}`).remove();
-            document.getElementById(`removediv${id}`).remove();
+        console.log(id, "id selected");
+        console.log("Called remove");
+        $(`#titleid${id}`).remove();
+        $(`#priceid${id}`).remove();
+        $(`#names${id}`).remove();
+        $(`#detailsid${id}`).remove();
+        $(`#passwordsid${id}`).remove();
+        $(`#descriptionid${id}`).remove();
+        $(`#removediv${id}`).remove()
         }
         console.log(increment, "check increment");
         let reset = increment - 1;
         increment = reset;
-        totals.value = reset - 1;
-        removenumber.value = "";
-    });
+            $("#totals").val(reset - 1)  //.text(reset - 1);
+            $('#removenumber').val("");
+    })
 
-});
+
+        
+    });
+     
 </script>
 
 

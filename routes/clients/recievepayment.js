@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 //const Products = require("../../model-database/products").Products;
-const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
+// const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
 const User = require("../../model-database/users").User;
 //const passport = require("passport");
 //const LocalStrategy = require("passport-local").Strategy;

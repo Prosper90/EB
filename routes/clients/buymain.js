@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const ProductTwo = require("../../model-database/productTwo").ProductTwo;
+// const ProductTwo = require("../../model-database/productTwo").ProductTwo;
 const User = require("../../model-database/users").User;
 const bcrypt = require("bcrypt");
 const router = express.Router();

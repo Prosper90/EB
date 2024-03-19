@@ -3,7 +3,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const Products = require("../../model-database/products").Products;
-const ProductTwo = require("../../model-database/productTwo").ProductTwo;
+// const ProductTwo = require("../../model-database/productTwo").ProductTwo;
 const Admin = require("../../model-database/users").Admin;
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get("/", checkAuthenticated, async function (req, res) {
   let products = await Products.find().clone();
   let productsTwo = await ProductTwo.find().clone();
   let totalusers = await User.find().count().clone();
-  req.flash("success", "Added products successfully");
+  // req.flash("success", "Added products successfully");
 
   res.render("admin/addproducts", {
     users: users,

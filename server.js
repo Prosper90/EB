@@ -10,6 +10,7 @@ const orders = require("./routes/clients/orders");
 const dashboard = require("./routes/clients/dashboard");
 const buypage = require("./routes/clients/buypage");
 const orderdetail = require("./routes/clients/orderdetail");
+const ticket = require("./routes/clients/ticket");
 const recievepayment = require("./routes/clients/recievepayment");
 const deposit = require("./routes/clients/deposit");
 const deposithistory = require("./routes/clients/deposithistory");
@@ -31,7 +32,7 @@ const mainorder = require("./routes/admin/mainorder.js");
 //const manageInvestments = require("./routes/admin/manageInvestments.js");
 const bodyParser = require("body-parser");
 const User = require("./model-database/users").User;
-const ProductTwo = require("./model-database/productTwo").ProductTwo;
+// const ProductTwo = require("./model-database/productTwo").ProductTwo;
 const Admin = require("./model-database/admin").Admin;
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -95,6 +96,7 @@ app.use("/orders", orders);
 app.use("/buypage", buypage);
 app.use("/dashboard", dashboard);
 app.use("/orderdetail", orderdetail);
+app.use("/ticket", ticket);
 app.use("/deposit", deposit);
 app.use("/deposithistory", deposithistory);
 app.use("/buymain", buymain);
@@ -118,7 +120,7 @@ app.use("/webhook", webhook);
 
 //main one
 app.get("/", function (req, res) {
-  console.log(req.user, "checking request.user");
+  // console.log(req.user, "checking request.user");
   res.render("home", { active: "home", user: req.user});
 });
 
@@ -135,6 +137,6 @@ mongoose
   .then(() => console.log("connected to DB!"))
   .catch((error) => console.log(error));
 
-app.listen(process.env.PORT || 8000, function () {
-  console.log("App is listening on url http://localhost:8000");
+app.listen(process.env.PORT || 5000, function () {
+  console.log("App is listening on url http://localhost:5000");
 });

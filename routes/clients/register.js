@@ -71,7 +71,7 @@ router.post("/", async function (req, res) {
 
       user.save();
       req.flash("success", "Registration successful, Login");
-      res.redirect(`/`);
+      res.redirect(`/login`);
     } catch {
       res.redirect("/");
     }

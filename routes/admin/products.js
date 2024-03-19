@@ -3,7 +3,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const Products = require("../../model-database/products").Products;
-const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
+// const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
 const Admin = require("../../model-database/users").Admin;
 const router = express.Router();
 

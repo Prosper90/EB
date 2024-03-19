@@ -41,7 +41,7 @@ router.get("/", checkAuthenticated, async function (req, res) {
   const linkedin = await Products.find({ type: "linkedin" });
   const vpn = await Products.find({ type: "vpn" });
 
-  console.log(faceBook, "checking somthing");
+  // console.log(faceBook, "checking somthing");
 
   res.render("shop", {
     // products: products,

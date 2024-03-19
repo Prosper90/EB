@@ -7,10 +7,10 @@ const User = require("../../model-database/users").User;
 const router = express.Router();
 
 //checkAuthenticated,
-router.get("/:id", async function (req, res) {
-  console.log("check check check main");
+router.get("/:id", checkAuthenticated, async function (req, res) {
+  // console.log("check check check main");
   const getItem = await Products.findOne({ _id: req.params.id }).clone();
-  console.log(getItem, "agian check");
+  // console.log(getItem, "agian check");
   res.render("buypage", { item: getItem, active: "shop", user: req.user});
 });
 
@@ -22,37 +22,27 @@ router.post("/:id", checkAuthenticated, async function (req, res, next) {
     //check for available market
   const buyingProduct = await Products.findOne({ _id: req.params.id });
   console.log(buyingProduct, "buying product");
-  const user = await User.findById({ _id: req.user._id });
-  const totalPrice = buyingProduct.price * req.body.purchaseNumber;
+  // const user = await User.findById({ _id: req.user._id });
+  console.log(buyingProduct.price, req.body.purchaseNumber, "purchase number and others");
+  const totalPrice = req.body.purchaseNumber === 0 ? buyingProduct.price : buyingProduct.price * req.body.purchaseNumber;
+  console.log(totalPrice,"is the price of this item");
   if(!buyingProduct) {
-    req.flash(
-      "danger",
-      "No such product"
-    );
+    req.flash("danger", "No such product");
     return res.redirect(`/buypage/${req.params.id}`);
   }
 
   if(!buyingProduct.available) {
-    req.flash(
-      "danger",
-      "Product is unavailable"
-    );
+    req.flash("danger", "Product is unavailable");
    return res.redirect(`/buypage/${req.params.id}`);
   }
 
   if(req.body.purchaseNumber > buyingProduct.numOfitem) {
-    req.flash(
-      "danger",
-      "Not enough stock to order. Kindly order in lesser quantity"
-    );
+    req.flash( "danger", "Not enough stock to order. Kindly order in lesser quantity");
     return res.redirect(`/buypage/${req.params.id}`);
   }
 
-  if(user.balance < parseFloat(totalPrice)) {
-    req.flash(
-      "danger",
-      "Insufficient funds"
-    );
+  if(req.user.balance < parseFloat(totalPrice)) {
+    req.flash("danger", "Insufficient funds");
     return res.redirect(`/buypage/${req.params.id}`);
   }
 
@@ -68,10 +58,7 @@ router.post("/:id", checkAuthenticated, async function (req, res, next) {
       );
       if (!updateAfterSell) {
         //handle
-        req.flash(
-          "danger",
-          "Something went wrong"
-        );
+        req.flash( "danger", "Something went wrong");
         return res.redirect(`/buypage/${req.params.id}`);
       } 
 
@@ -86,7 +73,7 @@ router.post("/:id", checkAuthenticated, async function (req, res, next) {
       await User.findOneAndUpdate(
       {_id: req.user._id},
       {
-        $set: {balance: user.balance - parseFloat(totalPrice)},
+        $set: {balance: req.user.balance - parseFloat(totalPrice)},
         $push: {Orders: order_created}
        }
        )

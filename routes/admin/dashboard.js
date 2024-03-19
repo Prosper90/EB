@@ -3,7 +3,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const Products = require("../../model-database/products").Products;
-const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
+// const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
 const Admin = require("../../model-database/users").Admin;
 const router = express.Router()
 
@@ -11,14 +11,45 @@ const router = express.Router()
 
 
 router.get("/", checkAuthenticated, async function(req, res){
-  //console.log(req.user);
-   let users = await User.find().clone();
-   let products = await Products.find().clone();
-   let productsTwo = await ProductsTwo.find().clone();
-   let totalusers = await User.find().count().clone();
-  //  req.flash("primary", "Log in to proceed");
-  req.flash("success", "Added products successfully");
-  res.render("admin/dashboard", { users: users, totalusers: totalusers, user: req.user, products: products, active: "dashboard", productsTwo: productsTwo});
+  try {
+    let users = await User.find();
+    let products = await Products.find();
+    let totalusers = await User.countDocuments();
+
+      let totalBalance = await User.aggregate([
+        {
+            $group: {
+                _id: null,
+                totalBalance: { $sum: "$balance" }
+            }
+        }
+    ]);
+
+    console.log(totalBalance);
+
+    let totalAmountBought = await User.aggregate([
+        { $unwind: "$Orders" },
+        {
+            $match: {
+                "Orders.status": "success"
+            }
+        },
+        {
+            $group: {
+                _id: null,
+                totalAmountBought: { $sum: "$Orders.price" }
+            }
+        }
+    ]);
+    console.log(totalAmountBought);
+
+    req.flash("success", "Added products successfully");
+    res.render("admin/dashboard", { users, totalusers, user: req.user, products, active: "dashboard", totalBalance: totalBalance | 0, totalAmountBought: totalAmountBought | 0 });
+  } catch (error) {
+    console.error(error);
+    req.flash('error', 'An error occurred');
+    res.redirect('/admin/dashboard');
+  }
 });
 
 
@@ -133,7 +164,29 @@ router.post("/userinfo/:id", checkAuthenticated, async function(req, res){
 });
 
 
+router.post("/ticket/:userid/:ticketid", checkAuthenticated, async function(req, res){
+  try {
+    await User.findOneAndUpdate(
+      {
+        _id: req.params.userid,
+        "Ticket.ticket_id": req.params.ticketid,
+      },
+      {
+        $set: {
+          "Ticket.$.status": req.body.admin_pick,
+        },
+      },
+      { new: true }
+    );
+    
+    req.flash("success", "Ticket updated");
+    res.redirect("/admin");
 
+  } catch (error) {
+    req.flash("error", "Something went wrong");
+    res.redirect("/admin");
+  }
+})
 
 
 

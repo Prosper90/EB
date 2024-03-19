@@ -1,57 +1,62 @@
 
-
-<div class="modal fade" id="cust-modal" data-bs-keyboard="false" tabindex="-1"
-aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-  <div class="modal-content">
-    <div class="modal-header border-0 pb-0">
-      <h5 class="mb-0">Product Details</h5>
-      <a href="#" class="avtar avtar-s btn-link-danger btn-pc-default" data-bs-dismiss="modal">
-        <i class="ti ti-x f-20"></i>
-      </a>
-    </div>
-    <div class="modal-body">
-      <div class="row align-items-center">
-        <div class="col-sm-4">
-          <div class="bg-light rounded position-relative">
-            <div class="text-center">
-              <div class="chat-avtar d-inline-flex mx-auto">
-                <img class="img-fluid rounded" src="../assets/images/application/img-prod-4.jpg"
-                  alt="User image">
+<% const ticketModal = user?.Tickets.reverse(); %>
+<% if(ticketModal !== undefined) {%>
+  <%ticketModal.map((data) => {%>
+    <div class="modal fade" id="cust-modal<%= data.id %>" data-bs-keyboard="false" tabindex="-1"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="mb-0">Product Details</h5>
+          <a href="#" class="avtar avtar-s btn-link-danger btn-pc-default" data-bs-dismiss="modal">
+            <i class="ti ti-x f-20"></i>
+          </a>
+        </div>
+        <div class="modal-body">
+          <div class="row align-items-center">
+            <div class="col-sm-4">
+              <div class="bg-light rounded position-relative">
+                <div class="text-center">
+                  <div class="chat-avtar d-inline-flex mx-auto">
+                    <img class="img-fluid rounded" src="../assets/images/application/img-prod-4.jpg"
+                      alt="User image">
+                  </div>
+                </div>
+                <div class="position-absolute end-0 top-0 p-3">
+                  <span class="badge bg-success">In Stock</span>
+                </div>
               </div>
             </div>
-            <div class="position-absolute end-0 top-0 p-3">
-              <span class="badge bg-success">In Stock</span>
+            <div class="col-sm-8">
+              <h5>Canon EOS 1500D 24.1 Digital</h5>
+              <p class="text-muted">Image Enlargement: After shooting, you can enlarge photographs of the objects for clear zoomed view. Change In Aspect Ratio: Boldly crop the subject and save it with a composition that has impact.</p>
+              <div class="table-responsive">
+                <table class="table w-auto table-borderless">
+                  <tbody>
+                    <tr>
+                      <td class="text-muted py-1">Categories</td>
+                      <td class="py-1">Electronics, Camera</td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted py-1">Qty</td>
+                      <td class="py-1">21</td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted py-1">Price</td>
+                      <td class="py-1"><h5 class="mb-0">$399</h5></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <h5>Canon EOS 1500D 24.1 Digital</h5>
-          <p class="text-muted">Image Enlargement: After shooting, you can enlarge photographs of the objects for clear zoomed view. Change In Aspect Ratio: Boldly crop the subject and save it with a composition that has impact.</p>
-          <div class="table-responsive">
-            <table class="table w-auto table-borderless">
-              <tbody>
-                <tr>
-                  <td class="text-muted py-1">Categories</td>
-                  <td class="py-1">Electronics, Camera</td>
-                </tr>
-                <tr>
-                  <td class="text-muted py-1">Qty</td>
-                  <td class="py-1">21</td>
-                </tr>
-                <tr>
-                  <td class="text-muted py-1">Price</td>
-                  <td class="py-1"><h5 class="mb-0">$399</h5></td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-</div>
+    </div>
+    <% }) %>
+    
+<% } %>
 
 <!-- footer start -->
 <footer>

@@ -8,11 +8,19 @@ router.get("/", checkAuthenticated, async function (req, res) {
   //console.log(req.user);
  const totalOrders = req.user?.Orders.length;
  const totalDeposit = req.user?.Deposit.length;
+ const totalTicketOpen = req?.user.Tickets.filter(data => {
+  return data.status === "pending"
+ });
+ const totalTicketClosed = req?.user.Tickets.filter(data => {
+  return data.status === "resolved"
+ });
 
   res.render("clients/dashboard", {
     user: req.user,
     totalOrders: totalOrders,
     totalDeposit: totalDeposit,
+    totalTicketOpen: totalTicketOpen.length,
+    totalTicketClosed: totalTicketClosed.length,
     transferAccount: undefined,
   });
 });
