@@ -3,7 +3,6 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const User = require("../../model-database/users").User;
 const Products = require("../../model-database/products").Products;
-// const ProductsTwo = require("../../model-database/productTwo").ProductTwo;
 const Admin = require("../../model-database/users").Admin;
 const router = express.Router()
 
@@ -14,9 +13,8 @@ router.get("/", checkAuthenticated, async function(req, res){
   //console.log(req.user);
   let users = await User.find().clone();
   let products = await Products.find().clone();
-  let productsTwo = await ProductsTwo.find().clone();
   let totalusers = await User.find().count().clone();
- res.render("admin/allorders", { users: users, productsTwo: productsTwo, totalusers: totalusers, user: req.user, products: products, active: "allorders", });
+ res.render("admin/allorders", { users: users, totalusers: totalusers, user: req.user, products: products, active: "allorders", });
 });
 
 
