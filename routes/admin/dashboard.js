@@ -42,11 +42,11 @@ router.get("/", checkAuthenticated, async function(req, res){
     ]);
     console.log(totalAmountBought);
 
-    req.flash("success", "Added products successfully");
+    // req.flash("success", "Added products successfully");
     res.render("admin/dashboard", { users, totalusers, user: req.user, products, active: "dashboard", totalBalance: totalBalance | 0, totalAmountBought: totalAmountBought | 0 });
   } catch (error) {
     console.error(error);
-    req.flash('error', 'An error occurred');
+    // req.flash('error', 'An error occurred');
     res.redirect('/admin/dashboard');
   }
 });

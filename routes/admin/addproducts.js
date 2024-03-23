@@ -23,20 +23,15 @@ router.get("/", checkAuthenticated, async function (req, res) {
 });
 
 //submit one
-router.post("/", async function (req, res, next) {
-  console.log(req.body);
+router.post("/", checkAuthenticated, async function (req, res, next) {
+  console.log(req.body, "body body");
   //console.log(req.body.details1);
 
   //checking if fields are empty
-  if (req.body.type == "" || req.body.price == "") {
-    // req.session.message = {
-    //   type: "danger",
-    //   intro: "Empty fields",
-    //   message: "Please insert the requested information",
-    // };
-    req.flash("primary", "Please add the type and price");
-    res.redirect("/addproducts");
-  } else {
+  // if (req.body.type == "" || req.body.price == "") {
+  //   req.flash("primary", "Please add the type and price");
+  //   res.redirect("/addproducts");
+  // } 
     //putting data to the database
 
     try {
@@ -53,8 +48,10 @@ router.post("/", async function (req, res, next) {
       // description: { type: String },
 
       const dataUpload = [];
+      console.log("happier");
 
       for (let index = 1; index <= req.body.totals; index++) {
+        console.log(req.body.type, req.body[`title${index}`, "wait ooooo I am not understanding"]);
         dataUpload.push({
           type: req.body.type,
           title: req.body[`title${index}`],
@@ -81,7 +78,6 @@ router.post("/", async function (req, res, next) {
       next(err);
       res.redirect("/addproducts");
     }
-  }
 });
 
 function checkAuthenticated(req, res, next) {
